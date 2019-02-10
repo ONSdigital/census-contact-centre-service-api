@@ -14,6 +14,9 @@ public class FulfilmentsDTO implements Serializable {
 
   private Fulfilment[] codes;
 
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
   public class Fulfilment {
     private String productCode;
     private String description;
