@@ -13,5 +13,4 @@ import lombok.NoArgsConstructor;
 public class FulfilmentsDTO implements Serializable {
 
   private FulfilmentDTO[] codes;
-
 }

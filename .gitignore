@@ -53,9 +53,4 @@ tools/addend/target/classes/
 out/
 tools/addend/target/classes/
 
-target
-*.log
-*.data
-*.redo
-*.backup
-*.DS_Store
+target/**

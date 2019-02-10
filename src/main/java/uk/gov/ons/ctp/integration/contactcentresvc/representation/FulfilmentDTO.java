@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FulfilmentDTO implements Serializable {
-    private String productCode;
-    private String description;
-    private String method;
+  private String productCode;
+  private String description;
+  private String method;
 }
