@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class RefusalsDTO implements Serializable {
   private Refusal[] codes;
 
-  class Refusal {
+  public class Refusal {
     private String refusalCode;
     private String description;
   }
