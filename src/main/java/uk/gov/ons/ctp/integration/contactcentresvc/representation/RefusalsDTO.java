@@ -11,13 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RefusalsDTO implements Serializable {
-  private Refusal[] codes;
-
-  @Data
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public class Refusal {
-    private String refusalCode;
-    private String description;
-  }
+  private RefusalDTO[] codes;
 }
