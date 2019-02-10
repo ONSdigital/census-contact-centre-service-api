@@ -1,0 +1,13 @@
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/FulfilmentsDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/FulfilmentRequestDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/PostalFulfilmentRequestDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/RefusalsDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/UnresolvedFulfilmentRequestDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/PostalUnresolvedFulfilmentRequestDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/EmailUnresolvedFulfilmentRequestDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/SMSUnresolvedFulfilmentRequestDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/EmailFulfilmentRequestDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/AddressDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/SMSFulfilmentRequestDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/RefusalRequestDTO.java
+/Users/philwhiles/Development/workspaces/eclipse/phoenix/census-contact-centre-service-api/src/main/java/uk/gov/ons/ctp/integration/contactcentresvc/representation/CaseDTO.java
