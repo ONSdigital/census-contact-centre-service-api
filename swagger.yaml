@@ -37,7 +37,7 @@ paths:
             type: string
             maximum: 100
             default: 10
-        
+
       responses:
         '200':
           description: Success. A json return of matched addresses.
@@ -700,7 +700,9 @@ paths:
       tags:
         - routes
       summary: Log when someone is unable/unwilling to complete a response
-      description: Logs a refusal against a Case, 'unknown' should be used in place of a caseid if lookup cannot be performed due to API not being available
+      description: >-
+        Logs a refusal against a Case, 'unknown' should be used in place of a caseid if lookup cannot be performed due to API not being available.
+        Address fields are optional, these are only required in the instance where the API is down and the contact centre operative needs to record the address fields due to Case lookup not being available.
       parameters:
         - in: path
           name: caseId
