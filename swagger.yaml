@@ -700,7 +700,7 @@ paths:
       tags:
         - routes
       summary: Log when someone is unable/unwilling to complete a response
-      description: Logs a refusal against a Case
+      description: Logs a refusal against a Case, 'unknown' should be used in place of a caseid if lookup cannot be performed due to API not being available
       parameters:
         - in: path
           name: caseId
@@ -806,7 +806,7 @@ info:
 tags:
   - name: routes
 servers:
-  - url: 'https://virtserver.swaggerhub.com/contactcentre/1.0.1'
+  - url: 'https://virtserver.swaggerhub.com/contactcentre/1.0.2'
 components:
   parameters:
     CallIdentifier:
@@ -1187,7 +1187,8 @@ components:
           description: CaseId to record appointment against
         type:
           type: string
-          description: the type of appointment
+          enum: ["field","telephone"]
+          description: the type of appointment either "field" or "telephone"
         title:
           type: string
           description: the title of the person request an appointment
@@ -1238,6 +1239,35 @@ components:
             notes:
               type: string
               description: notes about the refusal
+            address_line1:
+              type: string
+              maxLength: 60
+              description: address line1 (for use if no caseid is available)
+            address_line2:
+              type: string
+              maxLength: 60
+              description: address line2  (for use if no caseid is available)
+            address_line3:
+              type: string
+              maxLength: 60
+              description: updated address line3  (for use if no caseid is available)
+            address_line4:
+              type: string
+              maxLength: 60
+              description: updated address line4  (for use if no caseid is available)
+            town_name:
+              type: string
+              maxLength: 30
+              description: The post town of the address  (for use if no caseid is available)
+            country:
+              type: string
+              maxLength: 30
+              description: The country e.g. england. wales, northern ireland  (for use if no caseid is available)
+            postcode:
+              type: string
+              description: postcode of address  (for use if no caseid is available)
+              maxLength: 8
+           
     uk.gov.ons.responsemanagement.model.server.response.refusalresponse:
       properties:
         referenceid:
@@ -1276,7 +1306,8 @@ components:
         cases:
           type: array
           items:
-            $ref: ''
+            $ref: >-
+              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
     uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer:
       properties:
         id:
