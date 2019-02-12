@@ -18,13 +18,21 @@
   <parent>
     <groupId>uk.gov.ons.ctp.integration</groupId>
     <artifactId>census-int-common-config</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>0.0.3</version>
   </parent>
 
   <dependencies>
     <dependency>
       <groupId>uk.gov.ons.ctp.integration.common</groupId>
       <artifactId>framework</artifactId>
+      <version>0.0.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>uk.gov.ons.ctp.integration.common</groupId>
+      <artifactId>test-framework</artifactId>
+      <version>0.0.0</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -32,12 +40,6 @@
       <artifactId>springfox-swagger2</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>uk.gov.ons.ctp.integration.common</groupId>
-      <artifactId>test-framework</artifactId>
-      <version>0.0.0-SNAPSHOT</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
@@ -60,9 +62,9 @@
   </build>
 
   <scm>
-    <connection>scm:git:https://github.com/ONSdigital/census-contacts-centre-service-api</connection>
-    <developerConnection>scm:git:https://github.com/ONSdigital/census-contacts-centre-service-api</developerConnection>
-    <url>https://github.com/ONSdigital/census-contacts-centre-service-api</url>
+    <connection>scm:git:https://github.com/ONSdigital/census-contact-centre-service-api</connection>
+    <developerConnection>scm:git:https://github.com/ONSdigital/census-contact-centre-service-api</developerConnection>
+    <url>https://github.com/ONSdigital/census-contact-centre-service-api</url>
     <tag>HEAD</tag>
   </scm>
 
