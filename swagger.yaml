@@ -303,43 +303,6 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.uac
         description: uac to search for case by
-  '/cases/{caseId}/events':
-    get:
-      operationId: EventsByCaseIdQuery
-      tags:
-        - routes
-      summary: Requests case events for a given case
-      description: >-
-        Returns an array of events that have happened for a given case (filtered
-        event list)
-      parameters:
-        - in: path
-          name: caseId
-          required: true
-          description: 'Lookup the case event history '
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: Success. A json object return of matched case.
-          content:
-            application/json:
-              schema:
-                $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
-        '400':
-          description: >-
-            Bad request. Indicates an issue with the request. Further details
-            are provided in the response.
-        '401':
-          description: Unauthorised. The API key provided with the request is invalid.
-        '429':
-          description: Server too busy. The ONS API is experiencing exceptional load.
-        '500':
-          description: >-
-            Internal server error. Failed to process the request due to an
-            internal error.
   '/cases/{caseId}/launch':
     get:
       operationId: LaunchByCaseIdQuery
