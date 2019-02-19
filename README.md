@@ -1,6 +1,6 @@
 This is the ONS Census Contact Centre Service public API model project
 
-It simply contains the representation objects sent/returned to/from the Contact Centre Service REST endpoints and
+It contains the representation objects sent/returned to/from the Contact Centre Service REST endpoints and
 it's swagger API
 
 # Creating a release artifact
