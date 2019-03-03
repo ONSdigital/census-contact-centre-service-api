@@ -836,7 +836,7 @@ components:
         surname:
           type: string
           description: the surname of the person the update
-        datetime:
+        date-time:
           type: string
           format: datetime
           description: The request date time stamp
@@ -874,7 +874,7 @@ components:
           type: string
           maxLength: 6
           description: the product code for the fulfilment
-        datetime:
+        date-time:
           type: string
           format: datetime
           description: The request date time stamp
@@ -931,7 +931,7 @@ components:
           type: string
           maxLength: 6
           description: the product code for the fulfilment
-        datetime:
+        date-time:
           type: string
           format: datetime
           description: The request date time stamp
@@ -969,7 +969,7 @@ components:
           type: string
           maxLength: 6
           description: the product code for the fulfilment
-        datetime:
+        date-time:
           type: string
           format: datetime
           description: The request date time stamp
@@ -1030,7 +1030,7 @@ components:
           type: string
           maxLength: 6
           description: the product code for the fulfilment
-        datetime:
+        date-time:
           type: string
           format: datetime
           description: The request date time stamp
@@ -1057,7 +1057,7 @@ components:
           type: string
           maxLength: 6
           description: the product code for the fulfilment
-        datetime:
+        date-time:
           type: string
           format: datetime
           description: The request date time stamp
@@ -1103,7 +1103,7 @@ components:
           type: string
           maxLength: 6
           description: the product code for the fulfilment
-        datetime:
+        date-time:
           type: string
           format: datetime
           description: The request date time stamp
@@ -1140,7 +1140,7 @@ components:
           type: string
           format: phone
           description: the contact number for the appointment if given
-        datetime:
+        date-time:
           type: string
           format: datetime
           description: The requested time of the appointment if known
@@ -1159,7 +1159,7 @@ components:
               type: string
               format: uuid
               description: CaseId to log refusal against
-            refusalcode:
+            refusal-code:
               type: string
               description: the refusal type code
             title:
@@ -1214,7 +1214,7 @@ components:
           format: uuid
     uk.gov.ons.responsemanagement.model.server.response.refusalcode:
       properties:
-        refusalcode:
+        refusal-code:
           type: string
         description:
           type: string
@@ -1235,13 +1235,13 @@ components:
         id:
           type: string
           format: uuid
-        caseref:
+        case-ref:
           type: string
-        caseType:
+        case-type:
           type: string
           maxLength: 2
           description: case type
-        createddatetime:
+        created-date-time:
           type: string
           format: datetime
         address-line1:
@@ -1290,15 +1290,15 @@ components:
           type: string
         description:
           type: string
-        createddatetime:
+        created-date-time:
           type: string
           format: datetime
     uk.gov.ons.responsemanagement.model.server.response.case.Responses:
       properties:
-        datetime:
+        date-time:
           type: string
           format: datetime
-        inboundChannel:
+        inbound-channel:
           type: string
     uk.gov.ons.responsemanagement.model.server.response.address.AddressBySearchResponse:
       properties:
