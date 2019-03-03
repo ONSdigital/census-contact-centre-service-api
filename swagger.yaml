@@ -189,8 +189,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CasesContainer
+                type: array
+                items:
+                  $ref: >-
+                    #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
+                  
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -599,7 +602,7 @@ paths:
       tags:
         - routes
       summary: Get a list of available fulfilments.
-      description: Returns a JSON object containing available fulfilments
+      description: Returns a JSON array containing available fulfilments
       parameters:
         - in: query
           name: case-type
@@ -621,8 +624,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.fulfilmentcodes
+                type: array
+                items:
+                  $ref: >-
+                    #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.fulfilmentcode
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -685,7 +690,7 @@ paths:
       tags:
         - routes
       summary: Get a list of refusal codes and descriptions.
-      description: Returns a JSON object containing available refusal codes
+      description: Returns a JSON array containing available refusal codes
       parameters:
         - in: query
           name: case-type
@@ -700,8 +705,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.refusalcodes
+                type: array
+                items:
+                  $ref: >-
+                    #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.refusalcode
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -1205,41 +1212,24 @@ components:
         referenceid:
           type: string
           format: uuid
-    uk.gov.ons.responsemanagement.model.server.response.refusalcodes:
+    uk.gov.ons.responsemanagement.model.server.response.refusalcode:
       properties:
-        codes:
-          type: array
-          items:
-            type: object
-            properties:
-              refusalcode:
-                type: string
-              description:
-                type: string
-    uk.gov.ons.responsemanagement.model.server.response.fulfilmentcodes:
+        refusalcode:
+          type: string
+        description:
+          type: string
+    uk.gov.ons.responsemanagement.model.server.response.fulfilmentcode:
       properties:
-        codes:
-          type: array
-          items:
-            type: object
-            properties:
-              product-code:
-                type: string
-              description:
-                type: string
-              method:
-                type: string
-                enum:
-                  - post
-                  - email
-                  - sms
-    uk.gov.ons.responsemanagement.model.server.response.case.CasesContainer:
-      properties:
-        cases:
-          type: array
-          items:
-            $ref: >-
-              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
+        product-code:
+          type: string
+        description:
+          type: string
+        method:
+          type: string
+          enum:
+            - post
+            - email
+            - sms
     uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer:
       properties:
         id:
