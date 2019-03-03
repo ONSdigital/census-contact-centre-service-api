@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RefusalsDTO implements Serializable {
-  private RefusalDTO[] codes;
+public class CaseResponseDTO implements Serializable {
+  private String dateTime;
+  private String inboundChannel;
 }

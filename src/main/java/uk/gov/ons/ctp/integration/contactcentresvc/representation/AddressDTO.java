@@ -11,7 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddressDTO implements Serializable {
-  private String addressLine1;
-  private String addressLine2;
-  private String city;
+
+  private String uprn;
+
+  private String formattedAddress;
+
+  private String welshFormattedAddress;
+
+  private Boolean household;
 }

@@ -1300,8 +1300,10 @@ components:
           format: datetime
         inbound-channel:
           type: string
-    uk.gov.ons.responsemanagement.model.server.response.address.AddressBySearchResponse:
+    uk.gov.ons.responsemanagement.model.server.response.address.AddressBySearchResponseContainer:
       properties:
+        data-version:
+          type: string
         addresses:
           type: array
           items:
@@ -1310,16 +1312,6 @@ components:
         total:
           type: integer
           format: int64
-      required:
-        - addresses
-        - total
-    uk.gov.ons.responsemanagement.model.server.response.address.AddressBySearchResponseContainer:
-      properties:
-        data-version:
-          type: string
-        response:
-          $ref: >-
-            #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressBySearchResponse
         status:
           $ref: >-
             #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseStatus
@@ -1330,7 +1322,8 @@ components:
               #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseError
       required:
         - data-version
-        - response
+        - addresses
+        - total
         - status
         - errors
     uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseVersion:
@@ -1374,8 +1367,10 @@ components:
         - formatted-address
         - welsh-formatted-address
         - household
-    uk.gov.ons.responsemanagement.model.server.response.postcode.AddressByPostcodeResponse:
+    uk.gov.ons.responsemanagement.model.server.response.postcode.AddressByPostcodeResponseContainer:
       properties:
+        data-version:
+          type: string
         addresses:
           type: array
           items:
@@ -1384,16 +1379,6 @@ components:
         total:
           type: integer
           format: int64
-      required:
-        - addresses
-        - total
-    uk.gov.ons.responsemanagement.model.server.response.postcode.AddressByPostcodeResponseContainer:
-      properties:
-        data-version:
-          type: string
-        response:
-          $ref: >-
-            #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.postcode.AddressByPostcodeResponse
         status:
           $ref: >-
             #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseStatus
@@ -1404,6 +1389,7 @@ components:
               #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseError
       required:
         - data-version
-        - response
+        - addresses
         - status
         - errors
+        - total
