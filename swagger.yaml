@@ -193,7 +193,6 @@ paths:
                 items:
                   $ref: >-
                     #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
-                  
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -801,10 +800,10 @@ components:
           type: string
           maxLength: 30
           description: The post town of the address
-        country:
+        region:
           type: string
           maxLength: 30
-          description: 'The country e.g. england. wales, northern ireland'
+          description: 'The region e.g. england. wales, northern ireland'
         postcode:
           type: string
           description: postcode of address
@@ -907,10 +906,10 @@ components:
           type: string
           maxLength: 30
           description: The post town of the address
-        country:
+        region:
           type: string
           maxLength: 30
-          description: 'The country e.g. england. wales, northern ireland'
+          description: 'The region e.g. england. wales, northern ireland'
         postcode:
           type: string
           description: postcode of address
@@ -1003,10 +1002,10 @@ components:
           type: string
           maxLength: 30
           description: The post town of the address
-        country:
+        region:
           type: string
           maxLength: 30
-          description: 'The country e.g. england. wales, northern ireland'
+          description: 'The region e.g. england. wales, northern ireland'
         postcode:
           type: string
           description: postcode of address
@@ -1088,10 +1087,10 @@ components:
           type: string
           maxLength: 30
           description: The post town of the address
-        country:
+        region:
           type: string
           maxLength: 30
-          description: 'The country e.g. england. wales, northern ireland'
+          description: 'The region e.g. england. wales, northern ireland'
         postcode:
           type: string
           description: postcode of address
@@ -1198,10 +1197,10 @@ components:
               type: string
               maxLength: 30
               description: The post town of the address  (for use if no caseid is available)
-            country:
+            region:
               type: string
               maxLength: 30
-              description: The country e.g. england. wales, northern ireland  (for use if no caseid is available)
+              description: The region e.g. england. wales, northern ireland  (for use if no caseid is available)
             postcode:
               type: string
               description: postcode of address  (for use if no caseid is available)
@@ -1264,10 +1263,10 @@ components:
           type: string
           maxLength: 30
           description: The post town of the address
-        country:
+        region:
           type: string
           maxLength: 30
-          description: 'The country e.g. england. wales, northern ireland'
+          description: 'The region e.g. england, wales, northern ireland'
         postcode:
           type: string
           description: postcode of address
@@ -1312,46 +1311,16 @@ components:
         total:
           type: integer
           format: int64
-        status:
-          $ref: >-
-            #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseStatus
-        errors:
-          type: array
-          items:
-            $ref: >-
-              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseError
       required:
         - data-version
         - addresses
         - total
-        - status
-        - errors
     uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseVersion:
       properties:
         data-version:
           type: string
       required:
         - data-version
-    uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseError:
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-      required:
-        - code
-        - message
-    uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseStatus:
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-      required:
-        - code
-        - message
     uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseAddress:
       properties:
         uprn:
@@ -1379,17 +1348,7 @@ components:
         total:
           type: integer
           format: int64
-        status:
-          $ref: >-
-            #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseStatus
-        errors:
-          type: array
-          items:
-            $ref: >-
-              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseError
       required:
         - data-version
         - addresses
-        - status
-        - errors
         - total
