@@ -89,7 +89,7 @@ paths:
           schema:
             type: integer
             minimum: 0
-            maximum: 999
+            maximum: 250
             default: 0
         - in: query
           name: limit
@@ -98,7 +98,7 @@ paths:
           schema:
             type: integer
             minimum: 0
-            maximum: 999
+            maximum: 100
             default: 100
       responses:
         '200':
