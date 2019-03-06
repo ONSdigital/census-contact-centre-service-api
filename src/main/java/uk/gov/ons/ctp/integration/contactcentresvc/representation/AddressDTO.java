@@ -1,22 +1,19 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.io.Serializable;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class AddressDTO implements Serializable {
+@JsonPropertyOrder({ "uprn", "formatted-address", "welsh-formatted-address" })
+public class AddressDTO {
 
   private String uprn;
 
+  @JsonProperty("formatted-address")
   private String formattedAddress;
-
+	
+  @JsonProperty("welsh-formatted-address")
   private String welshFormattedAddress;
-
-  private Boolean household;
 }
