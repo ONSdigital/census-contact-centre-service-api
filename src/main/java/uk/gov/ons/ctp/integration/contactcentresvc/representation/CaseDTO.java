@@ -16,41 +16,24 @@ import lombok.NoArgsConstructor;
 public class CaseDTO implements Serializable {
   private UUID id;
 
-  // case-ref
   private String caseRef;
 
-  // maxLength: 2
-  // case-type
   private String caseType;
 
-  // created-date-time
   private LocalDateTime createdDateTime;
 
-  // maxLength: 60
-  // address-line1
   private String addressLine1;
 
-  // maxLength: 60
-  // address-line2
   private String addressLine2;
 
-  // maxLength: 60
-  // address-line3
   private String addressLine3;
 
-  // maxLength: 60
-  // address-line4
   private String addressLine4;
 
-  // maxLength: 30
-  // town-name;
   private String townName;
 
-  // maxLength: 30
-  // country;
   private String country;
 
-  // maxLength: 8
   private String postcode;
 
   private List<CaseResponseDTO> responses;
