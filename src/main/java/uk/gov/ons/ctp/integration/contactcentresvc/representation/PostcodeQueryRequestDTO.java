@@ -4,9 +4,11 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class PostcodeQueryRequestDTO {
   @NotNull
   @Pattern(regexp = "|GIR[ ]?0AA"
@@ -16,9 +18,9 @@ public class PostcodeQueryRequestDTO {
 
   @Min(0)
   @Max(250)
-  private int offset = 0;
+  private Integer offset = 0;
 
   @Min(0)
   @Max(100)
-  private int limit = 100;
+  private Integer limit = 100;
 }
