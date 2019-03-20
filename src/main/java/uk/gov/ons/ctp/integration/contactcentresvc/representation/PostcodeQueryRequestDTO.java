@@ -34,7 +34,6 @@ public class PostcodeQueryRequestDTO {
   @Max(100)
   private Integer limit = 100;
 
-
   public Integer getOffset() {
     if (offset != null) {
       return offset;

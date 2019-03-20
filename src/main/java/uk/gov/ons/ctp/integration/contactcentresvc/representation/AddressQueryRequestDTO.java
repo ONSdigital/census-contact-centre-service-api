@@ -12,8 +12,7 @@ public class AddressQueryRequestDTO {
   private static Integer DEFAULT_OFFSET = 0;
   private static Integer DEFAULT_LIMIT = 100;
 
-  @NotBlank
-  private String input;
+  @NotBlank private String input;
 
   @Min(0)
   @Max(250)
@@ -23,7 +22,6 @@ public class AddressQueryRequestDTO {
   @Max(100)
   private Integer limit;
 
-  
   public Integer getOffset() {
     if (offset != null) {
       return offset;
