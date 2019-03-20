@@ -2,8 +2,7 @@ package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -13,8 +12,7 @@ public class AddressQueryRequestDTO {
   private static Integer DEFAULT_OFFSET = 0;
   private static Integer DEFAULT_LIMIT = 100;
 
-  @NotNull
-  @Pattern(regexp = ".+")
+  @NotBlank
   private String input;
 
   @Min(0)
