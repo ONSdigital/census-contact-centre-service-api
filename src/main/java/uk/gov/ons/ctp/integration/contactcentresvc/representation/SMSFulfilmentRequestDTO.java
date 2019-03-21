@@ -1,26 +1,38 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 
+/**
+ * The request object when contact centre requests an SMS fulfilment for a given case
+ *
+ * @author philwhiles
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SMSFulfilmentRequestDTO {
-  private UUID caseId;
+public class SMSFulfilmentRequestDTO implements Serializable {
 
-  @Size(max=60)
+  @NotNull private UUID caseId;
+
+  @NotNull
+  @Size(max = 20)
+  @Pattern(regexp = Constants.PHONENUMBER_RE)
   private String telNo;
 
-  @Size(max=6)
+  @NotNull
+  @Size(max = 6)
   private String productCode;
 
-  private LocalDateTime dateTime;
+  @NotNull private LocalDateTime dateTime;
 }

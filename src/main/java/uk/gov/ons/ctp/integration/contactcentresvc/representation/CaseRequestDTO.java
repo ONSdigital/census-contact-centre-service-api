@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * The response object when contact centre requests a list of refusal codes
+ * The request object for a CaseDTOs case event data
  *
  * @author philwhiles
  */
@@ -15,9 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RefusalDTO implements Serializable {
+public class CaseRequestDTO implements Serializable {
 
-  private String refusalCode;
-
-  private String description;
+  private Boolean caseEvents;
 }

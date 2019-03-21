@@ -1,5 +1,6 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,13 +10,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The response object when contact centre requests case details
+ *
+ * @author philwhiles
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CaseDTO implements Serializable {
+
   private UUID id;
 
+  @JsonProperty("case-ref")
   private String caseRef;
 
   private String caseType;
@@ -30,9 +38,9 @@ public class CaseDTO implements Serializable {
 
   private String addressLine4;
 
-  private String townName;
+  private String town;
 
-  private String country;
+  private String region;
 
   private String postcode;
 
