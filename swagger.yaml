@@ -81,7 +81,7 @@ paths:
           description: Specifies the postcode search string (e.g. 'PO15 5RR').
           schema:
             type: string
-            pattern: '^\\s*$|GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4};'
+            pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
         - in: query
           name: offset
           required: false
@@ -144,6 +144,11 @@ paths:
       responses:
         '200':
           description: Success. Confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -179,7 +184,7 @@ paths:
             type: string
             pattern: '^\d{1,12}$'
         - in: query
-          name: case-events
+          name: caseEvents
           description: true if case events are additionally required
           schema:
               type: boolean
@@ -205,7 +210,7 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
-  '/cases/{case-id}':
+  '/cases/{caseId}':
     get:
       operationId: caseByIdQuery
       tags:
@@ -214,13 +219,13 @@ paths:
       description: Returns a case
       parameters:
         - in: path
-          name: case-id
+          name: caseId
           required: true
           description: 'Lookup a case by the case uuid '
           schema:
             type: string
         - in: query
-          name: case-events
+          name: caseEvents
           description: true if case events are additionally required
           schema:
               type: boolean
@@ -260,7 +265,7 @@ paths:
             type: integer
             format: int64
         - in: query
-          name: case-events
+          name: caseEvents
           description: true if case events are additionally required
           schema:
               type: boolean
@@ -297,6 +302,11 @@ paths:
       responses:
         '200':
           description: Success. Confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -316,7 +326,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.uac
         description: uac to search for case by
-  '/cases/{case-id}/launch':
+  '/cases/{caseId}/launch':
     get:
       operationId: LaunchByCaseIdQuery
       tags:
@@ -325,13 +335,13 @@ paths:
       description: Returns a case
       parameters:
         - in: path
-          name: case-id
+          name: caseId
           required: true
           description: Obtain an EQ survey launch URL by caseID
           schema:
             type: string
         - in: query
-          name: agent-id
+          name: agentId
           required: true
           description: employee identifier
           schema:
@@ -358,7 +368,7 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
-  '/cases/{case-id}/fulfilment/post':
+  '/cases/{caseId}/fulfilment/post':
     post:
       operationId: postFulfilment
       tags:
@@ -367,7 +377,7 @@ paths:
       description: Request a fulfilment for a Case
       parameters:
         - in: path
-          name: case-id
+          name: caseId
           description: The Case UUID
           required: true
           schema:
@@ -376,6 +386,11 @@ paths:
       responses:
         '200':
           description: Success. Confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -395,7 +410,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.fulfilmentpost
         description: object detailing fulfilment request
-  '/cases/{case-id}/fulfilment/email':
+  '/cases/{caseId}/fulfilment/email':
     post:
       operationId: emailFulfilment
       tags:
@@ -405,7 +420,7 @@ paths:
       deprecated: true
       parameters:
         - in: path
-          name: case-id
+          name: caseId
           description: The Case UUID
           required: true
           schema:
@@ -414,6 +429,11 @@ paths:
       responses:
         '200':
           description: Success. Confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -433,7 +453,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.fulfilmentemail
         description: object detailing fulfilment request
-  '/cases/{case-id}/fulfilment/sms':
+  '/cases/{caseId}/fulfilment/sms':
     post:
       operationId: smsFulfilment
       tags:
@@ -442,7 +462,7 @@ paths:
       description: Returns a case
       parameters:
         - in: path
-          name: case-id
+          name: caseId
           description: The Case UUID
           required: true
           schema:
@@ -451,6 +471,11 @@ paths:
       responses:
         '200':
           description: Success. Confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -470,7 +495,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.fulfilmentsms
         description: object detailing fulfilment request
-  /cases/unresolved/fulfilment/post:
+  '/cases/unresolved/fulfilment/post':
     post:
       operationId: unresolvedPostFulfilment
       tags:
@@ -480,6 +505,11 @@ paths:
       responses:
         '200':
           description: Success. Confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
         '400':
           description: |-
             Bad request. Indicates an issue with the request. Further details
@@ -499,7 +529,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.unresolvedfulfilmentpost
         description: object detailing fulfilment request
-  /cases/unresolved/fulfilment/email:
+  '/cases/unresolved/fulfilment/email':
     post:
       operationId: unresolvedEmailFulfilment
       tags:
@@ -510,6 +540,11 @@ paths:
       responses:
         '200':
           description: Success. Confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -529,7 +564,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.unresolvedfulfilmentemail
         description: object detailing fulfilment request
-  /cases/unresolved/fulfilment/sms:
+  '/cases/unresolved/fulfilment/sms':
     post:
       operationId: unresolvedSmsFulfilment
       tags:
@@ -539,6 +574,11 @@ paths:
       responses:
         '200':
           description: Success. Confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -558,7 +598,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.unresolvedfulfilmentsms
         description: object detailing fulfilment request
-  '/cases/{case-id}/appointment':
+  '/cases/{caseId}/appointment':
     post:
       operationId: scheduleAppointment
       tags:
@@ -567,7 +607,7 @@ paths:
       description: Returns a case
       parameters:
         - in: path
-          name: case-id
+          name: caseId
           description: The Case UUID
           required: true
           schema:
@@ -576,6 +616,11 @@ paths:
       responses:
         '200':
           description: Success. Confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -595,7 +640,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.appointment
         description: object detailing appointment request
-  /fulfilments/:
+  '/fulfilments/':
     get:
       operationId: fulfilments
       tags:
@@ -604,7 +649,7 @@ paths:
       description: Returns a JSON array containing available fulfilments
       parameters:
         - in: query
-          name: case-type
+          name: caseType
           required: false
           description: Lookup fulfilments by casetype
           schema:
@@ -613,10 +658,13 @@ paths:
         - in: query
           name: region
           required: false
-          description: Lookup fulfilments by region
+          description: 'Lookup fulfilments by region e.g. england (E), wales (W), northern ireland (N)'
           schema:
             type: string
-            maxLength: 60
+            enum:
+              - E
+              - W
+              - N
       responses:
         '200':
           description: Success. A json object return of fulfilment options.
@@ -639,7 +687,7 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
-  '/cases/{case-id}/refusal':
+  '/cases/{caseId}/refusal':
     post:
       operationId: refusals
       tags:
@@ -647,10 +695,10 @@ paths:
       summary: Log when someone is unable/unwilling to complete a response
       description: >-
         Logs a refusal against a Case, 'unknown' should be used in place of a caseid if lookup cannot be performed due to API not being available.
-        Address fields are endpoint, these are only required in the instance where the API is down and the contact centre operative needs to record the address fields due to Case lookup not being available.
+        Address fields are optional, these are only required in the instance where the API is down and the contact centre operative needs to record the address fields due to Case lookup not being available.
       parameters:
         - in: path
-          name: case-id
+          name: caseId
           description: The Case UUID
           required: true
           schema:
@@ -663,7 +711,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.refusalresponse
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.response
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -683,7 +731,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.refusal
         description: object detailing refusal
-  /refusals/:
+  '/refusals/':
     get:
       operationId: refusalcodes
       tags:
@@ -692,7 +740,7 @@ paths:
       description: Returns a JSON array containing available refusal codes
       parameters:
         - in: query
-          name: case-type
+          name: caseType
           required: false
           description: Lookup refusal codes
           schema:
@@ -752,7 +800,7 @@ paths:
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "1.0.5-oas3"
+  version: "1.0.6-oas3"
 tags:
   - name: routes
 servers:
@@ -780,30 +828,33 @@ components:
   schemas:
     uk.gov.ons.responsemanagement.model.server.request.addressupdate:
       properties:
-        address-line1:
+        addressLine1:
           type: string
           maxLength: 60
           description: updated address line1
-        address-line2:
+        addressLine2:
           type: string
           maxLength: 60
           description: updated address line2
-        address-line3:
+        addressLine3:
           type: string
           maxLength: 60
           description: updated address line3
-        address-line4:
+        addressLine4:
           type: string
           maxLength: 60
           description: updated address line4
-        town-name:
+        townName:
           type: string
           maxLength: 30
           description: The post town of the address
         region:
           type: string
-          maxLength: 30
-          description: 'The region e.g. england. wales, northern ireland'
+          enum:
+            - E
+            - W
+            - N
+          description: 'The region e.g. england (E), wales (W), northern ireland (N)'
         postcode:
           type: string
           description: postcode of address
@@ -835,17 +886,17 @@ components:
         surname:
           type: string
           description: the surname of the person the update
-        date-time:
+        dateTime:
           type: string
           format: datetime
           description: The request date time stamp
       required:
-        - address-line1
-        - town-name
+        - addressLine1
+        - townName
         - postcode
         - category
         - type
-        - datetime
+        - dateTime
     uk.gov.ons.responsemanagement.model.server.request.uac:
       properties:
         uac:
@@ -853,7 +904,7 @@ components:
           pattern: '^[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$'
     uk.gov.ons.responsemanagement.model.server.request.fulfilmentpost:
       properties:
-        case-id:
+        caseId:
           type: string
           format: uuid
           description: CaseId to request fulfilment for.
@@ -869,51 +920,54 @@ components:
           type: string
           maxLength: 60
           description: the surname of the person requesting fulfilment
-        product-code:
+        productCode:
           type: string
-          maxLength: 6
+          maxLength: 12
           description: the product code for the fulfilment
-        date-time:
+        dateTime:
           type: string
           format: datetime
           description: The request date time stamp
       required:
-        - case-id
+        - caseId
         - title
         - forename
         - surname
-        - product-code
-        - datetime
+        - productCode
+        - dateTime
     uk.gov.ons.responsemanagement.model.server.request.unresolvedfulfilmentpost:
       properties:
-        address-line1:
+        addressLine1:
           type: string
           maxLength: 60
           description: updated address line1
-        address-line2:
+        addressLine2:
           type: string
           maxLength: 60
           description: updated address line2
-        address-line3:
+        addressLine3:
           type: string
           maxLength: 60
           description: updated address line3
-        address-line4:
+        addressLine4:
           type: string
           maxLength: 60
           description: updated address line4
-        town-name:
+        townName:
           type: string
           maxLength: 30
           description: The post town of the address
         region:
           type: string
-          maxLength: 30
-          description: 'The region e.g. england. wales, northern ireland'
+          enum:
+            - E
+            - W
+            - N
+          description: 'The region e.g. england (E), wales (W), northern ireland (N)'
         postcode:
           type: string
           description: postcode of address
-          pattern: '^\\s*$|GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4};'
+          pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
         title:
           type: string
           maxLength: 12
@@ -926,26 +980,26 @@ components:
           type: string
           maxLength: 60
           description: the surname of the person requesting fulfilment
-        product-code:
+        productCode:
           type: string
-          maxLength: 6
+          maxLength: 12
           description: the product code for the fulfilment
-        date-time:
+        dateTime:
           type: string
           format: datetime
           description: The request date time stamp
       required:
-        - address-line1
-        - town-name
+        - addressLine1
+        - townName
         - postcode
         - title
         - forename
         - surname
-        - product-code
-        - datetime
+        - productCode
+        - dateTime
     uk.gov.ons.responsemanagement.model.server.request.fulfilmentemail:
       properties:
-        case-id:
+        caseId:
           type: string
           format: uuid
           description: CaseId to request fulfilment for.
@@ -964,52 +1018,55 @@ components:
         email:
           type: string
           format: email
-        product-code:
+        productCode:
           type: string
-          maxLength: 6
+        maxLength: 12
           description: the product code for the fulfilment
-        date-time:
+        dateTime:
           type: string
           format: datetime
           description: The request date time stamp
       required:
-        - case-id
+        - caseId
         - title
         - forename
         - surname
         - email
-        - product-code
-        - datetime
+        - productCode
+        - dateTime
     uk.gov.ons.responsemanagement.model.server.request.unresolvedfulfilmentemail:
       properties:
-        address-line1:
+        addressLine1:
           type: string
           maxLength: 60
           description: updated address line1
-        address-line2:
+        addressLine2:
           type: string
           maxLength: 60
           description: updated address line2
-        address-line3:
+        addressLine3:
           type: string
           maxLength: 60
           description: updated address line3
-        address-line4:
+        addressLine4:
           type: string
           maxLength: 60
           description: updated address line4
-        town-name:
+        townName:
           type: string
           maxLength: 30
           description: The post town of the address
         region:
           type: string
-          maxLength: 30
-          description: 'The region e.g. england. wales, northern ireland'
+          enum:
+            - E
+            - W
+            - N
+          description: 'The region e.g. england (E), wales (W), northern ireland (N)'
         postcode:
           type: string
           description: postcode of address
-          pattern: '^\\s*$|GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4};'
+          pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
         title:
           type: string
           maxLength: 12
@@ -1025,101 +1082,104 @@ components:
         email:
           type: string
           format: email
-        product-code:
+        productCode:
           type: string
-          maxLength: 6
+          maxLength: 12
           description: the product code for the fulfilment
-        date-time:
+        dateTime:
           type: string
           format: datetime
           description: The request date time stamp
       required:
-        - address-line1
-        - town-name
+        - addressLine1
+        - townName
         - postcode
         - title
         - forename
         - surname
         - email
-        - product-code
-        - datetime
+        - productCode
+        - dateTime
     uk.gov.ons.responsemanagement.model.server.request.fulfilmentsms:
       properties:
-        case-id:
+        caseId:
           type: string
           format: uuid
           description: CaseId to request fulfilment for.
-        tel-no:
+        telNo:
           type: string
           format: phone
-        product-code:
+        productCode:
           type: string
-          maxLength: 6
+          maxLength: 12
           description: the product code for the fulfilment
-        date-time:
+        dateTime:
           type: string
           format: datetime
           description: The request date time stamp
       required:
-        - case-id
-        - tel-no
-        - product-code
-        - datetime
+        - caseId
+        - telNo
+        - productCode
+        - dateTime
     uk.gov.ons.responsemanagement.model.server.request.unresolvedfulfilmentsms:
       properties:
-        address-line1:
+        addressLine1:
           type: string
           maxLength: 60
           description: updated address line1
-        address-line2:
+        addressLine2:
           type: string
           maxLength: 60
           description: updated address line2
-        address-line3:
+        addressLine3:
           type: string
           maxLength: 60
           description: updated address line3
-        address-line4:
+        addressLine4:
           type: string
           maxLength: 60
           description: updated address line4
-        town-name:
+        townName:
           type: string
           maxLength: 30
           description: The post town of the address
         region:
           type: string
-          maxLength: 30
-          description: 'The region e.g. england. wales, northern ireland'
+          enum:
+            - E
+            - W
+            - N
+          description: 'The region e.g. england (E), wales (W), northern ireland (N)'
         postcode:
           type: string
           description: postcode of address
-          pattern: '^\\s*$|GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4};'
-        tel-no:
+          pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
+        telNo:
           type: string
           format: phone
-        product-code:
+        productCode:
           type: string
-          maxLength: 6
+          maxLength: 12
           description: the product code for the fulfilment
-        date-time:
+        dateTime:
           type: string
           format: datetime
           description: The request date time stamp
       required:
-        - address-line1
-        - town-name
+        - addressLine1
+        - townName
         - postcode
-        - tel-no
-        - product-code
-        - datetime
+        - telNo
+        - productCode
+        - dateTime
     uk.gov.ons.responsemanagement.model.server.request.appointment:
       properties:
-        case-id:
+        caseId:
           type: string
           format: uuid
           description: CaseId to record appointment against
-        type:
+        appointmentType:
           type: string
           enum: ["field","telephone"]
           description: the type of appointment either "field" or "telephone"
@@ -1135,17 +1195,17 @@ components:
           type: string
           maxLength: 60
           description: the surname of the person request an appointment
-        tel-no:
+        telNo:
           type: string
           format: phone
           description: the contact number for the appointment if given
-        date-time:
+        dateTime:
           type: string
           format: datetime
           description: The requested time of the appointment if known
       required:
-        - case-id
-        - type
+        - caseId
+        - appointmentType
         - title
         - forename
         - surname
@@ -1154,73 +1214,97 @@ components:
         refusal:
           type: object
           properties:
-            case-id:
+            caseId:
               type: string
               format: uuid
               description: CaseId to log refusal against
-            refusal-code:
+            refusalCode:
               type: string
+              maxLength: 20
               description: the refusal type code
             title:
               type: string
-              description: the title of the person request an appointment
+              maxLength: 12
+              description: the title of the person refusing
             forename:
               type: string
-              description: the forename of the person request an appointment
+              maxLength: 60
+              description: the forename of the person refusing
             surname:
               type: string
-              description: the surname of the person request an appointment
-            tel-no:
+              maxLength: 60
+              description: the surname of the person refusing
+            telNo:
               type: string
               format: telephone
               description: the telephone number of the individual refusing
             notes:
               type: string
+              maxLength: 512
               description: notes about the refusal
-            address-line1:
+            addressLine1:
               type: string
               maxLength: 60
               description: address line1 (for use if no caseid is available)
-            address-line2:
+            addressLine2
               type: string
               maxLength: 60
               description: address line2  (for use if no caseid is available)
-            address-line3:
+            addressLine3:
               type: string
               maxLength: 60
               description: updated address line3  (for use if no caseid is available)
-            address-line4:
+            addressLine4:
               type: string
               maxLength: 60
               description: updated address line4  (for use if no caseid is available)
-            town-name:
+            townName:
               type: string
               maxLength: 30
               description: The post town of the address  (for use if no caseid is available)
             region:
               type: string
-              maxLength: 30
-              description: The region e.g. england. wales, northern ireland  (for use if no caseid is available)
+              enum:
+                - E
+                - W
+                - N
+              description: 'The region e.g. england (E), wales (W), northern ireland (N) (for use if no caseid is available)'
             postcode:
               type: string
               description: postcode of address  (for use if no caseid is available)
               maxLength: 8
-           
-    uk.gov.ons.responsemanagement.model.server.response.refusalresponse:
+            uprn:
+              type: string
+              pattern: '^\d{1,12}$'
+              description: The address UPRN if known
+            dateTime:
+              type: string
+              format: datetime
+              description: The requested time of the refusal
+      required:
+        - refusalCode
+        - dateTime
+
+    uk.gov.ons.responsemanagement.model.server.response.response:
       properties:
         referenceid:
           type: string
           format: uuid
     uk.gov.ons.responsemanagement.model.server.response.refusalcode:
       properties:
-        refusal-code:
+        refusalCode:
           type: string
         description:
           type: string
     uk.gov.ons.responsemanagement.model.server.response.fulfilmentcode:
       properties:
-        product-code:
+        productCode:
           type: string
+        language:
+          type: string
+          enum:
+            - EN
+            - CY
         description:
           type: string
         method:
@@ -1234,39 +1318,42 @@ components:
         id:
           type: string
           format: uuid
-        case-ref:
+        caseRef:
           type: string
-        case-type:
+        caseType:
           type: string
           maxLength: 2
           description: case type
-        created-date-time:
+        createdDateTime:
           type: string
           format: datetime
-        address-line1:
+        addressLine1:
           type: string
           maxLength: 60
           description: address line1
-        address-line2:
+        addressLine2:
           type: string
           maxLength: 60
           description: address line2
-        address-line3:
+        addressLine3:
           type: string
           maxLength: 60
           description: address line3
-        address-line4:
+        addressLine4:
           type: string
           maxLength: 60
           description: address line4
-        town-name:
+        townName:
           type: string
           maxLength: 30
           description: The post town of the address
         region:
           type: string
-          maxLength: 30
-          description: 'The region e.g. england, wales, northern ireland'
+          enum:
+            - E
+            - W
+            - N
+          description: 'The region e.g. england (E), wales (W), northern ireland (N)'
         postcode:
           type: string
           description: postcode of address
@@ -1275,13 +1362,13 @@ components:
           type: array
           items:
             $ref: >-
-              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.Responses
+              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.Response
         caseEvents:
           type: array
           items:
             $ref: >-
-              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseEvents
-    uk.gov.ons.responsemanagement.model.server.response.case.CaseEvents:
+              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseEvent
+    uk.gov.ons.responsemanagement.model.server.response.case.CaseEvent:
       properties:
         id:
           type: string
@@ -1289,19 +1376,19 @@ components:
           type: string
         description:
           type: string
-        created-date-time:
+        createdDateTime:
           type: string
           format: datetime
-    uk.gov.ons.responsemanagement.model.server.response.case.Responses:
+    uk.gov.ons.responsemanagement.model.server.response.case.Response:
       properties:
-        date-time:
+        dateTime:
           type: string
           format: datetime
-        inbound-channel:
+        inboundChannel:
           type: string
     uk.gov.ons.responsemanagement.model.server.response.address.AddressBySearchResponseContainer:
       properties:
-        data-version:
+        dataVersion:
           type: string
         addresses:
           type: array
@@ -1312,33 +1399,30 @@ components:
           type: integer
           format: int64
       required:
-        - data-version
+        - dataVersion
         - addresses
         - total
     uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseVersion:
       properties:
-        data-version:
+        dataVersion:
           type: string
       required:
-        - data-version
+        - dataVersion
     uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseAddress:
       properties:
         uprn:
           type: string
-        formatted-address:
+        formattedAddress:
           type: string
-        welsh-formatted-address:
+        welshFormattedAddress:
           type: string
-        household:
-          type: boolean
       required:
         - uprn
-        - formatted-address
-        - welsh-formatted-address
-        - household
+        - formattedAddress
+        - welshFormattedAddress
     uk.gov.ons.responsemanagement.model.server.response.postcode.AddressByPostcodeResponseContainer:
       properties:
-        data-version:
+        dataVersion:
           type: string
         addresses:
           type: array
@@ -1349,6 +1433,15 @@ components:
           type: integer
           format: int64
       required:
-        - data-version
+        - dataVersion
         - addresses
         - total
+    uk.gov.ons.responsemanagement.model.server.response.Response:
+      properties:
+        id:
+          type: string
+        dateTime:
+          type: string
+          format: datetime
+      required:
+        - dateTime

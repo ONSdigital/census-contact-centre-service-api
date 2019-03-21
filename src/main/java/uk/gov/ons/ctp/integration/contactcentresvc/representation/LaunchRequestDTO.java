@@ -1,13 +1,15 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import java.io.Serializable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * The response object when contact centre requests a list of refusal codes
+ * The response object when contact centre requests an EQ launch URL
  *
  * @author philwhiles
  */
@@ -15,9 +17,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RefusalDTO implements Serializable {
+public class LaunchRequestDTO implements Serializable {
 
-  private String refusalCode;
-
-  private String description;
+  @Pattern(regexp = "\\d{1,5}")
+  @NotNull
+  private String agentId;
 }

@@ -2,6 +2,7 @@ package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.UUID;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 
 /**
- * The request object when contact centre requests an SMS fulfilment for an unresolved case
+ * The request object when contact centre requests an appointment to be made
  *
  * @author philwhiles
  */
@@ -21,39 +22,32 @@ import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SMSUnresolvedFulfilmentRequestDTO implements Serializable {
+public class AppointmentRequestDTO implements Serializable {
+
+  public enum AppointmentType {
+    FIELD,
+    TELEPHONE
+  }
+
+  @NotNull private UUID caseId;
+
+  @NotNull private AppointmentType appointmentType;
 
   @NotBlank
   @Pattern(regexp = Constants.PHONENUMBER_RE)
   private String telNo;
 
   @NotBlank
-  @Size(max = 60)
-  private String addressLine1;
-
-  @Size(max = 60)
-  private String addressLine2;
-
-  @Size(max = 60)
-  private String addressLine3;
-
-  @Size(max = 60)
-  private String addressLine4;
+  @Size(max = 12)
+  private String title;
 
   @NotBlank
   @Size(max = 60)
-  private String townName;
-
-  @Pattern(regexp = Constants.REGION_RE)
-  private String region;
-
-  @NotNull
-  @Pattern(regexp = Constants.POSTCODE_RE)
-  private String postcode;
+  private String forename;
 
   @NotBlank
-  @Size(max = 6)
-  private String productCode;
+  @Size(max = 60)
+  private String surname;
 
   @NotNull private LocalDateTime dateTime;
 }
