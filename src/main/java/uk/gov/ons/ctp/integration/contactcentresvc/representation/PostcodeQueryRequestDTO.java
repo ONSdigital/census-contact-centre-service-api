@@ -2,7 +2,7 @@ package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +13,7 @@ public class PostcodeQueryRequestDTO {
   private static Integer DEFAULT_OFFSET = 0;
   private static Integer DEFAULT_LIMIT = 100;
 
-  @NotNull
+  @NotBlank
   @Pattern(
       regexp =
           "|GIR[ ]?0AA"
