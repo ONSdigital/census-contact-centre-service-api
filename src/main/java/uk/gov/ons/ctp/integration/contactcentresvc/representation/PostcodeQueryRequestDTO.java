@@ -4,15 +4,10 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class PostcodeQueryRequestDTO {
-  private static Integer DEFAULT_OFFSET = 0;
-  private static Integer DEFAULT_LIMIT = 100;
-
   @NotBlank
   @Pattern(
       regexp =
@@ -34,19 +29,22 @@ public class PostcodeQueryRequestDTO {
   @Max(100)
   private Integer limit = 100;
 
-  public Integer getOffset() {
-    if (offset != null) {
-      return offset;
-    }
+  /**
+   * Create method, as default values don't work if using an all args constructor or a builder. So
+   * this is the least bad workaround.
+   *
+   * @param input address, or part off, to search for.
+   * @param offset index of first result to return.
+   * @param limit maximum number of addresses to return.
+   * @return a newly constructed dto.
+   */
+  public static PostcodeQueryRequestDTO create(String postcode, int offset, int limit) {
+    PostcodeQueryRequestDTO dto = new PostcodeQueryRequestDTO();
 
-    return DEFAULT_OFFSET;
-  }
+    dto.setPostcode(postcode);
+    dto.setOffset(0);
+    dto.setLimit(limit);
 
-  public Integer getLimit() {
-    if (limit != null) {
-      return limit;
-    }
-
-    return DEFAULT_LIMIT;
+    return dto;
   }
 }

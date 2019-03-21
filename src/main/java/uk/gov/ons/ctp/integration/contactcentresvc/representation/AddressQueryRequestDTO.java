@@ -3,38 +3,36 @@ package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class AddressQueryRequestDTO {
-  private static Integer DEFAULT_OFFSET = 0;
-  private static Integer DEFAULT_LIMIT = 100;
-
   @NotBlank private String input;
 
   @Min(0)
   @Max(250)
-  private Integer offset;
+  private Integer offset = 0;
 
   @Min(0)
   @Max(100)
-  private Integer limit;
+  private Integer limit = 100;
 
-  public Integer getOffset() {
-    if (offset != null) {
-      return offset;
-    }
+  /**
+   * Create method, as default values don't work if using an all args constructor or a builder. So
+   * this is the least bad workaround.
+   *
+   * @param input address, or part off, to search for.
+   * @param offset index of first result to return.
+   * @param limit maximum number of addresses to return.
+   * @return a newly constructed dto.
+   */
+  public static AddressQueryRequestDTO create(String input, int offset, int limit) {
+    AddressQueryRequestDTO dto = new AddressQueryRequestDTO();
 
-    return DEFAULT_OFFSET;
-  }
+    dto.setInput(input);
+    dto.setOffset(0);
+    dto.setLimit(limit);
 
-  public Integer getLimit() {
-    if (limit != null) {
-      return limit;
-    }
-
-    return DEFAULT_LIMIT;
+    return dto;
   }
 }
