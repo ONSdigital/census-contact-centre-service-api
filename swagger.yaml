@@ -1020,7 +1020,7 @@ components:
           format: email
         productCode:
           type: string
-        maxLength: 12
+          maxLength: 12
           description: the product code for the fulfilment
         dateTime:
           type: string
@@ -1246,7 +1246,7 @@ components:
               type: string
               maxLength: 60
               description: address line1 (for use if no caseid is available)
-            addressLine2
+            addressLine2:
               type: string
               maxLength: 60
               description: address line2  (for use if no caseid is available)
