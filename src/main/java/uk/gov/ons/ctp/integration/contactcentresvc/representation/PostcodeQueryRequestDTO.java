@@ -25,7 +25,7 @@ public class PostcodeQueryRequestDTO {
    * Create method, as default values don't work if using an all args constructor or a builder. So
    * this is the least bad workaround.
    *
-   * @param input address, or part off, to search for.
+   * @param postcode to search for.
    * @param offset index of first result to return.
    * @param limit maximum number of addresses to return.
    * @return a newly constructed dto.
