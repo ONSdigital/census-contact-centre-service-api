@@ -5,9 +5,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.ToString;
 import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 
 @Data
+@ToString
 public class PostcodeQueryRequestDTO {
   @NotBlank
   @Pattern(regexp = Constants.POSTCODE_RE)

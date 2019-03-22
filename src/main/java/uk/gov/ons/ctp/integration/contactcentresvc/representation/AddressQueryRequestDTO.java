@@ -4,8 +4,10 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class AddressQueryRequestDTO {
   @NotBlank private String input;
 
