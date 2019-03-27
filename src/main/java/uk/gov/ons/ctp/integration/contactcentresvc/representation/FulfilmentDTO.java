@@ -23,6 +23,8 @@ public class FulfilmentDTO implements Serializable {
     SMS
   }
 
+  private CaseType caseType;
+
   private String productCode;
 
   private String language;

@@ -26,10 +26,6 @@ public class RefusalRequestDTO implements Serializable {
 
   private String caseId;
 
-  @NotBlank
-  @Size(max = 20)
-  private String refusalCode;
-
   @Size(max = 12)
   private String title;
 

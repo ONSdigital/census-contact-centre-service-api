@@ -23,7 +23,6 @@ public class CaseDTO implements Serializable {
 
   private UUID id;
 
-  @JsonProperty("case-ref")
   private String caseRef;
 
   private String caseType;

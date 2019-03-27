@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * The response object when contact centre requests an EQ launch URL
+ * The request object when contact centre requests an EQ launch URL
  *
  * @author philwhiles
  */

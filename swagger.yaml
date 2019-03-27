@@ -654,7 +654,11 @@ paths:
           description: Lookup fulfilments by casetype
           schema:
             type: string
-            maxLength: 2
+            enum:
+              - H
+              - HI
+              - C
+              - CI
         - in: query
           name: region
           required: false
@@ -731,43 +735,6 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.refusal
         description: object detailing refusal
-  '/refusals/':
-    get:
-      operationId: refusalcodes
-      tags:
-        - routes
-      summary: Get a list of refusal codes and descriptions.
-      description: Returns a JSON array containing available refusal codes
-      parameters:
-        - in: query
-          name: caseType
-          required: false
-          description: Lookup refusal codes
-          schema:
-            type: string
-            maxLength: 2
-      responses:
-        '200':
-          description: Success. A json object return of refusal codes and descriptions.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: >-
-                    #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.refusalcode
-        '400':
-          description: >-
-            Bad request. Indicates an issue with the request. Further details
-            are provided in the response.
-        '401':
-          description: Unauthorised. The API key provided with the request is invalid.
-        '429':
-          description: Server too busy. The ONS API is experiencing exceptional load.
-        '500':
-          description: >-
-            Internal server error. Failed to process the request due to an
-            internal error.
   /version:
     get:
       operationId: versionQuery
@@ -800,7 +767,7 @@ paths:
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "1.0.6-oas3"
+  version: "1.0.7-oas3"
 tags:
   - name: routes
 servers:
@@ -1181,8 +1148,10 @@ components:
           description: CaseId to record appointment against
         appointmentType:
           type: string
-          enum: ["field","telephone"]
-          description: the type of appointment either "field" or "telephone"
+          enum:
+            - FIELD
+            - TELEPHONE
+          description: the type of appointment either "FIELD" or "TELEPHONE"
         title:
           type: string
           maxLength: 12
@@ -1218,10 +1187,6 @@ components:
               type: string
               format: uuid
               description: CaseId to log refusal against
-            refusalCode:
-              type: string
-              maxLength: 20
-              description: the refusal type code
             title:
               type: string
               maxLength: 12
@@ -1282,7 +1247,6 @@ components:
               format: datetime
               description: The requested time of the refusal
       required:
-        - refusalCode
         - dateTime
 
     uk.gov.ons.responsemanagement.model.server.response.response:
@@ -1290,16 +1254,18 @@ components:
         referenceid:
           type: string
           format: uuid
-    uk.gov.ons.responsemanagement.model.server.response.refusalcode:
-      properties:
-        refusalCode:
-          type: string
-        description:
-          type: string
     uk.gov.ons.responsemanagement.model.server.response.fulfilmentcode:
       properties:
         productCode:
           type: string
+        caseType:
+          type: string
+          enum:
+            - H
+            - HI
+            - C
+            - CI
+          description: case type
         language:
           type: string
           enum:
@@ -1310,9 +1276,9 @@ components:
         method:
           type: string
           enum:
-            - post
-            - email
-            - sms
+            - POST
+            - EMAIL
+            - SMS
     uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer:
       properties:
         id:
@@ -1322,7 +1288,11 @@ components:
           type: string
         caseType:
           type: string
-          maxLength: 2
+          enum:
+             - H
+             - HI
+             - C
+             - CI
           description: case type
         createdDateTime:
           type: string
