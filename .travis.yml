@@ -8,6 +8,7 @@ before_install:
     fi
   - cp .travis.settings.xml $HOME/.m2/settings.xml
   - curl ifconfig.co|xargs echo "Travis IP address is ";
+  - mvn fmt:check
 
 script:
   - mvn test -B
@@ -15,8 +16,7 @@ script:
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     git config --global user.email "travis@travis-ci.org";
     git config --global user.name "Travis CI";
-    git config --list
-    mvn -e -B -Dusername=$GITHUB_API_KEY release:prepare;
+    mvn -B -Dusername=$GITHUB_API_KEY release:prepare;
     mvn -B release:perform;
     fi
 
