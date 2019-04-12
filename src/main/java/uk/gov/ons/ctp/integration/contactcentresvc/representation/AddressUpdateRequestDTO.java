@@ -1,21 +1,19 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 
-/**
- * The request object for updating addresss details by uprn
- */
+/** The request object for updating addresss details by uprn */
 @SuppressWarnings("serial")
 @Data
 @Builder
@@ -31,7 +29,7 @@ public class AddressUpdateRequestDTO implements Serializable {
     @JsonProperty("delete")
     DELETE;
   }
-  
+
   public enum Type {
     @JsonProperty("new")
     NEW_PROPERTY,
@@ -48,7 +46,7 @@ public class AddressUpdateRequestDTO implements Serializable {
     @JsonProperty("unoccupied")
     UNOCCUPIED
   }
-  
+
   @NotBlank
   @Size(max = 60)
   private String addressLine1;
@@ -76,7 +74,7 @@ public class AddressUpdateRequestDTO implements Serializable {
   private Category category;
 
   private Type type;
-  
+
   @NotBlank
   @Size(max = 12)
   private String title;
