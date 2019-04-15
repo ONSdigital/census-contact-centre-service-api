@@ -22,28 +22,19 @@ import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 public class AddressUpdateRequestDTO implements Serializable {
 
   public enum Category {
-    @JsonProperty("create")
     CREATE,
-    @JsonProperty("update")
     UPDATE,
-    @JsonProperty("delete")
     DELETE;
   }
 
   public enum Type {
-    @JsonProperty("new")
+    @JsonProperty("NEW")
     NEW_PROPERTY,
-    @JsonProperty("correction")
     CORRECTION,
-    @JsonProperty("split")
     SPLIT,
-    @JsonProperty("merged")
     MERGED,
-    @JsonProperty("demolished")
     DEMOLISHED,
-    @JsonProperty("derelict")
     DERELICT,
-    @JsonProperty("unoccupied")
     UNOCCUPIED
   }
 
