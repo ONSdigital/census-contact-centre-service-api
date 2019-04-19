@@ -1,7 +1,6 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import java.io.Serializable;
-import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,9 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FulfilmentsRequestDTO implements Serializable {
 
-  @Size(max = 2)
-  private String caseType;
+  private CaseType caseType;
 
-  @Size(max = 1)
-  private String region;
+  private Region region;
 }

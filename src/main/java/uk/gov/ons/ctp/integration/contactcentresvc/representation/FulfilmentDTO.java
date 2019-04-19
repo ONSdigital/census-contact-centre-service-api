@@ -1,6 +1,7 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import java.io.Serializable;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,19 +18,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FulfilmentDTO implements Serializable {
 
-  public enum Method {
-    POST,
-    EMAIL,
-    SMS
-  }
+  private List<Region> regions;
 
   private CaseType caseType;
 
-  private String productCode;
+  private String fulfilmentCode;
 
   private String language;
 
   private String description;
 
-  private Method method;
+  private DeliveryChannel deliveryChannel;
 }
