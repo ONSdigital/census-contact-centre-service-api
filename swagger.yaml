@@ -767,7 +767,7 @@ paths:
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "1.0.7-oas3"
+  version: "2.0.0-oas3"
 tags:
   - name: routes
 servers:
@@ -829,20 +829,20 @@ components:
         category:
           type: string
           enum:
-            - create
-            - update
-            - delete
+            - CREATE
+            - UPDATE
+            - DELETE
           description: 'the category of address update e.g. create,update,delete'
         type:
           type: string
           enum:
-            - new
-            - correction
-            - split
-            - merged
-            - demolished
-            - derelict
-            - unoccupied
+            - NEW
+            - CORRECTION
+            - SPLIT
+            - MERGED
+            - DEMOLISHED
+            - DERELICT
+            - UNOCCUPIED
           description: 'the type of address update, based on category selected'
         title:
           type: string
@@ -1256,7 +1256,7 @@ components:
           format: uuid
     uk.gov.ons.responsemanagement.model.server.response.fulfilmentcode:
       properties:
-        productCode:
+        fulfilmentCode:
           type: string
         caseType:
           type: string
@@ -1266,14 +1266,42 @@ components:
             - C
             - CI
           description: case type
+        regions:
+          type: array
+          items:
+            type: string
         language:
           type: string
           enum:
-            - EN
-            - CY
+            - eng
+            - wel
+            - ara
+            - ben
+            - yue
+            - yue
+            - fre
+            - guj
+            - pan
+            - gle
+            - ita
+            - kur
+            - lit
+            - lit
+            - cmn
+            - cmn
+            - pol
+            - pol
+            - por
+            - rus
+            - som
+            - spa
+            - tur
+            - uls
+            - vie
+            - yid
         description:
           type: string
-        method:
+        deliveryChannel:
           type: string
           enum:
             - POST
@@ -1374,6 +1402,8 @@ components:
         - total
     uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseVersion:
       properties:
+        apiVersion:
+          type: string
         dataVersion:
           type: string
       required:
