@@ -767,7 +767,7 @@ paths:
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "2.0.0-oas3"
+  version: "2.0.1-oas3"
 tags:
   - name: routes
 servers:
@@ -1273,23 +1273,17 @@ components:
         language:
           type: string
           enum:
-            - eng
-            - wel
             - ara
             - ben
-            - yue
-            - yue
+            - cmn
+            - eng
             - fre
-            - guj
-            - pan
             - gle
+            - guj
             - ita
             - kur
             - lit
-            - lit
-            - cmn
-            - cmn
-            - pol
+            - pan
             - pol
             - por
             - rus
@@ -1298,7 +1292,9 @@ components:
             - tur
             - uls
             - vie
+            - wel
             - yid
+            - yue
         description:
           type: string
         deliveryChannel:
