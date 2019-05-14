@@ -31,8 +31,8 @@ public class SMSFulfilmentRequestDTO implements Serializable {
   private String telNo;
 
   @NotNull
-  @Size(max = 6)
-  private String productCode;
+  @Size(max = 12)
+  private String fulfilmentCode;
 
   @NotNull private LocalDateTime dateTime;
 }

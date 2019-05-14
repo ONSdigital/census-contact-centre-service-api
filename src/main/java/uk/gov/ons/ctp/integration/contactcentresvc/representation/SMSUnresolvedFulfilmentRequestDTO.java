@@ -52,8 +52,8 @@ public class SMSUnresolvedFulfilmentRequestDTO implements Serializable {
   private String postcode;
 
   @NotBlank
-  @Size(max = 6)
-  private String productCode;
+  @Size(max = 12)
+  private String fulfilmentCode;
 
   @NotNull private LocalDateTime dateTime;
 }
