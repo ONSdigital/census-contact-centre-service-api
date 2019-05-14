@@ -204,6 +204,10 @@ paths:
             are provided in the response.
         '401':
           description: Unauthorised. The API key provided with the request is invalid.
+        '403':
+          description: Forbidden. The case exists, but it's not being returned as it's not a household case.
+        '404':
+          description: Not found. A case doesn't exist for the supplied uprn.
         '429':
           description: Server too busy. The ONS API is experiencing exceptional load.
         '500':
@@ -243,6 +247,10 @@ paths:
             are provided in the response.
         '401':
           description: Unauthorised. The API key provided with the request is invalid.
+        '403':
+          description: Forbidden. The case exists, but it's being not returned as it's not a household case.
+        '404':
+          description: Not found. A case doesn't exist for the supplied caseId.
         '429':
           description: Server too busy. The ONS API is experiencing exceptional load.
         '500':
@@ -283,6 +291,10 @@ paths:
             are provided in the response.
         '401':
           description: Unauthorised. The API key provided with the request is invalid.
+        '403':
+          description: Forbidden. The case exists, but it's not being returned as it's not a household case.
+        '404':
+          description: Not found. A case doesn't exist for the supplied uprn.
         '429':
           description: Server too busy. The ONS API is experiencing exceptional load.
         '500':
@@ -767,7 +779,7 @@ paths:
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "2.0.1-oas3"
+  version: "2.1.0-oas3"
 tags:
   - name: routes
 servers:
@@ -1364,8 +1376,6 @@ components:
               #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseEvent
     uk.gov.ons.responsemanagement.model.server.response.case.CaseEvent:
       properties:
-        id:
-          type: string
         category:
           type: string
         description:
