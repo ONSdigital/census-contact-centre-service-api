@@ -17,5 +17,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CaseRequestDTO implements Serializable {
 
-  private Boolean caseEvents;
+  private Boolean caseEvents = false;
 }
