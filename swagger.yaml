@@ -887,10 +887,10 @@ components:
           type: string
           maxLength: 60
           description: the surname of the person requesting fulfilment
-        productCode:
+        fulfilmentCode:
           type: string
           maxLength: 12
-          description: the product code for the fulfilment
+          description: the fulfilment code for the fulfilment
         dateTime:
           type: string
           format: datetime
@@ -900,7 +900,7 @@ components:
         - title
         - forename
         - surname
-        - productCode
+        - fulfilmentCode
         - dateTime
     uk.gov.ons.responsemanagement.model.server.request.unresolvedfulfilmentpost:
       properties:
@@ -947,10 +947,10 @@ components:
           type: string
           maxLength: 60
           description: the surname of the person requesting fulfilment
-        productCode:
+        fulfilmentCode:
           type: string
           maxLength: 12
-          description: the product code for the fulfilment
+          description: the fulfilment code for the fulfilment
         dateTime:
           type: string
           format: datetime
@@ -962,7 +962,7 @@ components:
         - title
         - forename
         - surname
-        - productCode
+        - fulfilmentCode
         - dateTime
     uk.gov.ons.responsemanagement.model.server.request.fulfilmentemail:
       properties:
@@ -985,10 +985,10 @@ components:
         email:
           type: string
           format: email
-        productCode:
+        fulfilmentCode:
           type: string
           maxLength: 12
-          description: the product code for the fulfilment
+          description: the fulfilment code for the fulfilment
         dateTime:
           type: string
           format: datetime
@@ -999,7 +999,7 @@ components:
         - forename
         - surname
         - email
-        - productCode
+        - fulfilmentCode
         - dateTime
     uk.gov.ons.responsemanagement.model.server.request.unresolvedfulfilmentemail:
       properties:
@@ -1049,10 +1049,10 @@ components:
         email:
           type: string
           format: email
-        productCode:
+        fulfilmentCode:
           type: string
           maxLength: 12
-          description: the product code for the fulfilment
+          description: the fulfilment code for the fulfilment
         dateTime:
           type: string
           format: datetime
@@ -1065,7 +1065,7 @@ components:
         - forename
         - surname
         - email
-        - productCode
+        - fulfilmentCode
         - dateTime
     uk.gov.ons.responsemanagement.model.server.request.fulfilmentsms:
       properties:
@@ -1076,10 +1076,10 @@ components:
         telNo:
           type: string
           format: phone
-        productCode:
+        fulfilmentCode:
           type: string
           maxLength: 12
-          description: the product code for the fulfilment
+          description: the fulfilment code for the fulfilment
         dateTime:
           type: string
           format: datetime
@@ -1087,7 +1087,7 @@ components:
       required:
         - caseId
         - telNo
-        - productCode
+        - fulfilmentCode
         - dateTime
     uk.gov.ons.responsemanagement.model.server.request.unresolvedfulfilmentsms:
       properties:
@@ -1125,10 +1125,10 @@ components:
         telNo:
           type: string
           format: phone
-        productCode:
+        fulfilmentCode:
           type: string
           maxLength: 12
-          description: the product code for the fulfilment
+          description: the fulfilment code for the fulfilment
         dateTime:
           type: string
           format: datetime
@@ -1138,7 +1138,7 @@ components:
         - townName
         - postcode
         - telNo
-        - productCode
+        - fulfilmentCode
         - dateTime
     uk.gov.ons.responsemanagement.model.server.request.appointment:
       properties:
