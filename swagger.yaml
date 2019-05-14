@@ -291,6 +291,10 @@ paths:
             are provided in the response.
         '401':
           description: Unauthorised. The API key provided with the request is invalid.
+        '403':
+          description: Forbidden. The case exists, but it's not being returned as it's not a household case.
+        '404':
+          description: Not found. A case doesn't exist for the supplied uprn.
         '429':
           description: Server too busy. The ONS API is experiencing exceptional load.
         '500':
