@@ -36,7 +36,7 @@ public class PostalFulfilmentRequestDTO implements Serializable {
   private String surname;
 
   @NotNull
-  @Size(max = 6)
+  @Size(max = 12)
   private String productCode;
 
   @NotNull private LocalDateTime dateTime;
