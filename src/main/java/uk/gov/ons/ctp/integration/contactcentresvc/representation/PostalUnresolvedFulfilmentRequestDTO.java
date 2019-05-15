@@ -60,7 +60,7 @@ public class PostalUnresolvedFulfilmentRequestDTO implements Serializable {
   private String postcode;
 
   @NotBlank
-  @Size(max = 6)
+  @Size(max = 12)
   private String productCode;
 
   @NotNull private LocalDateTime dateTime;
