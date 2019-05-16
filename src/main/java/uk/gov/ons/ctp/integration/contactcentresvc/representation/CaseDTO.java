@@ -36,13 +36,11 @@ public class CaseDTO implements Serializable {
 
   private String addressLine4;
 
-  private String town;
+  private String townName;
 
   private String region;
 
   private String postcode;
-
-  private List<CaseResponseDTO> responses;
 
   private List<CaseEventDTO> caseEvents;
 }
