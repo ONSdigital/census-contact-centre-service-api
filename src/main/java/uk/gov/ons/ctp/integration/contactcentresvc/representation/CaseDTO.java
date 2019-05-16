@@ -34,8 +34,6 @@ public class CaseDTO implements Serializable {
 
   private String addressLine3;
 
-  private String addressLine4;
-
   private String townName;
 
   private String region;
