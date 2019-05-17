@@ -1,6 +1,6 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -25,15 +25,13 @@ public class CaseDTO {
 
   private String caseType;
 
-  private LocalDateTime createdDateTime;
+  private Date createdDateTime;
 
   private String addressLine1;
 
   private String addressLine2;
 
   private String addressLine3;
-
-  private String addressLine4;
 
   private String townName;
 
