@@ -1,6 +1,5 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.validation.constraints.NotNull;
@@ -19,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostalFulfilmentRequestDTO implements Serializable {
+public class PostalFulfilmentRequestDTO {
 
   @NotNull private UUID caseId;
 

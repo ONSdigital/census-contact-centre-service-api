@@ -1,6 +1,5 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.validation.constraints.NotNull;
@@ -21,7 +20,7 @@ import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SMSFulfilmentRequestDTO implements Serializable {
+public class SMSFulfilmentRequestDTO {
 
   @NotNull private UUID caseId;
 

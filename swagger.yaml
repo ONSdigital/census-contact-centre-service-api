@@ -779,7 +779,7 @@ paths:
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "2.1.0-oas3"
+  version: "3.0.0-oas3"
 tags:
   - name: routes
 servers:
@@ -819,10 +819,6 @@ components:
           type: string
           maxLength: 60
           description: updated address line3
-        addressLine4:
-          type: string
-          maxLength: 60
-          description: updated address line4
         townName:
           type: string
           maxLength: 30
@@ -928,10 +924,6 @@ components:
           type: string
           maxLength: 60
           description: updated address line3
-        addressLine4:
-          type: string
-          maxLength: 60
-          description: updated address line4
         townName:
           type: string
           maxLength: 30
@@ -1027,10 +1019,6 @@ components:
           type: string
           maxLength: 60
           description: updated address line3
-        addressLine4:
-          type: string
-          maxLength: 60
-          description: updated address line4
         townName:
           type: string
           maxLength: 30
@@ -1115,10 +1103,6 @@ components:
           type: string
           maxLength: 60
           description: updated address line3
-        addressLine4:
-          type: string
-          maxLength: 60
-          description: updated address line4
         townName:
           type: string
           maxLength: 30
@@ -1231,10 +1215,6 @@ components:
               type: string
               maxLength: 60
               description: updated address line3  (for use if no caseid is available)
-            addressLine4:
-              type: string
-              maxLength: 60
-              description: updated address line4  (for use if no caseid is available)
             townName:
               type: string
               maxLength: 30
@@ -1345,10 +1325,6 @@ components:
           type: string
           maxLength: 60
           description: address line3
-        addressLine4:
-          type: string
-          maxLength: 60
-          description: address line4
         townName:
           type: string
           maxLength: 30
@@ -1364,11 +1340,6 @@ components:
           type: string
           description: postcode of address
           maxLength: 8
-        responses:
-          type: array
-          items:
-            $ref: >-
-              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.Response
         caseEvents:
           type: array
           items:
@@ -1383,13 +1354,6 @@ components:
         createdDateTime:
           type: string
           format: datetime
-    uk.gov.ons.responsemanagement.model.server.response.case.Response:
-      properties:
-        dateTime:
-          type: string
-          format: datetime
-        inboundChannel:
-          type: string
     uk.gov.ons.responsemanagement.model.server.response.address.AddressBySearchResponseContainer:
       properties:
         dataVersion:

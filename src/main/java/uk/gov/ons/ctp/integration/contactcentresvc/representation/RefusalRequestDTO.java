@@ -1,6 +1,5 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -21,7 +20,7 @@ import uk.gov.ons.ctp.integration.contactcentresvc.representation.model.UniquePr
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RefusalRequestDTO implements Serializable {
+public class RefusalRequestDTO {
 
   private String caseId;
 

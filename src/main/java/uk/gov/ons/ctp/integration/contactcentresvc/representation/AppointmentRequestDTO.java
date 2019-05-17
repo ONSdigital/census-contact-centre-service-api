@@ -1,6 +1,5 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.validation.constraints.NotBlank;
@@ -22,7 +21,7 @@ import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AppointmentRequestDTO implements Serializable {
+public class AppointmentRequestDTO {
 
   public enum AppointmentType {
     FIELD,

@@ -1,8 +1,6 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.io.Serializable;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,10 +10,9 @@ import lombok.NoArgsConstructor;
  * @author philwhiles
  */
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CaseRequestDTO implements Serializable {
+public class CaseRequestDTO {
 
   private Boolean caseEvents = false;
 }

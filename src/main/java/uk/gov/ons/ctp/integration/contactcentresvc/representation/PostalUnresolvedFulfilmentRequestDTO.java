@@ -1,6 +1,5 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,7 +20,7 @@ import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostalUnresolvedFulfilmentRequestDTO implements Serializable {
+public class PostalUnresolvedFulfilmentRequestDTO {
 
   @NotBlank
   @Size(max = 12)
