@@ -1,7 +1,7 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class CaseDTO implements Serializable {
 
   private String caseType;
 
-  private LocalDateTime createdDateTime;
+  private Date createdDateTime;
 
   private String addressLine1;
 
