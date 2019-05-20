@@ -1,6 +1,6 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -62,5 +62,5 @@ public class RefusalRequestDTO {
 
   private UniquePropertyReferenceNumber uprn;
 
-  @NotNull private LocalDateTime dateTime;
+  @NotNull private Date dateTime;
 }

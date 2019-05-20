@@ -1,5 +1,6 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,5 +21,5 @@ public class ResponseDTO {
 
   private String id;
 
-  private String dateTime;
+  private Date dateTime;
 }

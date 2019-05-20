@@ -1,6 +1,5 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.io.Serializable;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

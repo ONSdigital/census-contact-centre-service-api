@@ -1,6 +1,6 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -33,5 +33,5 @@ public class SMSFulfilmentRequestDTO {
   @Size(max = 12)
   private String fulfilmentCode;
 
-  @NotNull private LocalDateTime dateTime;
+  @NotNull private Date dateTime;
 }
