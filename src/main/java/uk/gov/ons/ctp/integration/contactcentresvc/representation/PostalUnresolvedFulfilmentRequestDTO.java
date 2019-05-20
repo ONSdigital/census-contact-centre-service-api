@@ -1,7 +1,7 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -63,5 +63,5 @@ public class PostalUnresolvedFulfilmentRequestDTO implements Serializable {
   @Size(max = 12)
   private String productCode;
 
-  @NotNull private LocalDateTime dateTime;
+  @NotNull private Date dateTime;
 }

@@ -1,7 +1,7 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -49,5 +49,5 @@ public class AppointmentRequestDTO implements Serializable {
   @Size(max = 60)
   private String surname;
 
-  @NotNull private LocalDateTime dateTime;
+  @NotNull private Date dateTime;
 }
