@@ -1,8 +1,8 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 public enum CaseType {
-  H,
+  HH,
   HI,
-  C,
+  CE,
   CI
 }
