@@ -386,7 +386,12 @@ paths:
       tags:
         - routes
       summary: Request a fulfilment for a Case
-      description: Request a fulfilment for a Case
+      description: >-
+        Request a fulfilment for a Case. 
+        If the fulfilment code is for a case type of household or communal 
+        individual (codes 'HI' or 'CI') then the request will be rejected as a bad 
+        request if any of the following fields are not provided in the request body: 
+        'title', 'forename' or 'surname'.
       parameters:
         - in: path
           name: caseId
@@ -905,9 +910,6 @@ components:
           description: The request date time stamp
       required:
         - caseId
-        - title
-        - forename
-        - surname
         - fulfilmentCode
         - dateTime
     uk.gov.ons.responsemanagement.model.server.request.unresolvedfulfilmentpost:
