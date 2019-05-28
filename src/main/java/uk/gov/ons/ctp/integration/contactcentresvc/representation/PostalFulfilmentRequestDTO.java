@@ -22,15 +22,12 @@ public class PostalFulfilmentRequestDTO {
 
   @NotNull private UUID caseId;
 
-  @NotNull
   @Size(max = 12)
   private String title;
 
-  @NotNull
   @Size(max = 60)
   private String forename;
 
-  @NotNull
   @Size(max = 60)
   private String surname;
 
