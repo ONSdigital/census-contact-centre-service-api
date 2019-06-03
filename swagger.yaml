@@ -732,7 +732,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.response
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -1243,11 +1243,6 @@ components:
       required:
         - dateTime
 
-    uk.gov.ons.responsemanagement.model.server.response.response:
-      properties:
-        referenceid:
-          type: string
-          format: uuid
     uk.gov.ons.responsemanagement.model.server.response.fulfilmentcode:
       properties:
         fulfilmentCode:
