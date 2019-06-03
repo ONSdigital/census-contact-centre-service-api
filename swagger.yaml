@@ -784,7 +784,7 @@ paths:
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "4.0.0-oas3"
+  version: "4.0.1-oas3"
 tags:
   - name: routes
 servers:
