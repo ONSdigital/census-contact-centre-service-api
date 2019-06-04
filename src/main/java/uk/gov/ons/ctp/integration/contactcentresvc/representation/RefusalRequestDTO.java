@@ -49,9 +49,6 @@ public class RefusalRequestDTO {
   private String addressLine3;
 
   @Size(max = 60)
-  private String addressLine4;
-
-  @Size(max = 60)
   private String townName;
 
   @Size(max = 1)
