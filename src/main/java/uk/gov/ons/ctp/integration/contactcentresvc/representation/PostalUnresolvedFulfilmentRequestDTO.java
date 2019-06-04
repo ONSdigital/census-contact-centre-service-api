@@ -44,9 +44,6 @@ public class PostalUnresolvedFulfilmentRequestDTO {
   @Size(max = 60)
   private String addressLine3;
 
-  @Size(max = 60)
-  private String addressLine4;
-
   @NotBlank
   @Size(max = 60)
   private String townName;
