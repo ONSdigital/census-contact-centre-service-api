@@ -16,7 +16,7 @@ public class UniquePropertyReferenceNumber {
         if (uprn.longValue() >= Constants.UPRN_MIN && uprn.longValue() <= Constants.UPRN_MAX) {
           this.value = uprn;
         } else {
-          throw new IllegalArgumentException();
+          throw new IllegalArgumentException("String '" + uprn + "' is not a valid UPRN");
         }
       } catch (NumberFormatException e) {
         throw new IllegalArgumentException();
