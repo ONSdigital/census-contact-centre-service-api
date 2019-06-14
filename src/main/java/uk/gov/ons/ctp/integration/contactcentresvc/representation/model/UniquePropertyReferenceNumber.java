@@ -1,8 +1,9 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation.model;
 
+import org.apache.commons.lang3.StringUtils;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
 import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 
 @Data
@@ -24,5 +25,6 @@ public class UniquePropertyReferenceNumber {
     }
   }
 
+  @JsonProperty("uprn")
   private long value;
 }
