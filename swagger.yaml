@@ -122,25 +122,22 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
-  '/addresses/{uprn}':
+  '/cases/{caseId}/address':
     post:
-      operationId: address
+      operationId: caseAddressUpdate
       tags:
         - routes
-      summary: Log a reported change to an address
+      summary: Log a reported change to a case address, or report a new address 
       description: >-
-        Report any of a number of scenarios affecting an address including
-        adding a new address
+        Report on a number of scenarios affecting a case address, including an invalid address, a change in address type e.g. CE to HH or new address
       parameters:
         - in: path
-          name: uprn
+          name: caseId
           description: >-
-            The uprn of the address this change relates to, for new addresses
-            the uprn value should be set to 'unknown'
+            The caseId of the case this change relates to, if this is a new address the caseId value should be set to 'unknown'
           required: true
           schema:
             type: string
-            pattern: '^\d{1,12}$'
       responses:
         '200':
           description: Success. Confirmation.
@@ -166,8 +163,8 @@ paths:
           application/json:
             schema:
               $ref: >-
-                #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.addressupdate
-        description: object detailing address and report type
+                #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.caseupdate
+        description: object detailing case and report type
   '/cases/uprn/{uprn}':
     get:
       operationId: caseByUprnQuery
@@ -784,7 +781,7 @@ paths:
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "4.0.2-oas3"
+  version: "5.0.0-oas3"
 tags:
   - name: routes
 servers:
@@ -810,72 +807,62 @@ components:
       in: header
       name: X-APP-ID
   schemas:
-    uk.gov.ons.responsemanagement.model.server.request.addressupdate:
+    uk.gov.ons.responsemanagement.model.server.request.caseupdate:
       properties:
+        category:
+          type: string
+          enum:
+            - ADDRESS_MODIFIED_NEW
+            - ADDRESS_MODIFIED_UPDATE
+            - ADDRESS_INVALID_DERELICT
+            - ADDRESS_INVALID_DEMOLISHED
+            - ADDRESS_INVALID_NON_RESIDENTIAL
+            - ADDRESS_INVALID_UNDER_CONSTRUCTION
+            - ADDRESS_INVALID_UNADDRESSABLE_OBJECT
+            - ADDRESS_INVALID_UNOCCUPIED
+            - ADDRESS_TYPE_CHANGE_TO_CE
+            - ADDRESS_TYPE_CHANGE_TO_HH
+          description: 'the category of the address change'
         addressLine1:
           type: string
           maxLength: 60
-          description: updated address line1
+          description: updated address line1, optional only required for new address or updated address
         addressLine2:
           type: string
           maxLength: 60
-          description: updated address line2
+          description: updated address line2, optional
         addressLine3:
           type: string
           maxLength: 60
-          description: updated address line3
+          description: updated address line3, optional
         townName:
           type: string
           maxLength: 30
-          description: The post town of the address
+          description: The post town of the address, optional
         region:
           type: string
           enum:
             - E
             - W
             - N
-          description: 'The region e.g. england (E), wales (W), northern ireland (N)'
+          description: 'The region e.g. england (E), wales (W), northern ireland (N), optiona;'
         postcode:
           type: string
-          description: postcode of address
+          description: postcode of address, optional only for new addresses
           maxLength: 8
-        category:
+        CeOrgName:
           type: string
-          enum:
-            - CREATE
-            - UPDATE
-            - DELETE
-          description: 'the category of address update e.g. create,update,delete'
-        type:
-          type: string
-          enum:
-            - NEW
-            - CORRECTION
-            - SPLIT
-            - MERGED
-            - DEMOLISHED
-            - DERELICT
-            - UNOCCUPIED
-          description: 'the type of address update, based on category selected'
-        title:
-          type: string
-          description: the title of the person requesting the update
-        forename:
-          type: string
-          description: the forename of the person the update
-        surname:
-          type: string
-          description: the surname of the person the update
+          maxLength: 60
+          description: CE Organisation name, optional only if address type is change to CE
+        CeUsualResidents:
+          type: integer
+          description: CE number of usual residents if caller knows, optional only if address type is changed to CE
         dateTime:
           type: string
           format: datetime
           description: The request date time stamp
       required:
-        - addressLine1
-        - townName
-        - postcode
         - category
-        - type
         - dateTime
     uk.gov.ons.responsemanagement.model.server.request.uac:
       properties:
