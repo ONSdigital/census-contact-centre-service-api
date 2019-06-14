@@ -3,6 +3,7 @@ package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,6 +41,7 @@ public class CaseDTO {
 
   private String postcode;
 
+  @JsonUnwrapped
   private UniquePropertyReferenceNumber uprn;
 
   private List<CaseEventDTO> caseEvents;
