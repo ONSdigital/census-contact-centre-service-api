@@ -8,6 +8,12 @@ import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 
+/**
+ * If this class is included Jackson serialisation then you may want to simplify the generated
+ * string by removing an extra layer of output, so that the generated string can contain a 'uprn'
+ * value instead of showing the hierarchy of ownership. To do this annotate references to this class
+ * with '@JsonUnwrapped'.
+ */
 @Data
 @AllArgsConstructor
 public class UniquePropertyReferenceNumber {
