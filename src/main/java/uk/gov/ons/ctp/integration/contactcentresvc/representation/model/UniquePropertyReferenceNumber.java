@@ -1,6 +1,8 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
@@ -26,5 +28,6 @@ public class UniquePropertyReferenceNumber {
   }
 
   @JsonProperty("uprn")
+  @JsonSerialize(using = ToStringSerializer.class)
   private long value;
 }
