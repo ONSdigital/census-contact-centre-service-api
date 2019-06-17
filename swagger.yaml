@@ -850,11 +850,11 @@ components:
           type: string
           description: postcode of address, optional only for new addresses
           maxLength: 8
-        CeOrgName:
+        ceOrgName:
           type: string
           maxLength: 60
           description: CE Organisation name, optional only if address type is change to CE
-        CeUsualResidents:
+        ceUsualResidents:
           type: integer
           description: CE number of usual residents if caller knows, optional only if address type is changed to CE
         dateTime:
