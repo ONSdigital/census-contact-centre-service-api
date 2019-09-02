@@ -1,6 +1,8 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.godaddy.logging.LoggingScope;
+import com.godaddy.logging.Scope;
 import lombok.Data;
 
 @Data
@@ -9,7 +11,9 @@ public class AddressDTO {
 
   private String uprn;
 
+  @LoggingScope(scope = Scope.SKIP)
   private String formattedAddress;
 
+  @LoggingScope(scope = Scope.SKIP)
   private String welshFormattedAddress;
 }
