@@ -50,12 +50,15 @@ public class RefusalRequestDTO {
   private String addressLine1;
 
   @Size(max = 60)
+  @LoggingScope(scope = Scope.SKIP)
   private String addressLine2;
 
   @Size(max = 60)
+  @LoggingScope(scope = Scope.SKIP)
   private String addressLine3;
 
   @Size(max = 60)
+  @LoggingScope(scope = Scope.SKIP)
   private String townName;
 
   @Size(max = 1)

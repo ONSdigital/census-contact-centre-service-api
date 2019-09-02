@@ -44,13 +44,16 @@ public class PostalUnresolvedFulfilmentRequestDTO {
   private String addressLine1;
 
   @Size(max = 60)
+  @LoggingScope(scope = Scope.SKIP)
   private String addressLine2;
 
   @Size(max = 60)
+  @LoggingScope(scope = Scope.SKIP)
   private String addressLine3;
 
   @NotBlank
   @Size(max = 60)
+  @LoggingScope(scope = Scope.SKIP)
   private String townName;
 
   @Pattern(regexp = Constants.REGION_RE)
