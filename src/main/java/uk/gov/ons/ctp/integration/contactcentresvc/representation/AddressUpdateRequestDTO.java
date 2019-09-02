@@ -1,6 +1,8 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.godaddy.logging.LoggingScope;
+import com.godaddy.logging.Scope;
 import java.io.Serializable;
 import java.util.Date;
 import javax.validation.constraints.NotBlank;
@@ -65,14 +67,17 @@ public class AddressUpdateRequestDTO implements Serializable {
 
   @NotBlank
   @Size(max = 12)
+  @LoggingScope(scope = Scope.HASH)
   private String title;
 
   @NotBlank
   @Size(max = 60)
+  @LoggingScope(scope = Scope.HASH)
   private String forename;
 
   @NotBlank
   @Size(max = 60)
+  @LoggingScope(scope = Scope.HASH)
   private String surname;
 
   @NotNull private Date dateTime;
