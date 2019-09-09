@@ -29,7 +29,7 @@ public class SMSFulfilmentRequestDTO {
   @NotNull
   @Size(max = 20)
   @Pattern(regexp = Constants.PHONENUMBER_RE)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String telNo;
 
   @NotNull

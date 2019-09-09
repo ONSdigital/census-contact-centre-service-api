@@ -36,22 +36,22 @@ public class AppointmentRequestDTO {
 
   @NotBlank
   @Pattern(regexp = Constants.PHONENUMBER_RE)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String telNo;
 
   @NotBlank
   @Size(max = 12)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String title;
 
   @NotBlank
   @Size(max = 60)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String forename;
 
   @NotBlank
   @Size(max = 60)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String surname;
 
   @NotNull private Date dateTime;

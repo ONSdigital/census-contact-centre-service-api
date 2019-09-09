@@ -26,7 +26,7 @@ public class SMSUnresolvedFulfilmentRequestDTO {
 
   @NotBlank
   @Pattern(regexp = Constants.PHONENUMBER_RE)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String telNo;
 
   @NotBlank

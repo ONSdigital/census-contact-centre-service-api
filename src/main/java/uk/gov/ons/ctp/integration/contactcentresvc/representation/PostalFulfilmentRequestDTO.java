@@ -25,15 +25,15 @@ public class PostalFulfilmentRequestDTO {
   @NotNull private UUID caseId;
 
   @Size(max = 12)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String title;
 
   @Size(max = 60)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String forename;
 
   @Size(max = 60)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String surname;
 
   @NotNull

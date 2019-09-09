@@ -27,23 +27,23 @@ public class RefusalRequestDTO {
   private String caseId;
 
   @Size(max = 12)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String title;
 
   @Size(max = 60)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String forename;
 
   @Size(max = 60)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String surname;
 
   @Pattern(regexp = Constants.OPTIONAL_PHONENUMBER_RE)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String telNo;
 
   @Size(max = 512)
-  @LoggingScope(scope = Scope.HASH)
+  @LoggingScope(scope = Scope.SKIP)
   private String notes;
 
   @Size(max = 60)
