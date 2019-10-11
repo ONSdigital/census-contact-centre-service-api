@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import uk.gov.ons.ctp.integration.contactcentresvc.representation.model.UniquePropertyReferenceNumber;
+import uk.gov.ons.ctp.common.model.UniquePropertyReferenceNumber;
 
 /**
  * The response object when contact centre requests case details
