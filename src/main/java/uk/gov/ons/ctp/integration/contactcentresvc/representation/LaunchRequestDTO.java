@@ -21,4 +21,6 @@ public class LaunchRequestDTO {
   @Pattern(regexp = "\\d{1,5}")
   @NotNull
   private String agentId;
+
+  @NotNull private Boolean individual;
 }
