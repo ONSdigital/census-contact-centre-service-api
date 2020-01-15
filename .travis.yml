@@ -9,33 +9,23 @@ before_install:
     git checkout $TRAVIS_BRANCH;
     fi
   - cp .travis.settings.xml $HOME/.m2/settings.xml
-  - curl ifconfig.co|xargs echo "Travis IP address is ";
   - mvn fmt:check
 
 script:
+  - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
   - mvn test -B
-  # Only release on master builds
-  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    git config --global user.email "travis@travis-ci.org";
-    git config --global user.name "Travis CI";
-    mvn -B -Dusername=$GITHUB_API_KEY release:prepare;
-    mvn -B release:perform;
+  - git config --global user.email "travis@travis-ci.org";
+  - git config --global user.name "Travis CI";
+  - if [ "$BRANCH" == "master" ]; then
+     if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+      mvn -B -Dusername=$GITHUB_API_KEY release:prepare;
+      mvn -B release:perform;
+     fi
+    else
+      mvn deploy;
     fi
-
-after_success:
-  #- bash <(curl -s https://codecov.io/bash)
-    
-notifications:
-  #slack:
-  #  rooms:
-  #    secure: V5uBbw2ufVXDTs8o3cTdg/k4HCt+gYZhblQgCnfDpswHG+HhIMSEqEr1WuDrZCuNpswbCsPIoDG0ilpULzCqJFqHV6J6lQoDRbojGNt8mUTdPONaPpyKlqpdZi9NQdrZ8uI5tugfil/l8CQ1CIJYYzam/aA6MIxp8H8vr7u5kpwUa5DQ/XukNxUbLPXaNJOcTxZkdYn2CmFB0VZgmR+FcMda6yZcoLP0EgtthTKJh+pHDNsyAxN51RcoqLFd4HwdHvNjdNdDh1cgUWyOxYEESleJoJgMC3HwiZSrIeYsFBnlpTfthCLosyHyjtR3yP1xI7JZ5Nd0lN/YsTN0MR4tThnkz/6D0r7yWm3sY3znSRrmGE8HuJ6hZgufYvvr6mT5G6mA52uQ93SnI7cZTZB01Yz4LbiCWHrIs7FCWDNum9uKCkuFR6zfV7j7UIUAyH1uprd/kgfBclmS8qs1WX98hQcYj0RUyBWP6TnTXFrlxSgI2JtOD+0xMZq6+CJqUHkaILngd/ENP2PDm5FAm+dtBeY+FmuXfSmGJU72nQRMW78C3kn5fI+EmeAE1TgriJWJNH4v9qeYJHxHhd9H/3kABxHYkiv1SK/pZvd792DQ3EcOO1A7NrvtKlEDVLy/hXVZThXbZkiAYGqjZW08oNdgnTIYObeG5scBWk6RjWcffHc=
-  #  on_failure: always
-  #  on_success: never
 
 cache:
   directories:
   - $HOME/.m2
 
-branches:
-    only:
-        - master
