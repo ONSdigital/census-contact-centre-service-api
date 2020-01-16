@@ -1,7 +1,12 @@
 openapi: 3.0.0
+info:
+  title: ONS Contact Centre API
+  description: Provides features and functions required by the Contact Centre.
+  version: "5.0.1-oas3"
 security:
-  - apiKey: []
-    appId: []
+  - basicAuth: []
+tags:
+  - name: routes
 paths:
   /addresses:
     get:
@@ -356,6 +361,12 @@ paths:
           schema:
             type: string
             pattern: '^\d{1,5}$'
+        - in: query
+          name: individual
+          required: true
+          description: the launch of an individual questionnaire is required
+          schema:
+            type: boolean
       responses:
         '200':
           description: Success. A json object return containing a launch url with token.
@@ -778,14 +789,6 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
-info:
-  title: ONS Contact Centre API
-  description: Provides features and functions required by the Contact Centre.
-  version: "5.0.0-oas3"
-tags:
-  - name: routes
-servers:
-  - url: 'https://virtserver.swaggerhub.com/contactcentre/1.0.2'
 components:
   parameters:
     CallIdentifier:
@@ -798,6 +801,9 @@ components:
       schema:
         type: string
   securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
     apiKey:
       type: apiKey
       in: header
@@ -1064,7 +1070,7 @@ components:
           description: CaseId to request fulfilment for.
         telNo:
           type: string
-          format: phone
+          pattern: '^447[0-9]{9}$'  
         fulfilmentCode:
           type: string
           maxLength: 12
@@ -1109,7 +1115,7 @@ components:
           pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
         telNo:
           type: string
-          format: phone
+          pattern: '^447[0-9]{9}$'  
         fulfilmentCode:
           type: string
           maxLength: 12
@@ -1151,7 +1157,7 @@ components:
           description: the surname of the person request an appointment
         telNo:
           type: string
-          format: phone
+          pattern: '^[0-9]*$'
           description: the contact number for the appointment if given
         dateTime:
           type: string
@@ -1186,7 +1192,7 @@ components:
               description: the surname of the person refusing
             telNo:
               type: string
-              format: telephone
+              pattern: '^[0-9]*$'
               description: the telephone number of the individual refusing
             notes:
               type: string
