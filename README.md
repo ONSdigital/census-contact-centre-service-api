@@ -20,3 +20,4 @@ If you are developing on version `0.0.1-SNAPSHOT` `mvn -B release:prepare` and `
 
 # Code Styler
 To use the code styler please goto this url (https://github.com/google/google-java-format) and follow the Intellij instructions or Eclipse depending on what you use
+
