@@ -25,7 +25,7 @@ import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 public class SMSUnresolvedFulfilmentRequestDTO {
 
   @NotBlank
-  @Pattern(regexp = Constants.PHONENUMBER_RE)
+  @Pattern(regexp = Constants.UKMOBILEPHONENUMBER_RE)
   @LoggingScope(scope = Scope.SKIP)
   private String telNo;
 

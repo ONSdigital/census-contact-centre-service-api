@@ -28,7 +28,7 @@ public class SMSFulfilmentRequestDTO {
 
   @NotNull
   @Size(max = 20)
-  @Pattern(regexp = Constants.PHONENUMBER_RE)
+  @Pattern(regexp = Constants.UKMOBILEPHONENUMBER_RE)
   @LoggingScope(scope = Scope.SKIP)
   private String telNo;
 
