@@ -15,6 +15,7 @@ public class AddressDTO {
 
   private String addressType;
 
+  @LoggingScope(scope = Scope.SKIP)
   private String estabType;
 
   @LoggingScope(scope = Scope.SKIP)
