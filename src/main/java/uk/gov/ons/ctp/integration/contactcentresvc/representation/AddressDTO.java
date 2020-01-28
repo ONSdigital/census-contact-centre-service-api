@@ -11,6 +11,13 @@ public class AddressDTO {
 
   private String uprn;
 
+  private String countryCode;
+
+  private String addressType;
+
+  @LoggingScope(scope = Scope.SKIP)
+  private String estabType;
+
   @LoggingScope(scope = Scope.SKIP)
   private String formattedAddress;
 
