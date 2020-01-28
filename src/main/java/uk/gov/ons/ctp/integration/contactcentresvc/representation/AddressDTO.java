@@ -11,7 +11,7 @@ public class AddressDTO {
 
   private String uprn;
 
-  private String countryCode;
+  private String region;
 
   private String addressType;
 
