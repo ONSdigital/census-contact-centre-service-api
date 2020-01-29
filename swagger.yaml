@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.1.0-oas3"
+  version: "5.2.0-oas3"
 security:
   - basicAuth: []
 tags:
@@ -161,8 +161,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: >-
-                #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.case
+              $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.post.case'
         description: object detailing an until now unknown address for a case
 
   '/cases/{caseId}/address':
@@ -259,9 +258,11 @@ paths:
       operationId: caseUpdate
       tags:
         - routes
-      summary: Record an address when it cannot be found through the address search
+      summary: Update the address details of a case
       description: >-
-        When an address cannot be found in search, this operation will result in a new case being created for the address
+        Update the address details for a known case
+        The details sent to this endpoint MUST contain the original case data retrieved from one of the GET /cases endpoints
+        with relevant amendments
       parameters:
         - in: path
           name: caseId
@@ -293,8 +294,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: >-
-                #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.case
+              $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.put.case'
         description: object detailing an until now unknown address for a case
     get:
       operationId: caseByIdQuery
@@ -541,7 +541,7 @@ paths:
         - in: query
           name: region
           required: false
-          description: 'Lookup fulfilments by region e.g. england (E), wales (W), northern ireland (N)'
+          description: 'Lookup fulfilments by region e.g. England (E), Wales (W), Northern Ireland (N)'
           schema:
             type: string
             enum:
@@ -680,14 +680,25 @@ components:
             - UNOCCUPIED
           description: 'the reported status of an address'
       required:
-        - type
+        - reportedChange
         - dateTime
 
     uk.gov.ons.responsemanagement.model.server.request.case:
+      type: object
       properties:
         estabType:
           type: string
-          pattern: "^Household|Sheltered Accomodation|Hall of Residence|Care Home|Boarding School|Hotel|Hostel|Residential Caravaner|Gypsy Roma Traveller|Residential Boater$"
+          enum: 
+            - HOUSEHOLD
+            - SHELTERED_ACCOMODATION
+            - HALL_OF_RESIDENCE
+            - CARE_HOME
+            - BOARDING_SCHOOL
+            - HOTEL
+            - HOSTEL
+            - RESIDENTIAL_CARAVANER
+            - GYPSY_ROMA_TRAVELLER
+            - RESIDENTIAL_BOATER
           description: 'the establishment type of the address'
         addressLine1:
           type: string
@@ -711,7 +722,7 @@ components:
             - E
             - W
             - N
-          description: 'The region e.g. england (E), wales (W), northern ireland (N)'
+          description: 'The region e.g. England (E), Wales (W), Northern Ireland (N)'
         postcode:
           type: string
           description: postcode of address
@@ -727,9 +738,28 @@ components:
           type: string
           format: datetime
           description: The request date time stamp
-      required:
-        - type
-        - dateTime
+    uk.gov.ons.responsemanagement.model.server.request.put.case:
+      allOf:
+        - $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.case'
+        - type: object
+          required:
+            - region
+            - addressLine1
+            - townName
+            - estabType
+            - postcode
+            - dateTime
+    uk.gov.ons.responsemanagement.model.server.request.post.case:
+      allOf:
+        - $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.case'
+        - type: object
+          required:
+            - region
+            - addressLine1
+            - townName
+            - estabType
+            - dateTime
+
 
     uk.gov.ons.responsemanagement.model.server.request.fulfilmentpost:
       properties:
@@ -835,7 +865,7 @@ components:
                 - E
                 - W
                 - N
-              description: 'The region e.g. england (E), wales (W), northern ireland (N) (for use if no caseid is available)'
+              description: 'The region e.g. England (E), Wales (W), Northern Ireland (N) (for use if no caseid is available)'
             postcode:
               type: string
               description: postcode of address  (for use if no caseid is available)
@@ -898,7 +928,6 @@ components:
           type: string
           enum:
             - POST
-            - EMAIL
             - SMS
     uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer:
       properties:
@@ -915,6 +944,33 @@ components:
              - CE
              - CI
           description: case type
+        addressType:
+          type: string
+          enum:
+             - HH
+             - CE
+             - SPG
+          description: address type
+        allowedDeliveryChannels:
+          type: array
+          items:
+            type: string
+            enum:
+              - SMS
+              - POST
+        estabType:
+          type: string
+          enum: 
+            - HOUSEHOLD
+            - SHELTERED_ACCOMODATION
+            - HALL_OF_RESIDENCE
+            - CARE_HOME
+            - BOARDING_SCHOOL
+            - HOTEL
+            - HOSTEL
+            - RESIDENTIAL_CARAVANER
+            - GYPSY_ROMA_TRAVELLER
+            - RESIDENTIAL_BOATER
         createdDateTime:
           type: string
           format: datetime
@@ -940,7 +996,7 @@ components:
             - E
             - W
             - N
-          description: 'The region e.g. england (E), wales (W), northern ireland (N)'
+          description: 'The region e.g. England (E), Wales (W), Northern Ireland (N)'
         postcode:
           type: string
           description: postcode of address
@@ -988,6 +1044,33 @@ components:
         - dataVersion
     uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseAddress:
       properties:
+        region:
+          type: string
+          enum:
+            - E
+            - W
+            - N
+            - S
+          description: 'The region e.g. England (E), Wales (W), Northern Ireland (N), Scotland (S)'
+        estabType:
+          type: string
+          enum: 
+            - HOUSEHOLD
+            - SHELTERED_ACCOMODATION
+            - HALL_OF_RESIDENCE
+            - CARE_HOME
+            - BOARDING_SCHOOL
+            - HOTEL
+            - HOSTEL
+            - RESIDENTIAL_CARAVANER
+            - GYPSY_ROMA_TRAVELLER
+            - RESIDENTIAL_BOATER
+        addressType:
+          type: string
+          enum:
+            - HH
+            - CE
+            - SPG
         uprn:
           type: string
         formattedAddress:
@@ -996,6 +1079,9 @@ components:
           type: string
       required:
         - uprn
+        - region
+        - estabType
+        - addressType
         - formattedAddress
         - welshFormattedAddress
     uk.gov.ons.responsemanagement.model.server.response.postcode.AddressByPostcodeResponseContainer:
