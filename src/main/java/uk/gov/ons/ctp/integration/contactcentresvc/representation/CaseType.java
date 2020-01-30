@@ -4,5 +4,5 @@ public enum CaseType {
   HH,
   HI,
   CE,
-  CI
+  SPG
 }
