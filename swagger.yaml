@@ -134,7 +134,7 @@ paths:
       operationId: caseCreation
       tags:
         - routes
-      summary: Record an address when it cannot be found through the address search
+      summary: Create a case for an address not found through the address search
       description: >-
         When an address cannot be found in search, this operation will result in a new case being created for the address
       responses:
@@ -144,7 +144,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
+                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -164,48 +164,6 @@ paths:
               $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.post.case'
         description: object detailing an until now unknown address for a case
 
-  '/cases/{caseId}/address':
-    put:
-      operationId: caseAddressReport
-      tags:
-        - routes
-      summary: Record the status of an address for a given case
-      description: >-
-        For a given case report the status of the address
-      parameters:
-        - in: path
-          name: caseId
-          required: true
-          description: Obtain an EQ survey launch URL by caseID
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Success. Confirmation.
-          content:
-            application/json:
-              schema:
-                $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
-        '400':
-          description: >-
-            Bad request. Indicates an issue with the request. Further details
-            are provided in the response.
-        '401':
-          description: Unauthorised. The API key provided with the request is invalid.
-        '429':
-          description: Server too busy. The ONS API is experiencing exceptional load.
-        '500':
-          description: >-
-            Internal server error. Failed to process the request due to an
-            internal error.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: >-
-                #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.addressReport
-        description: object detailing why the address for a case is invalid
 
   '/cases/uprn/{uprn}':
     get:
@@ -253,14 +211,62 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
+
+  '/cases/ccs/postcode/{postcode}':
+    get:
+      operationId: ccsCaseByPostcodeQuery
+      tags:
+        - routes
+      summary: Search for a CCS case by address postcode.
+      description: Returns a list of cases
+      parameters:
+        - in: path
+          name: postcode
+          required: true
+          description: 'Lookup CCS cases by postcode'
+          schema:
+            type: string
+            pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
+        - in: query
+          name: caseEvents
+          description: true if case events are additionally required
+          schema:
+              type: boolean
+      responses:
+        '200':
+          description: Success. A json array of matched cases.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: >-
+                    #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
+        '400':
+          description: >-
+            Bad request. Indicates an issue with the request. Further details
+            are provided in the response.
+        '401':
+          description: Unauthorised. The API key provided with the request is invalid.
+        '403':
+          description: Forbidden. The case exists, but it's not being returned as it's not a household case.
+        '404':
+          description: Not found. A case doesn't exist for the supplied uprn.
+        '429':
+          description: Server too busy. The ONS API is experiencing exceptional load.
+        '500':
+          description: >-
+            Internal server error. Failed to process the request due to an
+            internal error.
+
   '/cases/{caseId}':
     put:
       operationId: caseUpdate
       tags:
         - routes
-      summary: Update the address details of a case
+      summary: Update the address details of a case or change it's status
       description: >-
-        Update the address details for a known case
+        Update the address details for a known case or report a change of address status
         The details sent to this endpoint MUST contain the original case data retrieved from one of the GET /cases endpoints
         with relevant amendments
       parameters:
@@ -382,6 +388,7 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
+
   '/cases/{caseId}/launch':
     get:
       operationId: LaunchByCaseIdQuery
@@ -430,6 +437,7 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
+
   '/cases/{caseId}/fulfilment/post':
     post:
       operationId: postFulfilment
@@ -477,6 +485,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.fulfilmentpost
         description: object detailing fulfilment request
+
   '/cases/{caseId}/fulfilment/sms':
     post:
       operationId: smsFulfilment
@@ -519,6 +528,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.fulfilmentsms
         description: object detailing fulfilment request
+
   '/fulfilments/':
     get:
       operationId: fulfilments
@@ -531,6 +541,17 @@ paths:
           name: caseType
           required: false
           description: Lookup fulfilments by casetype
+          schema:
+            type: string
+            enum:
+              - HH
+              - HI
+              - CE
+              - CI
+        - in: query
+          name: deliveryChannel 
+          required: false
+          description: Lookup fulfilments by delivery channel
           schema:
             type: string
             enum:
@@ -570,6 +591,7 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
+
   '/cases/{caseId}/refusal':
     post:
       operationId: refusals
@@ -614,6 +636,7 @@ paths:
               $ref: >-
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.refusal
         description: object detailing refusal
+
   /version:
     get:
       operationId: versionQuery
@@ -668,20 +691,6 @@ components:
       name: X-APP-ID
 
   schemas:
-    uk.gov.ons.responsemanagement.model.server.request.addressReport:
-      properties:
-        status:
-          type: string
-          enum:
-            - DERELICT
-            - DEMOLISHED
-            - NON_RESIDENTIAL
-            - UNDER_CONSTRUCTION
-            - UNOCCUPIED
-          description: 'the reported status of an address'
-      required:
-        - reportedChange
-        - dateTime
 
     uk.gov.ons.responsemanagement.model.server.request.case:
       type: object
@@ -738,9 +747,22 @@ components:
           type: string
           format: datetime
           description: The request date time stamp
+
     uk.gov.ons.responsemanagement.model.server.request.put.case:
       allOf:
         - $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.case'
+        - type: object
+          properties:
+            status:
+              type: string
+              enum:
+                - UNCHANGED
+                - DERELICT
+                - DEMOLISHED
+                - NON_RESIDENTIAL
+                - UNDER_CONSTRUCTION
+                - UNOCCUPIED
+          description: 'the reported status of an address'
         - type: object
           required:
             - region
@@ -749,6 +771,7 @@ components:
             - estabType
             - postcode
             - dateTime
+
     uk.gov.ons.responsemanagement.model.server.request.post.case:
       allOf:
         - $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.case'
@@ -759,7 +782,6 @@ components:
             - townName
             - estabType
             - dateTime
-
 
     uk.gov.ons.responsemanagement.model.server.request.fulfilmentpost:
       properties:
@@ -814,6 +836,7 @@ components:
         - telNo
         - fulfilmentCode
         - dateTime
+
     uk.gov.ons.responsemanagement.model.server.request.refusal:
       properties:
         refusal:
@@ -823,6 +846,12 @@ components:
               type: string
               format: uuid
               description: CaseId to log refusal against
+            reason:
+              type: string
+              enum: 
+                - EXTRAORDINARY
+                - HARD
+              description: 'the reason for the refusal'
             title:
               type: string
               maxLength: 12
@@ -879,6 +908,8 @@ components:
               format: datetime
               description: The requested time of the refusal
       required:
+        - caseId
+        - reason
         - dateTime
 
     uk.gov.ons.responsemanagement.model.server.response.fulfilmentcode:
@@ -929,6 +960,7 @@ components:
           enum:
             - POST
             - SMS
+
     uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer:
       properties:
         id:
@@ -1009,6 +1041,7 @@ components:
           items:
             $ref: >-
               #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseEvent
+              #
     uk.gov.ons.responsemanagement.model.server.response.case.CaseEvent:
       properties:
         category:
@@ -1018,6 +1051,7 @@ components:
         createdDateTime:
           type: string
           format: datetime
+
     uk.gov.ons.responsemanagement.model.server.response.address.AddressBySearchResponseContainer:
       properties:
         dataVersion:
@@ -1034,6 +1068,7 @@ components:
         - dataVersion
         - addresses
         - total
+
     uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseVersion:
       properties:
         apiVersion:
@@ -1042,6 +1077,7 @@ components:
           type: string
       required:
         - dataVersion
+
     uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseAddress:
       properties:
         region:
@@ -1084,6 +1120,7 @@ components:
         - addressType
         - formattedAddress
         - welshFormattedAddress
+
     uk.gov.ons.responsemanagement.model.server.response.postcode.AddressByPostcodeResponseContainer:
       properties:
         dataVersion:
@@ -1100,6 +1137,7 @@ components:
         - dataVersion
         - addresses
         - total
+
     uk.gov.ons.responsemanagement.model.server.response.Response:
       properties:
         id:
