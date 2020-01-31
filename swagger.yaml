@@ -71,7 +71,7 @@ paths:
             Internal server error. Failed to process the request due to an
             internal error.
 
-  '/addresses/postcode':
+  /addresses/postcode:
     get:
       operationId: postcodeQuery
       tags:
@@ -129,7 +129,7 @@ paths:
             Internal server error. Failed to process the request due to an
             internal error.
 
-  '/cases':
+  /cases:
     post:
       operationId: caseCreation
       tags:
@@ -165,7 +165,7 @@ paths:
         description: object detailing an until now unknown address for a case
 
 
-  '/cases/uprn/{uprn}':
+  /cases/uprn/{uprn}:
     get:
       operationId: caseByUprnQuery
       tags:
@@ -212,7 +212,7 @@ paths:
             Internal server error. Failed to process the request due to an
             internal error.
 
-  '/cases/ccs/postcode/{postcode}':
+  /cases/ccs/postcode/{postcode}:
     get:
       operationId: ccsCaseByPostcodeQuery
       tags:
@@ -259,16 +259,16 @@ paths:
             Internal server error. Failed to process the request due to an
             internal error.
 
-  '/cases/{caseId}':
+  /cases/{caseId}:
     put:
       operationId: caseUpdate
       tags:
         - routes
       summary: Update the address details of a case or change it's status
       description: >-
-        Update the address details for a known case or report a change of address status
-        The details sent to this endpoint MUST contain the original case data retrieved from one of the GET /cases endpoints
-        with relevant amendments
+        Update the address details for a known case or report a change of address status.
+        MUST contain the original case data retrieved from one of the GET /cases endpoints
+        with relevant amendments applied.
       parameters:
         - in: path
           name: caseId
@@ -302,6 +302,7 @@ paths:
             schema:
               $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.put.case'
         description: object detailing an until now unknown address for a case
+
     get:
       operationId: caseByIdQuery
       tags:
@@ -344,7 +345,8 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
-  '/cases/ref/{reference}':
+
+  /cases/ref/{reference}:
     get:
       operationId: caseByReferenceQuery
       tags:
@@ -389,7 +391,7 @@ paths:
             Internal server error. Failed to process the request due to an
             internal error.
 
-  '/cases/{caseId}/launch':
+  /cases/{caseId}/launch:
     get:
       operationId: LaunchByCaseIdQuery
       tags:
@@ -438,7 +440,7 @@ paths:
             Internal server error. Failed to process the request due to an
             internal error.
 
-  '/cases/{caseId}/fulfilment/post':
+  /cases/{caseId}/fulfilment/post:
     post:
       operationId: postFulfilment
       tags:
@@ -446,8 +448,7 @@ paths:
       summary: Request a fulfilment for a Case
       description: >-
         Request a fulfilment for a Case. 
-        If the fulfilment code is for a case type of household or communal 
-        individual (codes 'HI' or 'CI') then the request will be rejected as a bad 
+        If the fulfilment code is for an individual then the request will be rejected as a bad 
         request if any of the following fields are not provided in the request body: 
         'title', 'forename' or 'surname'.
       parameters:
@@ -486,7 +487,7 @@ paths:
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.fulfilmentpost
         description: object detailing fulfilment request
 
-  '/cases/{caseId}/fulfilment/sms':
+  /cases/{caseId}/fulfilment/sms:
     post:
       operationId: smsFulfilment
       tags:
@@ -529,7 +530,7 @@ paths:
                 #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.fulfilmentsms
         description: object detailing fulfilment request
 
-  '/fulfilments/':
+  /fulfilments:
     get:
       operationId: fulfilments
       tags:
@@ -545,9 +546,8 @@ paths:
             type: string
             enum:
               - HH
-              - HI
               - CE
-              - CI
+              - SPG
         - in: query
           name: deliveryChannel 
           required: false
@@ -555,10 +555,8 @@ paths:
           schema:
             type: string
             enum:
-              - HH
-              - HI
-              - CE
-              - CI
+              - SMS
+              - POST
         - in: query
           name: region
           required: false
@@ -569,6 +567,13 @@ paths:
               - E
               - W
               - N
+        - in: query
+          name: individual
+          required: false
+          description: 'Lookup fulfilments suitable for an individual (true) or not (false)'
+          default: false
+          schema:
+            type: boolean
       responses:
         '200':
           description: Success. A json object return of fulfilment options.
@@ -592,7 +597,7 @@ paths:
             Internal server error. Failed to process the request due to an
             internal error.
 
-  '/cases/{caseId}/refusal':
+  /cases/{caseId}/refusal:
     post:
       operationId: refusals
       tags:
@@ -666,6 +671,7 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
+
 components:
   parameters:
     CallIdentifier:
@@ -920,10 +926,11 @@ components:
           type: string
           enum:
             - HH
-            - HI
             - CE
-            - CI
+            - SPG
           description: case type
+        individual:
+          type: boolean
         regions:
           type: array
           items:
@@ -968,13 +975,13 @@ components:
           format: uuid
         caseRef:
           type: string
+          pattern: "^[0-9]{10}$"
         caseType:
           type: string
           enum:
              - HH
-             - HI
              - CE
-             - CI
+             - SPG
           description: case type
         addressType:
           type: string
