@@ -571,7 +571,6 @@ paths:
           name: individual
           required: false
           description: 'Lookup fulfilments suitable for an individual (true) or not (false)'
-          default: false
           schema:
             type: boolean
       responses:
@@ -1048,7 +1047,6 @@ components:
           items:
             $ref: >-
               #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseEvent
-              #
     uk.gov.ons.responsemanagement.model.server.response.case.CaseEvent:
       properties:
         category:
