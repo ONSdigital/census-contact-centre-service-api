@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.2.0-oas3"
+  version: "5.3.0-oas3"
 security:
   - basicAuth: []
 tags:
@@ -921,12 +921,14 @@ components:
       properties:
         fulfilmentCode:
           type: string
-        caseType:
-          type: string
-          enum:
-            - HH
-            - CE
-            - SPG
+        caseTypes:
+          type: array
+          items:
+            type: string
+            enum:
+              - HH
+              - CE
+              - SPG
           description: case type
         individual:
           type: boolean
@@ -934,6 +936,10 @@ components:
           type: array
           items:
             type: string
+            enum:
+              - E
+              - W
+              - N
         language:
           type: string
           enum:
