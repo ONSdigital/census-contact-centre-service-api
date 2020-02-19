@@ -29,5 +29,7 @@ public class FulfilmentDTO {
 
   private DeliveryChannel deliveryChannel;
 
-  private boolean individual;
+  private Boolean individual;
+
+  private ProductGroup productGroup;
 }
