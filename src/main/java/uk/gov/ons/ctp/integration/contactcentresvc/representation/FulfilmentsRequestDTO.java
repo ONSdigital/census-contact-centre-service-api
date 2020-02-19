@@ -19,4 +19,6 @@ public class FulfilmentsRequestDTO {
   private CaseType caseType;
 
   private Region region;
+
+  private DeliveryChannel deliveryChannel;
 }
