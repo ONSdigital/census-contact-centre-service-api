@@ -21,4 +21,6 @@ public class FulfilmentsRequestDTO {
   private Region region;
 
   private DeliveryChannel deliveryChannel;
+
+  private boolean individual;
 }
