@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.2.0-oas3"
+  version: "5.4.0-oas3"
 security:
   - basicAuth: []
 tags:
@@ -547,7 +547,19 @@ paths:
             enum:
               - HH
               - CE
-              - SPG
+        - in: query
+          name: productGroup
+          required: false
+          description: Lookup fulfilments by product group
+          schema:
+            type: string
+            enum:
+              - INVITE
+              - QUESTIONNAIRE
+              - CONTINUATION
+              - LARGE_PRINT
+              - UAC
+              - TRANSLATION
         - in: query
           name: deliveryChannel 
           required: false
@@ -921,12 +933,14 @@ components:
       properties:
         fulfilmentCode:
           type: string
-        caseType:
-          type: string
-          enum:
-            - HH
-            - CE
-            - SPG
+        caseTypes:
+          type: array
+          items:
+            type: string
+            enum:
+              - HH
+              - CE
+              - SPG
           description: case type
         individual:
           type: boolean
@@ -934,6 +948,19 @@ components:
           type: array
           items:
             type: string
+            enum:
+              - E
+              - W
+              - N
+        productGroup:
+          type: string
+          enum:
+            - INVITE
+            - QUESTIONNAIRE
+            - CONTINUATION
+            - LARGE_PRINT
+            - UAC
+            - TRANSLATION
         language:
           type: string
           enum:
