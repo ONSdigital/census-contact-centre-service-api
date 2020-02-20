@@ -19,7 +19,7 @@ public class FulfilmentDTO {
 
   private List<Region> regions;
 
-  private CaseType caseType;
+  private List<CaseType> caseTypes;
 
   private String fulfilmentCode;
 
@@ -28,4 +28,8 @@ public class FulfilmentDTO {
   private String description;
 
   private DeliveryChannel deliveryChannel;
+
+  private Boolean individual;
+
+  private ProductGroup productGroup;
 }

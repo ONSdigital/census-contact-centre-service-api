@@ -19,4 +19,10 @@ public class FulfilmentsRequestDTO {
   private CaseType caseType;
 
   private Region region;
+
+  private DeliveryChannel deliveryChannel;
+
+  private Boolean individual;
+
+  private ProductGroup productGroup;
 }
