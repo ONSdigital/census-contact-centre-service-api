@@ -1,12 +1,12 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.godaddy.logging.LoggingScope;
 import com.godaddy.logging.Scope;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -53,13 +53,11 @@ public class CaseDTO {
   @JsonUnwrapped private UniquePropertyReferenceNumber uprn;
 
   private List<CaseEventDTO> caseEvents;
-  
+
   private boolean handDelivery;
 
   @JsonIgnore
   public boolean isHandDelivery() {
     return handDelivery;
   }
-  
-  
 }
