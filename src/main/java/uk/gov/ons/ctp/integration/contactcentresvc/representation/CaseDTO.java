@@ -30,6 +30,8 @@ public class CaseDTO {
 
   private String caseType;
 
+  private List<DeliveryChannel> allowedDeliveryChannels;
+
   private Date createdDateTime;
 
   private String addressLine1;
