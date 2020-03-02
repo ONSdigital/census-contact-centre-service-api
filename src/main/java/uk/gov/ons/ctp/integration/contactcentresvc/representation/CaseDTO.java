@@ -1,5 +1,6 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.godaddy.logging.LoggingScope;
 import com.godaddy.logging.Scope;
@@ -52,4 +53,11 @@ public class CaseDTO {
   @JsonUnwrapped private UniquePropertyReferenceNumber uprn;
 
   private List<CaseEventDTO> caseEvents;
+
+  private boolean handDelivery;
+
+  @JsonIgnore
+  public boolean isHandDelivery() {
+    return handDelivery;
+  }
 }
