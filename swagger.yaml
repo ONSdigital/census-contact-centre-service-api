@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.4.0-oas3"
+  version: "5.5.0-oas3"
 security:
   - basicAuth: []
 tags:
@@ -12,7 +12,8 @@ paths:
     get:
       operationId: addressQuery
       tags:
-        - routes
+        - CONTACT_CENTRE
+        - ASSISTED_DIGITAL
       summary: Search for an address.
       description: >-
         Returns a ranked list of addresses matching the search query in the
@@ -75,7 +76,8 @@ paths:
     get:
       operationId: postcodeQuery
       tags:
-        - routes
+        - CONTACT_CENTRE
+        - ASSISTED_DIGITAL
       summary: Search for an address by postcode.
       description: >-
         Returns a alpha-numeric ordered list of addresses matching the postcode
@@ -133,7 +135,7 @@ paths:
     post:
       operationId: caseCreation
       tags:
-        - routes
+        - CONTACT_CENTRE
       summary: Create a case for an address not found through the address search
       description: >-
         When an address cannot be found in search, this operation will result in a new case being created for the address
@@ -169,9 +171,11 @@ paths:
     get:
       operationId: caseByUprnQuery
       tags:
-        - routes
+        - CONTACT_CENTRE
+        - ASSISTED_DIGITAL
       summary: Search for a case by address uprn.
-      description: Returns a case
+      description: >-
+        Returns a case
       parameters:
         - in: path
           name: uprn
@@ -216,9 +220,10 @@ paths:
     get:
       operationId: ccsCaseByPostcodeQuery
       tags:
-        - routes
+        - CONTACT_CENTRE
       summary: Search for a CCS case by address postcode.
-      description: Returns a list of cases
+      description: >-
+        Returns a list of cases
       parameters:
         - in: path
           name: postcode
@@ -263,7 +268,7 @@ paths:
     put:
       operationId: caseUpdate
       tags:
-        - routes
+        - CONTACT_CENTRE
       summary: Update the address details of a case or change it's status
       description: >-
         Update the address details for a known case or report a change of address status.
@@ -273,7 +278,7 @@ paths:
         - in: path
           name: caseId
           required: true
-          description: Obtain an EQ survey launch URL by caseID
+          description: The id of the case being modified
           schema:
             type: string
       responses:
@@ -283,7 +288,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
+                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.ResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -306,9 +311,10 @@ paths:
     get:
       operationId: caseByIdQuery
       tags:
-        - routes
+        - CONTACT_CENTRE
       summary: Search for a case by its Id.
-      description: Returns a case
+      description: >-
+        Returns a case
       parameters:
         - in: path
           name: caseId
@@ -350,9 +356,10 @@ paths:
     get:
       operationId: caseByReferenceQuery
       tags:
-        - routes
+        - CONTACT_CENTRE
       summary: Search for a case by its reference.
-      description: Returns a case by the case reference if available.
+      description: >-
+        Returns a case by the case reference if available.
       parameters:
         - in: path
           name: reference
@@ -395,9 +402,10 @@ paths:
     get:
       operationId: LaunchByCaseIdQuery
       tags:
-        - routes
+        - CONTACT_CENTRE
       summary: Obtain an EQ launch URL and token for a case.
-      description: Returns a case
+      description: >-
+        Returns an EQ launch URL for the case
       parameters:
         - in: path
           name: caseId
@@ -440,11 +448,59 @@ paths:
             Internal server error. Failed to process the request due to an
             internal error.
 
+  /cases/{caseId}/uac:
+    get:
+      operationId: GetUACForCase
+      tags:
+        - ASSISTED_DIGITAL
+      summary: Obtain a UAC for a case.
+      description: >-
+        Returns a UAC for the case
+      parameters:
+        - in: path
+          name: caseId
+          required: true
+          description: Obtain a UAC for a caseEQ survey launch URL by caseID
+          schema:
+            type: string
+        - in: query
+          name: adLocationId
+          required: true
+          description: Assisted Digital Location Identifier
+          schema:
+            type: string
+            pattern: '^\d{1,8}$'
+        - in: query
+          name: individual
+          required: true
+          description: the UAC for an individual questionnaire is required
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Success. A json object return containing a single use UAC.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.UACResponseDTO
+        '400':
+          description: >-
+            Bad request. Indicates an issue with the request. Further details
+            are provided in the response.
+        '401':
+          description: Unauthorised. The API key provided with the request is invalid.
+        '429':
+          description: Server too busy. The ONS API is experiencing exceptional load.
+        '500':
+          description: >-
+            Internal server error. Failed to process the request due to an
+            internal error.
   /cases/{caseId}/fulfilment/post:
     post:
       operationId: postFulfilment
       tags:
-        - routes
+        - CONTACT_CENTRE
       summary: Request a fulfilment for a Case
       description: >-
         Request a fulfilment for a Case. 
@@ -466,7 +522,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
+                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.ResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -491,9 +547,10 @@ paths:
     post:
       operationId: smsFulfilment
       tags:
-        - routes
+        - CONTACT_CENTRE
       summary: Request a fulfilment for a Case
-      description: Returns a case
+      description: >-
+        Requests a fulfilment for a case
       parameters:
         - in: path
           name: caseId
@@ -509,7 +566,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
+                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.ResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -534,9 +591,10 @@ paths:
     get:
       operationId: fulfilments
       tags:
-        - routes
+        - CONTACT_CENTRE
       summary: Get a list of available fulfilments.
-      description: Returns a JSON array containing available fulfilments
+      description: >-
+        Returns a JSON array containing available fulfilments
       parameters:
         - in: query
           name: caseType
@@ -558,6 +616,7 @@ paths:
               - QUESTIONNAIRE
               - CONTINUATION
               - LARGE_PRINT
+              - EASY_PRINT
               - UAC
               - TRANSLATION
         - in: query
@@ -612,7 +671,7 @@ paths:
     post:
       operationId: refusals
       tags:
-        - routes
+        - CONTACT_CENTRE
       summary: Log when someone is unable/unwilling to complete a response
       description: >-
         Logs a refusal against a Case, 'unknown' should be used in place of a caseid if lookup cannot be performed due to API not being available.
@@ -632,7 +691,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.Response
+                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.ResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -1036,6 +1095,7 @@ components:
             - RESIDENTIAL_CARAVANER
             - GYPSY_ROMA_TRAVELLER
             - RESIDENTIAL_BOATER
+            - OTHER
         createdDateTime:
           type: string
           format: datetime
@@ -1120,6 +1180,8 @@ components:
             - N
             - S
           description: 'The region e.g. England (E), Wales (W), Northern Ireland (N), Scotland (S)'
+        estabDescription:
+          type: string
         estabType:
           type: string
           enum: 
@@ -1133,6 +1195,7 @@ components:
             - RESIDENTIAL_CARAVANER
             - GYPSY_ROMA_TRAVELLER
             - RESIDENTIAL_BOATER
+            - OTHER
         addressType:
           type: string
           enum:
@@ -1170,9 +1233,21 @@ components:
         - addresses
         - total
 
-    uk.gov.ons.responsemanagement.model.server.response.Response:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.ResponseDTO:
       properties:
         id:
+          type: string
+        dateTime:
+          type: string
+          format: datetime
+      required:
+        - dateTime
+
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.UACResponseDTO:
+      properties:
+        id:
+          type: string
+        uac:
           type: string
         dateTime:
           type: string
