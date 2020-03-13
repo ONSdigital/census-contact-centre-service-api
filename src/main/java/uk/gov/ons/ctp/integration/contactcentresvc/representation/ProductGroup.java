@@ -6,5 +6,6 @@ public enum ProductGroup {
   CONTINUATION,
   LARGE_PRINT,
   UAC,
+  EASY_READ,
   TRANSLATION
 }
