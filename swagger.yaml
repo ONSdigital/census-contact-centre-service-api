@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.6.0-oas3"
+  version: "5.7.0-oas3"
 security:
   - basicAuth: []
 tags:
@@ -931,6 +931,10 @@ components:
               type: string
               format: uuid
               description: CaseId to log refusal against
+            agentId:
+              type: string
+              pattern: '^\d{1,5}$'
+              description: employee identifier
             reason:
               type: string
               enum: 
@@ -993,6 +997,7 @@ components:
               format: datetime
               description: The requested time of the refusal
       required:
+        - agentId
         - caseId
         - reason
         - dateTime
