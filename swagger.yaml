@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.5.0-oas3"
+  version: "5.6.0-oas3"
 security:
   - basicAuth: []
 tags:
@@ -605,6 +605,7 @@ paths:
             enum:
               - HH
               - CE
+              - SPG
         - in: query
           name: productGroup
           required: false
@@ -771,20 +772,6 @@ components:
     uk.gov.ons.responsemanagement.model.server.request.case:
       type: object
       properties:
-        estabType:
-          type: string
-          enum: 
-            - HOUSEHOLD
-            - SHELTERED_ACCOMODATION
-            - HALL_OF_RESIDENCE
-            - CARE_HOME
-            - BOARDING_SCHOOL
-            - HOTEL
-            - HOSTEL
-            - RESIDENTIAL_CARAVANER
-            - GYPSY_ROMA_TRAVELLER
-            - RESIDENTIAL_BOATER
-          description: 'the establishment type of the address'
         addressLine1:
           type: string
           maxLength: 60
@@ -829,6 +816,20 @@ components:
         - $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.case'
         - type: object
           properties:
+            estabType:
+              type: string
+              enum: 
+                - HOUSEHOLD
+                - SHELTERED_ACCOMODATION
+                - HALL_OF_RESIDENCE
+                - CARE_HOME
+                - BOARDING_SCHOOL
+                - HOTEL
+                - HOSTEL
+                - RESIDENTIAL_CARAVANER
+                - GYPSY_ROMA_TRAVELLER
+                - RESIDENTIAL_BOATER
+              description: 'the establishment type of the address'
             status:
               type: string
               enum:
@@ -852,11 +853,19 @@ components:
       allOf:
         - $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.case'
         - type: object
+          properties:
+            caseType:
+              type: string
+              enum:
+                - HH
+                - CE
+                - SPG
+              description: case type
           required:
             - region
             - addressLine1
             - townName
-            - estabType
+            - caseType
             - dateTime
 
     uk.gov.ons.responsemanagement.model.server.request.fulfilmentpost:
