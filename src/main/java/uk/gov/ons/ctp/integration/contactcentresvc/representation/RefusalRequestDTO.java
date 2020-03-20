@@ -25,7 +25,7 @@ import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 public class RefusalRequestDTO {
 
   private String caseId;
-  
+
   @Pattern(regexp = "\\d{1,5}")
   @NotNull
   private String agentId;
@@ -66,7 +66,7 @@ public class RefusalRequestDTO {
   private String townName;
 
   @NotNull private Reason reason;
-  
+
   private Region region;
 
   @Pattern(regexp = Constants.OPTIONAL_POSTCODE_RE)
