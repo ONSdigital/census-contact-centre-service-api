@@ -26,6 +26,10 @@ public class RefusalRequestDTO {
 
   private String caseId;
 
+  @Pattern(regexp = "\\d{1,5}")
+  @NotNull
+  private String agentId;
+
   @Size(max = 12)
   @LoggingScope(scope = Scope.SKIP)
   private String title;
@@ -61,8 +65,9 @@ public class RefusalRequestDTO {
   @LoggingScope(scope = Scope.SKIP)
   private String townName;
 
-  @Size(max = 1)
-  private String region;
+  @NotNull private Reason reason;
+
+  private Region region;
 
   @Pattern(regexp = Constants.OPTIONAL_POSTCODE_RE)
   private String postcode;
