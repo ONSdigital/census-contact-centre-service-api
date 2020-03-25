@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.7.0-oas3"
+  version: "5.7.1-oas3"
 security:
   - basicAuth: []
 tags:
@@ -1089,6 +1089,9 @@ components:
              - CE
              - SPG
           description: address type
+        secureEstablishment:
+          type: boolean
+          description: indicates that the case is resident at a secure establishment
         allowedDeliveryChannels:
           type: array
           items:
