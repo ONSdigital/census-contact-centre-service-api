@@ -36,9 +36,7 @@ public class PostalFulfilmentRequestDTO {
   @LoggingScope(scope = Scope.SKIP)
   private String surname;
 
-  @NotNull
-  @Size(max = 12)
-  private String fulfilmentCode;
+  @NotNull private String fulfilmentCode;
 
   @NotNull private Date dateTime;
 }
