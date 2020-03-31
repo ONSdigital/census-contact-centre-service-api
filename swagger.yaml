@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.7.1-oas3"
+  version: "5.7.2-oas3"
 security:
   - basicAuth: []
 tags:
@@ -816,6 +816,10 @@ components:
         - $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.case'
         - type: object
           properties:
+            caseId:
+              type: string
+              format: uuid
+              description: CaseId of case to modify
             estabType:
               type: string
               enum: 
@@ -838,11 +842,12 @@ components:
                 - DEMOLISHED
                 - NON_RESIDENTIAL
                 - UNDER_CONSTRUCTION
-                - UNOCCUPIED
           description: 'the reported status of an address'
         - type: object
           required:
             - region
+            - status
+            - caseId
             - addressLine1
             - townName
             - estabType
@@ -888,7 +893,6 @@ components:
           description: the surname of the person requesting fulfilment
         fulfilmentCode:
           type: string
-          maxLength: 12
           description: the fulfilment code for the fulfilment
         dateTime:
           type: string
@@ -910,7 +914,6 @@ components:
           pattern: '^447[0-9]{9}$'  
         fulfilmentCode:
           type: string
-          maxLength: 12
           description: the fulfilment code for the fulfilment
         dateTime:
           type: string
@@ -1036,29 +1039,7 @@ components:
             - TRANSLATION
         language:
           type: string
-          enum:
-            - ara
-            - ben
-            - cmn
-            - eng
-            - fre
-            - gle
-            - guj
-            - ita
-            - kur
-            - lit
-            - pan
-            - pol
-            - por
-            - rus
-            - som
-            - spa
-            - tur
-            - uls
-            - vie
-            - wel
-            - yid
-            - yue
+          pattern: "^[a-z]{3}$"
         description:
           type: string
         deliveryChannel:
