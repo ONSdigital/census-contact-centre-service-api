@@ -1,18 +1,48 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
+import java.util.Date;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import com.godaddy.logging.LoggingScope;
+import com.godaddy.logging.Scope;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 
-/**
- * The request object for a CaseDTOs case event data
- *
- * @author philwhiles
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CaseRequestDTO {
+public abstract class CaseRequestDTO {
 
-  private Boolean caseEvents = false;
+  @NotBlank
+  @Size(max = 60)
+  private String addressLine1;
+
+  @LoggingScope(scope = Scope.SKIP)
+  @Size(max = 60)
+  private String addressLine2;
+
+  @LoggingScope(scope = Scope.SKIP)
+  @Size(max = 60)
+  private String addressLine3;
+
+  @LoggingScope(scope = Scope.SKIP)
+  @NotBlank
+  @Size(max = 60)
+  private String townName;
+
+  @NotNull private Region region;
+
+  @NotBlank
+  @Pattern(regexp = Constants.POSTCODE_RE)
+  private String postcode;
+  
+  @NotNull private Date dateTime;
+
+  private String ceOrgName;
+
+  private Integer ceUsualResidents;
 }

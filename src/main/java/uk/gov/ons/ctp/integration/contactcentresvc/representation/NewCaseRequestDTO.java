@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -16,32 +17,12 @@ import lombok.NoArgsConstructor;
  * @author philwhiles
  */
 @Data
+@EqualsAndHashCode(callSuper=true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewCaseRequestDTO {
-
-  @NotBlank private String addressLine1;
-
-  @LoggingScope(scope = Scope.SKIP)
-  private String addressLine2;
-
-  @LoggingScope(scope = Scope.SKIP)
-  private String addressLine3;
-
-  @LoggingScope(scope = Scope.SKIP)
-  @NotBlank
-  private String townName;
-
-  @NotNull private Region region;
-
-  private String postcode;
+public class NewCaseRequestDTO extends CaseRequestDTO {
 
   @NotNull private CaseType caseType;
 
-  @NotNull private Date dateTime;
-
-  private String ceOrgName;
-
-  private Integer ceUsualResidents;
 }

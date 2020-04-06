@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.7.2-oas3"
+  version: "5.7.3-oas3"
 security:
   - basicAuth: []
 tags:
@@ -55,7 +55,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressBySearchResponseContainer
+                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.AddressQueryResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -83,13 +83,7 @@ paths:
         Returns a alpha-numeric ordered list of addresses matching the postcode
         query.
       parameters:
-        - in: query
-          name: postcode
-          required: true
-          description: Specifies the postcode search string (e.g. 'PO15 5RR').
-          schema:
-            type: string
-            pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
+        - $ref: '#/components/parameters/POSTCODE_REQUEST'
         - in: query
           name: offset
           required: false
@@ -115,7 +109,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.postcode.AddressByPostcodeResponseContainer
+                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.AddressQueryResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -146,7 +140,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
+                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -163,7 +157,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.post.case'
+              $ref: '#/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.NewCaseRequestDTO'
         description: object detailing an until now unknown address for a case
 
 
@@ -198,7 +192,7 @@ paths:
                 type: array
                 items:
                   $ref: >-
-                    #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
+                    #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -225,13 +219,7 @@ paths:
       description: >-
         Returns a list of cases
       parameters:
-        - in: path
-          name: postcode
-          required: true
-          description: 'Lookup CCS cases by postcode'
-          schema:
-            type: string
-            pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
+        - $ref: '#/components/parameters/POSTCODE_PATH'
         - in: query
           name: caseEvents
           description: true if case events are additionally required
@@ -246,7 +234,7 @@ paths:
                 type: array
                 items:
                   $ref: >-
-                    #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
+                    #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -305,8 +293,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.put.case'
-        description: object detailing an until now unknown address for a case
+              $ref: '#/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.ModifyCaseRequestDTO'
+        description: object detailing a change to the details of a case
 
     get:
       operationId: caseByIdQuery
@@ -334,7 +322,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
+                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -380,7 +368,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer
+                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -540,7 +528,7 @@ paths:
           application/json:
             schema:
               $ref: >-
-                #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.fulfilmentpost
+                #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.PostalFulfilmentRequestDTO
         description: object detailing fulfilment request
 
   /cases/{caseId}/fulfilment/sms:
@@ -584,7 +572,7 @@ paths:
           application/json:
             schema:
               $ref: >-
-                #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.fulfilmentsms
+                #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.SMSFulfilmentRequestDTO
         description: object detailing fulfilment request
 
   /fulfilments:
@@ -654,7 +642,7 @@ paths:
                 type: array
                 items:
                   $ref: >-
-                    #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.fulfilmentcode
+                    #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.FulfilmentDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -710,7 +698,7 @@ paths:
           application/json:
             schema:
               $ref: >-
-                #/components/schemas/uk.gov.ons.responsemanagement.model.server.request.refusal
+                #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.RefusalRequestDTO
         description: object detailing refusal
 
   /version:
@@ -727,7 +715,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseVersion
+                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.VersionResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -745,6 +733,18 @@ paths:
 
 components:
   parameters:
+    POSTCODE_REQUEST:
+      in: query
+      name: postcode
+      required: true
+      schema:
+        $ref: '#/components/schemas/POSTCODE_CONST'
+    POSTCODE_PATH:
+      in: path
+      name: postcode
+      required: true
+      schema:
+        $ref: '#/components/schemas/POSTCODE_CONST'
     CallIdentifier:
       name: X-CALL-ID
       description: >-
@@ -768,8 +768,7 @@ components:
       name: X-APP-ID
 
   schemas:
-
-    uk.gov.ons.responsemanagement.model.server.request.case:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseRequestDTO:
       type: object
       properties:
         addressLine1:
@@ -796,9 +795,7 @@ components:
             - N
           description: 'The region e.g. England (E), Wales (W), Northern Ireland (N)'
         postcode:
-          type: string
-          description: postcode of address
-          pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
+          $ref:  '#/components/schemas/POSTCODE_CONST'
         ceOrgName:
           type: string
           maxLength: 60
@@ -811,9 +808,9 @@ components:
           format: datetime
           description: The request date time stamp
 
-    uk.gov.ons.responsemanagement.model.server.request.put.case:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.ModifyCaseRequestDTO:
       allOf:
-        - $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.case'
+        - $ref: '#/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseRequestDTO'
         - type: object
           properties:
             caseId:
@@ -854,9 +851,9 @@ components:
             - postcode
             - dateTime
 
-    uk.gov.ons.responsemanagement.model.server.request.post.case:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.NewCaseRequestDTO:
       allOf:
-        - $ref: '#/components/schemas/uk.gov.ons.responsemanagement.model.server.request.case'
+        - $ref: '#/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseRequestDTO'
         - type: object
           properties:
             caseType:
@@ -873,7 +870,7 @@ components:
             - caseType
             - dateTime
 
-    uk.gov.ons.responsemanagement.model.server.request.fulfilmentpost:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.PostalFulfilmentRequestDTO:
       properties:
         caseId:
           type: string
@@ -903,7 +900,7 @@ components:
         - fulfilmentCode
         - dateTime
 
-    uk.gov.ons.responsemanagement.model.server.request.fulfilmentsms:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.SMSFulfilmentRequestDTO:
       properties:
         caseId:
           type: string
@@ -925,7 +922,7 @@ components:
         - fulfilmentCode
         - dateTime
 
-    uk.gov.ons.responsemanagement.model.server.request.refusal:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.RefusalRequestDTO:
       properties:
         refusal:
           type: object
@@ -988,9 +985,7 @@ components:
                 - N
               description: 'The region e.g. England (E), Wales (W), Northern Ireland (N) (for use if no caseid is available)'
             postcode:
-              type: string
-              description: postcode of address  (for use if no caseid is available)
-              pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
+              $ref: '#/components/schemas/POSTCODE_CONST'
             uprn:
               type: string
               pattern: '^\d{1,12}$'
@@ -1005,7 +1000,7 @@ components:
         - reason
         - dateTime
 
-    uk.gov.ons.responsemanagement.model.server.response.fulfilmentcode:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.FulfilmentDTO:
       properties:
         fulfilmentCode:
           type: string
@@ -1048,7 +1043,7 @@ components:
             - POST
             - SMS
 
-    uk.gov.ons.responsemanagement.model.server.response.case.CaseContainer:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO:
       properties:
         id:
           type: string
@@ -1127,12 +1122,15 @@ components:
         uprn:
           type: string
           description: uprn (Unique Property Reference Number) of address
+        estabUprn:
+          type: string
+          description: uprn (Unique Property Reference Number) of the parent establishments address
         caseEvents:
           type: array
           items:
             $ref: >-
-              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.case.CaseEvent
-    uk.gov.ons.responsemanagement.model.server.response.case.CaseEvent:
+              #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseEventDTO
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseEventDTO:
       properties:
         category:
           type: string
@@ -1142,7 +1140,7 @@ components:
           type: string
           format: datetime
 
-    uk.gov.ons.responsemanagement.model.server.response.address.AddressBySearchResponseContainer:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.AddressQueryResponseDTO:
       properties:
         dataVersion:
           type: string
@@ -1150,7 +1148,7 @@ components:
           type: array
           items:
             $ref: >-
-              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseAddress
+              #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.AddressDTO
         total:
           type: integer
           format: int64
@@ -1159,7 +1157,7 @@ components:
         - addresses
         - total
 
-    uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseVersion:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.VersionResponseDTO:
       properties:
         apiVersion:
           type: string
@@ -1168,7 +1166,7 @@ components:
       required:
         - dataVersion
 
-    uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseAddress:
+    uk.gov.ons.ctp.integration.contactcentresvc.representation.AddressDTO:
       properties:
         region:
           type: string
@@ -1214,23 +1212,6 @@ components:
         - formattedAddress
         - welshFormattedAddress
 
-    uk.gov.ons.responsemanagement.model.server.response.postcode.AddressByPostcodeResponseContainer:
-      properties:
-        dataVersion:
-          type: string
-        addresses:
-          type: array
-          items:
-            $ref: >-
-              #/components/schemas/uk.gov.ons.responsemanagement.model.server.response.address.AddressResponseAddress
-        total:
-          type: integer
-          format: int64
-      required:
-        - dataVersion
-        - addresses
-        - total
-
     uk.gov.ons.ctp.integration.contactcentresvc.representation.ResponseDTO:
       properties:
         id:
@@ -1252,3 +1233,9 @@ components:
           format: datetime
       required:
         - dateTime
+
+    POSTCODE_CONST:
+      type: string
+      pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
+
+
