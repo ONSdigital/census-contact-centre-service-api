@@ -1,12 +1,12 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
+import com.godaddy.logging.LoggingScope;
+import com.godaddy.logging.Scope;
 import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import com.godaddy.logging.LoggingScope;
-import com.godaddy.logging.Scope;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,7 +39,7 @@ public abstract class CaseRequestDTO {
   @NotBlank
   @Pattern(regexp = Constants.POSTCODE_RE)
   private String postcode;
-  
+
   @NotNull private Date dateTime;
 
   private String ceOrgName;
