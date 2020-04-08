@@ -23,8 +23,6 @@ public class FulfilmentDTO {
 
   private String fulfilmentCode;
 
-  private String language;
-
   private String description;
 
   private DeliveryChannel deliveryChannel;
