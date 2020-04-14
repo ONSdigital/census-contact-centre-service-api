@@ -1,7 +1,10 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
+import com.godaddy.logging.LoggingScope;
+import com.godaddy.logging.Scope;
 import java.util.UUID;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,4 +28,8 @@ public class ModifyCaseRequestDTO extends CaseRequestDTO {
   @NotNull private EstabType estabType;
 
   @NotNull private CaseStatus status;
+
+  @Size(max = 60)
+  @LoggingScope(scope = Scope.SKIP)
+  private String notes;
 }

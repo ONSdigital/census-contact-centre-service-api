@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.8.0-oas3"
+  version: "5.8.1-oas3"
 security:
   - basicAuth: []
 tags:
@@ -817,6 +817,10 @@ components:
               type: string
               format: uuid
               description: CaseId of case to modify
+            notes:
+              type: string
+              maxLength: 512
+              description: Textual context regarding the modification
             estabType:
               type: string
               enum: 
@@ -835,6 +839,8 @@ components:
               type: string
               enum:
                 - UNCHANGED
+                - SPLIT
+                - MERGED
                 - DERELICT
                 - DEMOLISHED
                 - NON_RESIDENTIAL
