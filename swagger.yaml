@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.8.2-oas3"
+  version: "5.8.3-oas3"
 security:
   - basicAuth: []
 tags:
@@ -844,6 +844,8 @@ components:
                 - DERELICT
                 - DEMOLISHED
                 - NON_RESIDENTIAL
+                - PROPERTY_IS_A_HOUSEHOLD
+                - PROPERTY_IS_A_CE
                 - UNDER_CONSTRUCTION
           description: 'the reported status of an address'
         - type: object
