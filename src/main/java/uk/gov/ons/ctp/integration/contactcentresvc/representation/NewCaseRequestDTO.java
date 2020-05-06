@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import uk.gov.ons.ctp.common.domain.CaseType;
 
 /**
  * The request object when contact centre sends new case and address details

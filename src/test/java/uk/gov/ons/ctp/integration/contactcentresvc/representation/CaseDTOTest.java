@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.UUID;
 import lombok.SneakyThrows;
 import org.junit.Test;
-import uk.gov.ons.ctp.common.model.UniquePropertyReferenceNumber;
+import uk.gov.ons.ctp.common.domain.UniquePropertyReferenceNumber;
 
 public class CaseDTOTest {
   private static final UniquePropertyReferenceNumber A_UPRN =

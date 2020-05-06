@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import uk.gov.ons.ctp.common.domain.EstabType;
 
 /**
  * The request object when contact centre calls to modify the details for a case
