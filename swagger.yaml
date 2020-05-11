@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.9.0-oas3"
+  version: "5.9.1-oas3"
 security:
   - basicAuth: []
 tags:
@@ -1079,6 +1079,14 @@ components:
           enum:
             - POST
             - SMS
+      required:
+        - fulfilmentCode
+        - caseTypes
+        - individual
+        - regions
+        - productGroup
+        - description
+        - deliveryChannel
 
     uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO:
       properties:
@@ -1126,6 +1134,9 @@ components:
             - GYPSY_ROMA_TRAVELLER
             - RESIDENTIAL_BOATER
             - OTHER
+        estabDescription:
+          type: string
+          maxLength: 60
         createdDateTime:
           type: string
           format: datetime
@@ -1167,6 +1178,19 @@ components:
           items:
             $ref: >-
               #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseEventDTO
+      required:
+        - id
+        - caseType
+        - region
+        - allowedDeliveryChannels
+        - estabType
+        - estabDescription
+        - createdDateTime
+        - addressLine1
+        - townName
+        - postcode
+        - uprn
+
     uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseEventDTO:
       properties:
         category:
@@ -1176,6 +1200,10 @@ components:
         createdDateTime:
           type: string
           format: datetime
+      required:
+        - category
+        - description
+        - createdDateTime
 
     uk.gov.ons.ctp.integration.contactcentresvc.representation.AddressQueryResponseDTO:
       properties:
@@ -1245,6 +1273,7 @@ components:
         - uprn
         - region
         - estabType
+        - estabDescription
         - addressType
         - formattedAddress
         - welshFormattedAddress
