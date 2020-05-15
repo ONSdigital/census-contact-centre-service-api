@@ -601,7 +601,6 @@ paths:
           schema:
             type: string
             enum:
-              - INVITE
               - QUESTIONNAIRE
               - CONTINUATION
               - LARGE_PRINT
