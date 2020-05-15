@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.9.1-oas3"
+  version: "5.10.0-oas3"
 security:
   - basicAuth: []
 tags:
@@ -55,7 +55,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.AddressQueryResponseDTO
+                  #/components/schemas/AddressQueryResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -109,7 +109,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.AddressQueryResponseDTO
+                  #/components/schemas/AddressQueryResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -140,7 +140,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO
+                  #/components/schemas/CaseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -157,7 +157,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.NewCaseRequestDTO'
+              $ref: '#/components/schemas/NewCaseRequestDTO'
         description: object detailing an until now unknown address for a case
 
 
@@ -192,7 +192,7 @@ paths:
                 type: array
                 items:
                   $ref: >-
-                    #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO
+                    #/components/schemas/CaseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -234,7 +234,7 @@ paths:
                 type: array
                 items:
                   $ref: >-
-                    #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO
+                    #/components/schemas/CaseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -276,7 +276,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.ResponseDTO
+                  #/components/schemas/ResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -293,7 +293,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.ModifyCaseRequestDTO'
+              $ref: '#/components/schemas/ModifyCaseRequestDTO'
         description: object detailing a change to the details of a case
 
     get:
@@ -322,7 +322,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO
+                  #/components/schemas/CaseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -368,7 +368,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO
+                  #/components/schemas/CaseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -471,7 +471,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.UACResponseDTO
+                  #/components/schemas/UACResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -510,7 +510,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.ResponseDTO
+                  #/components/schemas/ResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -528,7 +528,7 @@ paths:
           application/json:
             schema:
               $ref: >-
-                #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.PostalFulfilmentRequestDTO
+                #/components/schemas/PostalFulfilmentRequestDTO
         description: object detailing fulfilment request
 
   /cases/{caseId}/fulfilment/sms:
@@ -554,7 +554,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.ResponseDTO
+                  #/components/schemas/ResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -572,7 +572,7 @@ paths:
           application/json:
             schema:
               $ref: >-
-                #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.SMSFulfilmentRequestDTO
+                #/components/schemas/SMSFulfilmentRequestDTO
         description: object detailing fulfilment request
 
   /fulfilments:
@@ -642,7 +642,7 @@ paths:
                 type: array
                 items:
                   $ref: >-
-                    #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.FulfilmentDTO
+                    #/components/schemas/FulfilmentDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -680,7 +680,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.ResponseDTO
+                  #/components/schemas/ResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -698,7 +698,7 @@ paths:
           application/json:
             schema:
               $ref: >-
-                #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.RefusalRequestDTO
+                #/components/schemas/RefusalRequestDTO
         description: object detailing refusal
 
   /version:
@@ -715,7 +715,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.VersionResponseDTO
+                  #/components/schemas/VersionResponseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -768,7 +768,7 @@ components:
       name: X-APP-ID
 
   schemas:
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseRequestDTO:
+    CaseRequestDTO:
       type: object
       properties:
         addressLine1:
@@ -808,9 +808,9 @@ components:
           format: datetime
           description: The request date time stamp
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.ModifyCaseRequestDTO:
+    ModifyCaseRequestDTO:
       allOf:
-        - $ref: '#/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseRequestDTO'
+        - $ref: '#/components/schemas/CaseRequestDTO'
         - type: object
           properties:
             caseId:
@@ -890,9 +890,9 @@ components:
             - postcode
             - dateTime
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.NewCaseRequestDTO:
+    NewCaseRequestDTO:
       allOf:
-        - $ref: '#/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseRequestDTO'
+        - $ref: '#/components/schemas/CaseRequestDTO'
         - type: object
           properties:
             caseType:
@@ -909,7 +909,7 @@ components:
             - caseType
             - dateTime
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.PostalFulfilmentRequestDTO:
+    PostalFulfilmentRequestDTO:
       properties:
         caseId:
           type: string
@@ -939,7 +939,7 @@ components:
         - fulfilmentCode
         - dateTime
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.SMSFulfilmentRequestDTO:
+    SMSFulfilmentRequestDTO:
       properties:
         caseId:
           type: string
@@ -961,7 +961,7 @@ components:
         - fulfilmentCode
         - dateTime
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.RefusalRequestDTO:
+    RefusalRequestDTO:
       properties:
         refusal:
           type: object
@@ -1039,7 +1039,7 @@ components:
         - reason
         - dateTime
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.FulfilmentDTO:
+    FulfilmentDTO:
       properties:
         fulfilmentCode:
           type: string
@@ -1088,7 +1088,7 @@ components:
         - description
         - deliveryChannel
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseDTO:
+    CaseDTO:
       properties:
         id:
           type: string
@@ -1177,7 +1177,7 @@ components:
           type: array
           items:
             $ref: >-
-              #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseEventDTO
+              #/components/schemas/CaseEventDTO
       required:
         - id
         - caseType
@@ -1191,7 +1191,7 @@ components:
         - postcode
         - uprn
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.CaseEventDTO:
+    CaseEventDTO:
       properties:
         category:
           type: string
@@ -1205,7 +1205,7 @@ components:
         - description
         - createdDateTime
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.AddressQueryResponseDTO:
+    AddressQueryResponseDTO:
       properties:
         dataVersion:
           type: string
@@ -1213,7 +1213,7 @@ components:
           type: array
           items:
             $ref: >-
-              #/components/schemas/uk.gov.ons.ctp.integration.contactcentresvc.representation.AddressDTO
+              #/components/schemas/AddressDTO
         total:
           type: integer
           format: int64
@@ -1222,7 +1222,7 @@ components:
         - addresses
         - total
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.VersionResponseDTO:
+    VersionResponseDTO:
       properties:
         apiVersion:
           type: string
@@ -1231,7 +1231,7 @@ components:
       required:
         - dataVersion
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.AddressDTO:
+    AddressDTO:
       properties:
         region:
           type: string
@@ -1278,7 +1278,7 @@ components:
         - formattedAddress
         - welshFormattedAddress
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.ResponseDTO:
+    ResponseDTO:
       properties:
         id:
           type: string
@@ -1288,7 +1288,7 @@ components:
       required:
         - dateTime
 
-    uk.gov.ons.ctp.integration.contactcentresvc.representation.UACResponseDTO:
+    UACResponseDTO:
       properties:
         id:
           type: string
