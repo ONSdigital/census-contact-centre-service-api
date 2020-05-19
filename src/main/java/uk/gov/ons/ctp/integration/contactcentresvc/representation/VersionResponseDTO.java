@@ -8,5 +8,4 @@ import lombok.Data;
 @Builder
 public class VersionResponseDTO {
   String apiVersion;
-  String dataVersion;
 }
