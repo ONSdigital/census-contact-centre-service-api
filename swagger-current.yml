@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.10.0-oas3"
+  version: "5.10.1-oas3"
 security:
   - basicAuth: []
 tags:
@@ -667,11 +667,10 @@ paths:
       parameters:
         - in: path
           name: caseId
-          description: The Case UUID
+          description: The Case UUID or 'unknown'
           required: true
           schema:
             type: string
-            format: uuid
       responses:
         '200':
           description: Success. Confirmation.
