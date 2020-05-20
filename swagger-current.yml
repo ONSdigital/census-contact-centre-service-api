@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.10.2-oas3"
+  version: "5.10.3-oas3"
 security:
   - basicAuth: []
 tags:
@@ -182,7 +182,7 @@ paths:
           name: caseEvents
           description: true if case events are additionally required
           schema:
-              type: boolean
+            type: boolean
       responses:
         '200':
           description: Success. A json object return of matched case.
@@ -224,7 +224,7 @@ paths:
           name: caseEvents
           description: true if case events are additionally required
           schema:
-              type: boolean
+            type: boolean
       responses:
         '200':
           description: Success. A json array of matched cases.
@@ -314,7 +314,7 @@ paths:
           name: caseEvents
           description: true if case events are additionally required
           schema:
-              type: boolean
+            type: boolean
       responses:
         '200':
           description: Success. A json object return of matched case.
@@ -360,7 +360,7 @@ paths:
           name: caseEvents
           description: true if case events are additionally required
           schema:
-              type: boolean
+            type: boolean
       responses:
         '200':
           description: Success. A json object return of matched case.
@@ -491,9 +491,9 @@ paths:
         - CONTACT_CENTRE
       summary: Request a fulfilment for a Case
       description: >-
-        Request a fulfilment for a Case. 
-        If the fulfilment code is for an individual then the request will be rejected as a bad 
-        request if any of the following fields are not provided in the request body: 
+        Request a fulfilment for a Case.
+        If the fulfilment code is for an individual then the request will be rejected as a bad
+        request if any of the following fields are not provided in the request body:
         'title', 'forename' or 'surname'.
       parameters:
         - in: path
@@ -608,7 +608,7 @@ paths:
               - UAC
               - TRANSLATION
         - in: query
-          name: deliveryChannel 
+          name: deliveryChannel
           required: false
           description: Lookup fulfilments by delivery channel
           schema:
@@ -719,7 +719,7 @@ paths:
             Bad request. Indicates an issue with the request. Further details
             are provided in the response.
         '401':
-          description: Unauthorised. 
+          description: Unauthorised.
         '429':
           description: >-
             Server too busy. The server is experiencing exceptional
@@ -772,7 +772,7 @@ components:
         addressLine1:
           type: string
           maxLength: 60
-          description: updated address line1 
+          description: updated address line1
         addressLine2:
           type: string
           maxLength: 60
@@ -821,7 +821,7 @@ components:
               description: Textual context regarding the modification
             estabType:
               type: string
-              enum: 
+              enum:
                 - HALL_OF_RESIDENCE
                 - CARE_HOME
                 - HOSPITAL
@@ -945,7 +945,7 @@ components:
           description: CaseId to request fulfilment for.
         telNo:
           type: string
-          pattern: '^447[0-9]{9}$'  
+          pattern: '^447[0-9]{9}$'
         fulfilmentCode:
           type: string
           description: the fulfilment code for the fulfilment
@@ -961,76 +961,72 @@ components:
 
     RefusalRequestDTO:
       properties:
-        refusal:
-          type: object
-          properties:
-            caseId:
-              type: string
-              format: uuid
-              description: CaseId to log refusal against
-            agentId:
-              type: string
-              pattern: '^\d{1,5}$'
-              description: employee identifier
-            reason:
-              type: string
-              enum: 
-                - EXTRAORDINARY
-                - HARD
-              description: 'the reason for the refusal'
-            title:
-              type: string
-              maxLength: 12
-              description: the title of the person refusing
-            forename:
-              type: string
-              maxLength: 60
-              description: the forename of the person refusing
-            surname:
-              type: string
-              maxLength: 60
-              description: the surname of the person refusing
-            telNo:
-              type: string
-              pattern: '^[0-9]*$'
-              description: the telephone number of the individual refusing
-            notes:
-              type: string
-              maxLength: 512
-              description: notes about the refusal
-            addressLine1:
-              type: string
-              maxLength: 60
-              description: address line1 (for use if no caseid is available)
-            addressLine2:
-              type: string
-              maxLength: 60
-              description: address line2  (for use if no caseid is available)
-            addressLine3:
-              type: string
-              maxLength: 60
-              description: updated address line3  (for use if no caseid is available)
-            townName:
-              type: string
-              maxLength: 30
-              description: The post town of the address  (for use if no caseid is available)
-            region:
-              type: string
-              enum:
-                - E
-                - W
-                - N
-              description: 'The region e.g. England (E), Wales (W), Northern Ireland (N) (for use if no caseid is available)'
-            postcode:
-              $ref: '#/components/schemas/POSTCODE_CONST'
-            uprn:
-              type: string
-              pattern: '^\d{1,12}$'
-              description: The address UPRN if known
-            dateTime:
-              type: string
-              format: datetime
-              description: The requested time of the refusal
+        caseId:
+          type: string
+          description: CaseId to log refusal against
+        agentId:
+          type: string
+          pattern: '^\d{1,5}$'
+          description: employee identifier
+        reason:
+          type: string
+          enum:
+            - EXTRAORDINARY
+            - HARD
+          description: 'the reason for the refusal'
+        title:
+          type: string
+          maxLength: 12
+          description: the title of the person refusing
+        forename:
+          type: string
+          maxLength: 60
+          description: the forename of the person refusing
+        surname:
+          type: string
+          maxLength: 60
+          description: the surname of the person refusing
+        telNo:
+          type: string
+          pattern: '^[0-9]*$'
+          description: the telephone number of the individual refusing
+        notes:
+          type: string
+          maxLength: 512
+          description: notes about the refusal
+        addressLine1:
+          type: string
+          maxLength: 60
+          description: address line1 (for use if no caseid is available)
+        addressLine2:
+          type: string
+          maxLength: 60
+          description: address line2  (for use if no caseid is available)
+        addressLine3:
+          type: string
+          maxLength: 60
+          description: updated address line3  (for use if no caseid is available)
+        townName:
+          type: string
+          maxLength: 30
+          description: The post town of the address  (for use if no caseid is available)
+        region:
+          type: string
+          enum:
+            - E
+            - W
+            - N
+          description: 'The region e.g. England (E), Wales (W), Northern Ireland (N) (for use if no caseid is available)'
+        postcode:
+          $ref: '#/components/schemas/POSTCODE_CONST'
+        uprn:
+          type: string
+          pattern: '^\d{1,12}$'
+          description: The address UPRN if known
+        dateTime:
+          type: string
+          format: datetime
+          description: The requested time of the refusal
       required:
         - agentId
         - caseId
@@ -1097,16 +1093,16 @@ components:
         caseType:
           type: string
           enum:
-             - HH
-             - CE
-             - SPG
+            - HH
+            - CE
+            - SPG
           description: case type
         addressType:
           type: string
           enum:
-             - HH
-             - CE
-             - SPG
+            - HH
+            - CE
+            - SPG
           description: address type
         secureEstablishment:
           type: boolean
@@ -1120,7 +1116,7 @@ components:
               - POST
         estabType:
           type: string
-          enum: 
+          enum:
             - HALL_OF_RESIDENCE
             - CARE_HOME
             - HOSPITAL
@@ -1271,7 +1267,7 @@ components:
           type: string
         estabType:
           type: string
-          enum: 
+          enum:
             - HALL_OF_RESIDENCE
             - CARE_HOME
             - HOSPITAL
@@ -1319,6 +1315,7 @@ components:
             - HH
             - CE
             - SPG
+            - NA
         uprn:
           type: string
         formattedAddress:
@@ -1359,5 +1356,3 @@ components:
     POSTCODE_CONST:
       type: string
       pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
-
-
