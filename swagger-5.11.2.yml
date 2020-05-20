@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.11.1-oas3"
+  version: "5.11.2-oas3"
 security:
   - basicAuth: []
 tags:
@@ -1225,6 +1225,10 @@ components:
         estabDescription:
           type: string
           maxLength: 60
+        ceOrgName:
+          type: string
+          maxLength: 60
+          description: CE Organisation name
         createdDateTime:
           type: string
           format: datetime
