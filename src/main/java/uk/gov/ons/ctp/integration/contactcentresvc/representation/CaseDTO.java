@@ -41,6 +41,8 @@ public class CaseDTO {
 
   private Date createdDateTime;
 
+  private Date lastUpdated;
+
   private String addressLine1;
 
   @LoggingScope(scope = Scope.SKIP)
