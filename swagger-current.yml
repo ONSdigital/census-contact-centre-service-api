@@ -1315,7 +1315,6 @@ components:
             - HH
             - CE
             - SPG
-            - NA
         uprn:
           type: string
         formattedAddress:
