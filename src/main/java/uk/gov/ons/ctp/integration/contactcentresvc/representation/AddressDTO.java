@@ -19,6 +19,9 @@ public class AddressDTO {
   private String estabType;
 
   @LoggingScope(scope = Scope.SKIP)
+  private String estabDescription;
+
+  @LoggingScope(scope = Scope.SKIP)
   private String formattedAddress;
 
   @LoggingScope(scope = Scope.SKIP)
