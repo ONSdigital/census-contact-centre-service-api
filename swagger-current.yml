@@ -1164,6 +1164,9 @@ components:
         createdDateTime:
           type: string
           format: datetime
+        lastUpdated:
+          type: string
+          format: datetime
         addressLine1:
           type: string
           maxLength: 60
@@ -1209,6 +1212,7 @@ components:
         - allowedDeliveryChannels
         - estabType
         - estabDescription
+        - lastUpdated
         - createdDateTime
         - addressLine1
         - townName

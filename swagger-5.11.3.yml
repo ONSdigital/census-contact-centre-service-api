@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.11.2-oas3"
+  version: "5.11.3-oas3"
 security:
   - basicAuth: []
 tags:
@@ -864,7 +864,6 @@ components:
         status:
           type: string
           enum:
-            - UNCHANGED
             - SPLIT_ADDRESS
             - MERGED
             - DUPLICATE
@@ -960,6 +959,10 @@ components:
                 - CE
                 - SPG
               description: case type
+            uprn:
+              type: string
+              pattern: '^\d{1,12}$'
+              description: The address UPRN if known
           required:
             - region
             - addressLine1
@@ -1032,6 +1035,9 @@ components:
               type: string
               pattern: '^\d{1,5}$'
               description: employee identifier
+            callId:
+              type: string
+              description: the id associated with the respondents call within the contact centre sytem
             reason:
               type: string
               enum: 
@@ -1093,6 +1099,7 @@ components:
               description: The requested time of the refusal
       required:
         - agentId
+        - callId
         - caseId
         - reason
         - dateTime
@@ -1232,6 +1239,9 @@ components:
         createdDateTime:
           type: string
           format: datetime
+        lastUpdated:
+          type: string
+          format: datetime
         addressLine1:
           type: string
           maxLength: 60
@@ -1278,6 +1288,7 @@ components:
         - estabType
         - estabDescription
         - createdDateTime
+        - lastUpdated
         - addressLine1
         - townName
         - postcode
