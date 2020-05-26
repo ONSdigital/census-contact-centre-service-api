@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.11.3-oas3"
+  version: "5.11.4-oas3"
 security:
   - basicAuth: []
 tags:
@@ -1024,79 +1024,72 @@ components:
 
     RefusalRequestDTO:
       properties:
-        refusal:
-          type: object
-          properties:
-            caseId:
-              type: string
-              format: uuid
-              description: CaseId to log refusal against
-            agentId:
-              type: string
-              pattern: '^\d{1,5}$'
-              description: employee identifier
-            callId:
-              type: string
-              description: the id associated with the respondents call within the contact centre sytem
-            reason:
-              type: string
-              enum: 
-                - EXTRAORDINARY
-                - HARD
-              description: 'the reason for the refusal'
-            title:
-              type: string
-              maxLength: 12
-              description: the title of the person refusing
-            forename:
-              type: string
-              maxLength: 60
-              description: the forename of the person refusing
-            surname:
-              type: string
-              maxLength: 60
-              description: the surname of the person refusing
-            telNo:
-              type: string
-              pattern: '^[0-9]*$'
-              description: the telephone number of the individual refusing
-            notes:
-              type: string
-              maxLength: 512
-              description: notes about the refusal
-            addressLine1:
-              type: string
-              maxLength: 60
-              description: address line1 (for use if no caseid is available)
-            addressLine2:
-              type: string
-              maxLength: 60
-              description: address line2  (for use if no caseid is available)
-            addressLine3:
-              type: string
-              maxLength: 60
-              description: updated address line3  (for use if no caseid is available)
-            townName:
-              type: string
-              maxLength: 30
-              description: The post town of the address  (for use if no caseid is available)
-            region:
-              type: string
-              enum:
-                - E
-                - W
-                - N
-              description: 'The region e.g. England (E), Wales (W), Northern Ireland (N) (for use if no caseid is available)'
-            postcode:
-              $ref: '#/components/schemas/POSTCODE_CONST'
-            uprn:
-              type: string
-              pattern: '^\d{1,12}$'
-              description: The address UPRN if known
-            dateTime:
-              type: string
-              format: datetime
-              description: The requested time of the refusal
+        caseId:
+          type: string
+          description: CaseId to log refusal against
+        agentId:
+          type: string
+          pattern: '^\d{1,5}$'
+          description: employee identifier
+        reason:
+          type: string
+          enum:
+            - EXTRAORDINARY
+            - HARD
+          description: 'the reason for the refusal'
+        title:
+          type: string
+          maxLength: 12
+          description: the title of the person refusing
+        forename:
+          type: string
+          maxLength: 60
+          description: the forename of the person refusing
+        surname:
+          type: string
+          maxLength: 60
+          description: the surname of the person refusing
+        telNo:
+          type: string
+          pattern: '^[0-9]*$'
+          description: the telephone number of the individual refusing
+        notes:
+          type: string
+          maxLength: 512
+          description: notes about the refusal
+        addressLine1:
+          type: string
+          maxLength: 60
+          description: address line1 (for use if no caseid is available)
+        addressLine2:
+          type: string
+          maxLength: 60
+          description: address line2  (for use if no caseid is available)
+        addressLine3:
+          type: string
+          maxLength: 60
+          description: updated address line3  (for use if no caseid is available)
+        townName:
+          type: string
+          maxLength: 30
+          description: The post town of the address  (for use if no caseid is available)
+        region:
+          type: string
+          enum:
+            - E
+            - W
+            - N
+          description: 'The region e.g. England (E), Wales (W), Northern Ireland (N) (for use if no caseid is available)'
+        postcode:
+          $ref: '#/components/schemas/POSTCODE_CONST'
+        uprn:
+          type: string
+          pattern: '^\d{1,12}$'
+          description: The address UPRN if known
+        dateTime:
+          type: string
+          format: datetime
+          description: The requested time of the refusal
       required:
         - agentId
         - callId
