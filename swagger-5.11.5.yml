@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.11.4-oas3"
+  version: "5.11.5-oas3"
 security:
   - basicAuth: []
 tags:
