@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.10.3-oas3"
+  version: "5.10.4-oas3"
 security:
   - basicAuth: []
 tags:
@@ -1319,6 +1319,7 @@ components:
             - HH
             - CE
             - SPG
+            - NA
         uprn:
           type: string
         formattedAddress:
