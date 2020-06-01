@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.10.4-oas3"
+  version: "5.10.5-oas3"
 security:
   - basicAuth: []
 tags:
@@ -160,6 +160,48 @@ paths:
               $ref: '#/components/schemas/NewCaseRequestDTO'
         description: object detailing an until now unknown address for a case
 
+  /cases/{caseId}/invalidate:
+    post:
+      operationId: invalidateCase
+      tags:
+        - CONTACT_CENTRE
+      summary: Invalidates a case due to address status change
+      description: >-
+        Returns standard confirmation
+      parameters:
+        - in: path
+          name: caseId
+          required: true
+          description: The id of the case being modified
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success. Confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ResponseDTO
+        '400':
+          description: >-
+            Bad request. Indicates an issue with the request. Further details
+            are provided in the response.
+        '401':
+          description: Unauthorised. The API key provided with the request is invalid.
+        '429':
+          description: Server too busy. The ONS API is experiencing exceptional load.
+        '500':
+          description: >-
+            Internal server error. Failed to process the request due to an
+            internal error.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/InvalidateCaseRequestDTO
+        description: object detailing status change of case
 
   /cases/uprn/{uprn}:
     get:
@@ -257,9 +299,9 @@ paths:
       operationId: caseUpdate
       tags:
         - CONTACT_CENTRE
-      summary: Update the address details of a case or change it's status
+      summary: Update the address details of a case or change it's estab type
       description: >-
-        Update the address details for a known case or report a change of address status.
+        Update the address details for a known case and/or report a change of estab type
         MUST contain the original case data retrieved from one of the GET /cases endpoints
         with relevant amendments applied.
       parameters:
@@ -276,7 +318,7 @@ paths:
             application/json:
               schema:
                 $ref: >-
-                  #/components/schemas/ResponseDTO
+                  #/components/schemas/CaseDTO
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
@@ -484,6 +526,7 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
+
   /cases/{caseId}/fulfilment/post:
     post:
       operationId: postFulfilment
@@ -806,6 +849,37 @@ components:
           format: datetime
           description: The request date time stamp
 
+    InvalidateCaseRequestDTO:
+      properties:
+        caseId:
+          type: string
+          format: uuid
+          description: CaseId of case to modify
+        notes:
+          type: string
+          maxLength: 512
+          description: Textual context regarding the modification
+        status:
+          type: string
+          enum:
+            - SPLIT_ADDRESS
+            - MERGED
+            - DUPLICATE
+            - DOES_NOT_EXIST
+            - DERELICT
+            - DEMOLISHED
+            - NON_RESIDENTIAL
+            - UNDER_CONSTRUCTION
+          description: 'the reported status of an address'
+        dateTime:
+          type: string
+          format: datetime
+          description: The request date time stamp
+      required:
+        - status
+        - caseId
+        - dateTime
+
     ModifyCaseRequestDTO:
       allOf:
         - $ref: '#/components/schemas/CaseRequestDTO'
@@ -815,10 +889,6 @@ components:
               type: string
               format: uuid
               description: CaseId of case to modify
-            notes:
-              type: string
-              maxLength: 512
-              description: Textual context regarding the modification
             estabType:
               type: string
               enum:
@@ -864,23 +934,10 @@ components:
                 - TRANSIENT_PERSONS
                 - OTHER
               description: 'the establishment type of the address'
-            status:
-              type: string
-              enum:
-                - UNCHANGED
-                - SPLIT_ADDRESS
-                - MERGED
-                - DERELICT
-                - DEMOLISHED
-                - NON_RESIDENTIAL
-                - PROPERTY_IS_A_HOUSEHOLD
-                - PROPERTY_IS_A_CE
-                - UNDER_CONSTRUCTION
           description: 'the reported status of an address'
         - type: object
           required:
             - region
-            - status
             - caseId
             - addressLine1
             - townName
