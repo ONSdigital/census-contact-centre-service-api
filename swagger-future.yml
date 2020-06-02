@@ -224,7 +224,7 @@ paths:
           name: caseEvents
           description: true if case events are additionally required
           schema:
-              type: boolean
+            type: boolean
       responses:
         '200':
           description: Success. A json object return of matched case.
@@ -266,7 +266,7 @@ paths:
           name: caseEvents
           description: true if case events are additionally required
           schema:
-              type: boolean
+            type: boolean
       responses:
         '200':
           description: Success. A json array of matched cases.
@@ -356,7 +356,7 @@ paths:
           name: caseEvents
           description: true if case events are additionally required
           schema:
-              type: boolean
+            type: boolean
       responses:
         '200':
           description: Success. A json object return of matched case.
@@ -402,7 +402,7 @@ paths:
           name: caseEvents
           description: true if case events are additionally required
           schema:
-              type: boolean
+            type: boolean
       responses:
         '200':
           description: Success. A json object return of matched case.
@@ -533,9 +533,9 @@ paths:
         - CONTACT_CENTRE
       summary: Request a fulfilment for a Case
       description: >-
-        Request a fulfilment for a Case. 
-        If the fulfilment code is for an individual then the request will be rejected as a bad 
-        request if any of the following fields are not provided in the request body: 
+        Request a fulfilment for a Case.
+        If the fulfilment code is for an individual then the request will be rejected as a bad
+        request if any of the following fields are not provided in the request body:
         'title', 'forename' or 'surname'.
       parameters:
         - in: path
@@ -651,7 +651,7 @@ paths:
               - UAC
               - TRANSLATION
         - in: query
-          name: deliveryChannel 
+          name: deliveryChannel
           required: false
           description: Lookup fulfilments by delivery channel
           schema:
@@ -762,7 +762,7 @@ paths:
             Bad request. Indicates an issue with the request. Further details
             are provided in the response.
         '401':
-          description: Unauthorised. 
+          description: Unauthorised.
         '429':
           description: >-
             Server too busy. The server is experiencing exceptional
@@ -771,7 +771,6 @@ paths:
           description: >-
             Internal server error. Failed to process the request due to an
             internal error.
-
 
 components:
   parameters:
@@ -816,7 +815,7 @@ components:
         addressLine1:
           type: string
           maxLength: 60
-          description: updated address line1 
+          description: updated address line1
         addressLine2:
           type: string
           maxLength: 60
@@ -892,7 +891,7 @@ components:
               description: CaseId of case to modify
             estabType:
               type: string
-              enum: 
+              enum:
                 - HALL_OF_RESIDENCE
                 - CARE_HOME
                 - HOSPITAL
@@ -1154,16 +1153,16 @@ components:
         caseType:
           type: string
           enum:
-             - HH
-             - CE
-             - SPG
+            - HH
+            - CE
+            - SPG
           description: case type
         addressType:
           type: string
           enum:
-             - HH
-             - CE
-             - SPG
+            - HH
+            - CE
+            - SPG
           description: address type
         secureEstablishment:
           type: boolean
@@ -1177,7 +1176,7 @@ components:
               - POST
         estabType:
           type: string
-          enum: 
+          enum:
             - HALL_OF_RESIDENCE
             - CARE_HOME
             - HOSPITAL
@@ -1277,8 +1276,8 @@ components:
         - allowedDeliveryChannels
         - estabType
         - estabDescription
-        - createdDateTime
         - lastUpdated
+        - createdDateTime
         - addressLine1
         - townName
         - postcode
@@ -1336,7 +1335,7 @@ components:
           type: string
         estabType:
           type: string
-          enum: 
+          enum:
             - HALL_OF_RESIDENCE
             - CARE_HOME
             - HOSPITAL
