@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>contactcentreserviceapi</artifactId>
   <!-- Please make sure that contact-centre-cucumber has the latest dependency on this project -->
-  <version>0.0.103-SNAPSHOT</version>
+  <version>0.0.103</version>
   <packaging>jar</packaging>
 
   <name>CTP : ContactCentreServiceApi</name>
@@ -74,7 +74,7 @@
     <connection>scm:git:https://github.com/ONSdigital/census-contact-centre-service-api</connection>
     <developerConnection>scm:git:https://github.com/ONSdigital/census-contact-centre-service-api</developerConnection>
     <url>https://github.com/ONSdigital/census-contact-centre-service-api</url>
-    <tag>HEAD</tag>
+    <tag>contactcentreserviceapi-0.0.103</tag>
   </scm>
 
 </project>
