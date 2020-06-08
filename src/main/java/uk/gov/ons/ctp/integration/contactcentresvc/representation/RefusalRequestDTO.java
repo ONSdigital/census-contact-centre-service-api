@@ -75,4 +75,6 @@ public class RefusalRequestDTO {
   private UniquePropertyReferenceNumber uprn;
 
   @NotNull private Date dateTime;
+
+  @NotNull private String callId;
 }
