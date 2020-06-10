@@ -632,7 +632,6 @@ paths:
           required: false
           description: Lookup fulfilments by casetype
           schema:
-            type: string
             $ref: '#/components/schemas/CaseType'
         - in: query
           name: productGroup
@@ -652,13 +651,13 @@ paths:
           required: false
           description: Lookup fulfilments by delivery channel
           schema:
-            type: string
             $ref: '#/components/schemas/DeliveryChannel'
         - in: query
           name: region
           required: false
           description: 'Lookup fulfilments by region e.g. England (E), Wales (W), Northern Ireland (N)'
-          $ref: '#/components/schemas/Region'
+          schema:
+            $ref: '#/components/schemas/Region'
         - in: query
           name: individual
           required: false
@@ -819,9 +818,7 @@ components:
           maxLength: 30
           description: The post town of the address
         region:
-          type: string
           $ref: '#/components/schemas/Region'
-          description: 'The region e.g. England (E), Wales (W), Northern Ireland (N)'
         postcode:
           $ref:  '#/components/schemas/POSTCODE_CONST'
         ceOrgName:
@@ -877,9 +874,7 @@ components:
               format: uuid
               description: CaseId of case to modify
             estabType:
-              type: string
               $ref: '#/components/schemas/EstabType'
-              description: 'the establishment type of the address'
           description: 'the reported status of an address'
         - type: object
           required:
@@ -897,15 +892,12 @@ components:
         - type: object
           properties:
             caseType:
-              type: string
               $ref: '#/components/schemas/CaseType'
-              description: case type
             uprn:
               type: string
               pattern: '^\d{1,12}$'
               description: The address UPRN if known, or null if not known.
             estabType:
-              type: string
               $ref: '#/components/schemas/EstabType'
           required:
             - region
@@ -1020,9 +1012,7 @@ components:
           maxLength: 30
           description: The post town of the address  (for use if no caseid is available)
         region:
-          type: string
           $ref: '#/components/schemas/Region'
-          description: 'The region e.g. England (E), Wales (W), Northern Ireland (N) (for use if no caseid is available)'
         postcode:
           $ref: '#/components/schemas/POSTCODE_CONST'
         uprn:
@@ -1046,7 +1036,6 @@ components:
         caseTypes:
           type: array
           items:
-            type: string
             $ref: '#/components/schemas/CaseType'
           description: case type
         individual:
@@ -1054,8 +1043,7 @@ components:
         regions:
           type: array
           items:
-            type: string
-          $ref: '#/components/schemas/Region'
+            $ref: '#/components/schemas/Region'
         productGroup:
           type: string
           enum:
@@ -1069,7 +1057,6 @@ components:
         description:
           type: string
         deliveryChannel:
-          type: string
           $ref: '#/components/schemas/DeliveryChannel'
       required:
         - fulfilmentCode
@@ -1089,9 +1076,7 @@ components:
           type: string
           pattern: "^[0-9]{10}$"
         caseType:
-          type: string
           $ref: '#/components/schemas/CaseType'
-          description: case type
         addressType:
           type: string
           enum:
@@ -1105,10 +1090,8 @@ components:
         allowedDeliveryChannels:
           type: array
           items:
-            type: string
             $ref: '#/components/schemas/DeliveryChannel'
         estabType:
-          type: string
           $ref: '#/components/schemas/EstabType'
         estabDescription:
           type: string
@@ -1136,9 +1119,7 @@ components:
           maxLength: 30
           description: The post town of the address
         region:
-          type: string
           $ref: '#/components/schemas/Region'
-          description: 'The region e.g. England (E), Wales (W), Northern Ireland (N)'
         postcode:
           type: string
           description: postcode of address
@@ -1219,7 +1200,6 @@ components:
         estabDescription:
           type: string
         estabType:
-          type: string
           $ref: '#/components/schemas/EstabType'
         addressType:
           type: string
@@ -1271,7 +1251,7 @@ components:
       
     Region:
       type: string
-      description: 'The region e.g. England (E), Wales (W), Northern Ireland (N), Scotland (S)'
+      description: 'The region e.g. England (E), Wales (W), Northern Ireland (N)'
       enum:
         - E
         - W
@@ -1279,6 +1259,7 @@ components:
       
     CaseType:
       type: string
+      description: 'Mnemonic for the type of case'
       enum:
         - HH
         - CE
@@ -1292,6 +1273,7 @@ components:
 
     EstabType:
       type: string
+      description: 'The establishment type of the address'
       enum:
         - HALL_OF_RESIDENCE
         - CARE_HOME
