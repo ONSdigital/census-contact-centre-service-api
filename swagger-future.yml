@@ -840,10 +840,10 @@ components:
         ceOrgName:
           type: string
           maxLength: 60
-          description: CE Organisation name
+          description: CE Organisation name. If not known then can be null or empty.
         ceUsualResidents:
           type: integer
-          description: CE number of usual residents if caller knows, optional only if address type is CE
+          description: CE number of usual residents. Must be a positive value for CE cases
         dateTime:
           type: string
           format: datetime
@@ -960,13 +960,59 @@ components:
             uprn:
               type: string
               pattern: '^\d{1,12}$'
-              description: The address UPRN if known
+              description: The address UPRN if known, or null if not known.
+            estabType:
+              type: string
+              enum:
+                - HALL_OF_RESIDENCE
+                - CARE_HOME
+                - HOSPITAL
+                - HOSPICE
+                - MENTAL_HEALTH_HOSPITAL
+                - MEDICAL_CARE_OTHER
+                - BOARDING_SCHOOL
+                - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
+                - HIGH_SECURE_MENTAL_HEALTH
+                - HOTEL
+                - YOUTH_HOSTEL
+                - HOSTEL
+                - MILITARY_SLA
+                - MILITARY_US
+                - RELIGIOUS_COMMUNITY
+                - RESIDENTIAL_CHILDRENS_HOME
+                - EDUCATION_OTHER
+                - PRISON
+                - IMMIGRATION_REMOVAL_CENTRE
+                - APPROVED_PREMISES
+                - ROUGH_SLEEPER
+                - STAFF_ACCOMMODATION
+                - CAMPHILL
+                - HOLIDAY_PARK
+                - HOUSEHOLD
+                - SHELTERED_ACCOMMODATION
+                - RESIDENTIAL_CARAVAN
+                - RESIDENTIAL_BOAT
+                - GATED_APARTMENTS
+                - MOD_HOUSEHOLDS
+                - FOREIGN_OFFICES
+                - CASTLES
+                - GRT_SITE
+                - MILITARY_SFA
+                - EMBASSY
+                - ROYAL_HOUSEHOLD
+                - CARAVAN_SITE
+                - MARINA
+                - TRAVELLING_PERSONS
+                - TRANSIENT_PERSONS
+                - OTHER
           required:
             - region
             - addressLine1
             - townName
-            - caseType
+            - postcode
             - dateTime
+            - caseType
+            - estabType
 
     PostalFulfilmentRequestDTO:
       properties:
