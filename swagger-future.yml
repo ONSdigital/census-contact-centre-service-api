@@ -632,10 +632,7 @@ paths:
           description: Lookup fulfilments by casetype
           schema:
             type: string
-            enum:
-              - HH
-              - CE
-              - SPG
+            $ref: '#/components/schemas/CaseType'
         - in: query
           name: productGroup
           required: false
@@ -656,19 +653,12 @@ paths:
           description: Lookup fulfilments by delivery channel
           schema:
             type: string
-            enum:
-              - SMS
-              - POST
+            $ref: '#/components/schemas/DeliveryChannel'
         - in: query
           name: region
           required: false
           description: 'Lookup fulfilments by region e.g. England (E), Wales (W), Northern Ireland (N)'
-          schema:
-            type: string
-            enum:
-              - E
-              - W
-              - N
+          $ref: '#/components/schemas/Region'
         - in: query
           name: individual
           required: false
@@ -830,10 +820,7 @@ components:
           description: The post town of the address
         region:
           type: string
-          enum:
-            - E
-            - W
-            - N
+          $ref: '#/components/schemas/Region'
           description: 'The region e.g. England (E), Wales (W), Northern Ireland (N)'
         postcode:
           $ref:  '#/components/schemas/POSTCODE_CONST'
@@ -891,48 +878,7 @@ components:
               description: CaseId of case to modify
             estabType:
               type: string
-              enum:
-                - HALL_OF_RESIDENCE
-                - CARE_HOME
-                - HOSPITAL
-                - HOSPICE
-                - MENTAL_HEALTH_HOSPITAL
-                - MEDICAL_CARE_OTHER
-                - BOARDING_SCHOOL
-                - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
-                - HIGH_SECURE_MENTAL_HEALTH
-                - HOTEL
-                - YOUTH_HOSTEL
-                - HOSTEL
-                - MILITARY_SLA
-                - MILITARY_US
-                - RELIGIOUS_COMMUNITY
-                - RESIDENTIAL_CHILDRENS_HOME
-                - EDUCATION_OTHER
-                - PRISON
-                - IMMIGRATION_REMOVAL_CENTRE
-                - APPROVED_PREMISES
-                - ROUGH_SLEEPER
-                - STAFF_ACCOMMODATION
-                - CAMPHILL
-                - HOLIDAY_PARK
-                - HOUSEHOLD
-                - SHELTERED_ACCOMMODATION
-                - RESIDENTIAL_CARAVAN
-                - RESIDENTIAL_BOAT
-                - GATED_APARTMENTS
-                - MOD_HOUSEHOLDS
-                - FOREIGN_OFFICES
-                - CASTLES
-                - GRT_SITE
-                - MILITARY_SFA
-                - EMBASSY
-                - ROYAL_HOUSEHOLD
-                - CARAVAN_SITE
-                - MARINA
-                - TRAVELLING_PERSONS
-                - TRANSIENT_PERSONS
-                - OTHER
+              $ref: '#/components/schemas/EstabType'
               description: 'the establishment type of the address'
           description: 'the reported status of an address'
         - type: object
@@ -952,10 +898,7 @@ components:
           properties:
             caseType:
               type: string
-              enum:
-                - HH
-                - CE
-                - SPG
+              $ref: '#/components/schemas/CaseType'
               description: case type
             uprn:
               type: string
@@ -963,48 +906,7 @@ components:
               description: The address UPRN if known, or null if not known.
             estabType:
               type: string
-              enum:
-                - HALL_OF_RESIDENCE
-                - CARE_HOME
-                - HOSPITAL
-                - HOSPICE
-                - MENTAL_HEALTH_HOSPITAL
-                - MEDICAL_CARE_OTHER
-                - BOARDING_SCHOOL
-                - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
-                - HIGH_SECURE_MENTAL_HEALTH
-                - HOTEL
-                - YOUTH_HOSTEL
-                - HOSTEL
-                - MILITARY_SLA
-                - MILITARY_US
-                - RELIGIOUS_COMMUNITY
-                - RESIDENTIAL_CHILDRENS_HOME
-                - EDUCATION_OTHER
-                - PRISON
-                - IMMIGRATION_REMOVAL_CENTRE
-                - APPROVED_PREMISES
-                - ROUGH_SLEEPER
-                - STAFF_ACCOMMODATION
-                - CAMPHILL
-                - HOLIDAY_PARK
-                - HOUSEHOLD
-                - SHELTERED_ACCOMMODATION
-                - RESIDENTIAL_CARAVAN
-                - RESIDENTIAL_BOAT
-                - GATED_APARTMENTS
-                - MOD_HOUSEHOLDS
-                - FOREIGN_OFFICES
-                - CASTLES
-                - GRT_SITE
-                - MILITARY_SFA
-                - EMBASSY
-                - ROYAL_HOUSEHOLD
-                - CARAVAN_SITE
-                - MARINA
-                - TRAVELLING_PERSONS
-                - TRANSIENT_PERSONS
-                - OTHER
+              $ref: '#/components/schemas/EstabType'
           required:
             - region
             - addressLine1
@@ -1117,10 +1019,7 @@ components:
           description: The post town of the address  (for use if no caseid is available)
         region:
           type: string
-          enum:
-            - E
-            - W
-            - N
+          $ref: '#/components/schemas/Region'
           description: 'The region e.g. England (E), Wales (W), Northern Ireland (N) (for use if no caseid is available)'
         postcode:
           $ref: '#/components/schemas/POSTCODE_CONST'
@@ -1147,10 +1046,7 @@ components:
           type: array
           items:
             type: string
-            enum:
-              - HH
-              - CE
-              - SPG
+            $ref: '#/components/schemas/CaseType'
           description: case type
         individual:
           type: boolean
@@ -1158,10 +1054,7 @@ components:
           type: array
           items:
             type: string
-            enum:
-              - E
-              - W
-              - N
+          $ref: '#/components/schemas/Region'
         productGroup:
           type: string
           enum:
@@ -1176,9 +1069,7 @@ components:
           type: string
         deliveryChannel:
           type: string
-          enum:
-            - POST
-            - SMS
+          $ref: '#/components/schemas/DeliveryChannel'
       required:
         - fulfilmentCode
         - caseTypes
@@ -1198,10 +1089,7 @@ components:
           pattern: "^[0-9]{10}$"
         caseType:
           type: string
-          enum:
-            - HH
-            - CE
-            - SPG
+          $ref: '#/components/schemas/CaseType'
           description: case type
         addressType:
           type: string
@@ -1217,53 +1105,10 @@ components:
           type: array
           items:
             type: string
-            enum:
-              - SMS
-              - POST
+            $ref: '#/components/schemas/DeliveryChannel'
         estabType:
           type: string
-          enum:
-            - HALL_OF_RESIDENCE
-            - CARE_HOME
-            - HOSPITAL
-            - HOSPICE
-            - MENTAL_HEALTH_HOSPITAL
-            - MEDICAL_CARE_OTHER
-            - BOARDING_SCHOOL
-            - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
-            - HIGH_SECURE_MENTAL_HEALTH
-            - HOTEL
-            - YOUTH_HOSTEL
-            - HOSTEL
-            - MILITARY_SLA
-            - MILITARY_US
-            - RELIGIOUS_COMMUNITY
-            - RESIDENTIAL_CHILDRENS_HOME
-            - EDUCATION_OTHER
-            - PRISON
-            - IMMIGRATION_REMOVAL_CENTRE
-            - APPROVED_PREMISES
-            - ROUGH_SLEEPER
-            - STAFF_ACCOMMODATION
-            - CAMPHILL
-            - HOLIDAY_PARK
-            - HOUSEHOLD
-            - SHELTERED_ACCOMMODATION
-            - RESIDENTIAL_CARAVAN
-            - RESIDENTIAL_BOAT
-            - GATED_APARTMENTS
-            - MOD_HOUSEHOLDS
-            - FOREIGN_OFFICES
-            - CASTLES
-            - GRT_SITE
-            - MILITARY_SFA
-            - EMBASSY
-            - ROYAL_HOUSEHOLD
-            - CARAVAN_SITE
-            - MARINA
-            - TRAVELLING_PERSONS
-            - TRANSIENT_PERSONS
-            - OTHER
+          $ref: '#/components/schemas/EstabType'
         estabDescription:
           type: string
           maxLength: 60
@@ -1295,10 +1140,7 @@ components:
           description: The post town of the address
         region:
           type: string
-          enum:
-            - E
-            - W
-            - N
+          $ref: '#/components/schemas/Region'
           description: 'The region e.g. England (E), Wales (W), Northern Ireland (N)'
         postcode:
           type: string
@@ -1381,48 +1223,7 @@ components:
           type: string
         estabType:
           type: string
-          enum:
-            - HALL_OF_RESIDENCE
-            - CARE_HOME
-            - HOSPITAL
-            - HOSPICE
-            - MENTAL_HEALTH_HOSPITAL
-            - MEDICAL_CARE_OTHER
-            - BOARDING_SCHOOL
-            - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
-            - HIGH_SECURE_MENTAL_HEALTH
-            - HOTEL
-            - YOUTH_HOSTEL
-            - HOSTEL
-            - MILITARY_SLA
-            - MILITARY_US
-            - RELIGIOUS_COMMUNITY
-            - RESIDENTIAL_CHILDRENS_HOME
-            - EDUCATION_OTHER
-            - PRISON
-            - IMMIGRATION_REMOVAL_CENTRE
-            - APPROVED_PREMISES
-            - ROUGH_SLEEPER
-            - STAFF_ACCOMMODATION
-            - CAMPHILL
-            - HOLIDAY_PARK
-            - HOUSEHOLD
-            - SHELTERED_ACCOMMODATION
-            - RESIDENTIAL_CARAVAN
-            - RESIDENTIAL_BOAT
-            - GATED_APARTMENTS
-            - MOD_HOUSEHOLDS
-            - FOREIGN_OFFICES
-            - CASTLES
-            - GRT_SITE
-            - MILITARY_SFA
-            - EMBASSY
-            - ROYAL_HOUSEHOLD
-            - CARAVAN_SITE
-            - MARINA
-            - TRAVELLING_PERSONS
-            - TRANSIENT_PERSONS
-            - OTHER
+          $ref: '#/components/schemas/EstabType'
         addressType:
           type: string
           enum:
@@ -1473,5 +1274,69 @@ components:
     AGENT_ID_CONST:
       type: integer
       format: int32
+      
+    Region:
+      type: string
+      description: 'The region e.g. England (E), Wales (W), Northern Ireland (N), Scotland (S)'
+      enum:
+        - E
+        - W
+        - N
+      
+    CaseType:
+      type: string
+      enum:
+        - HH
+        - CE
+        - SPG
 
+    DeliveryChannel:
+      type: string
+      enum:
+        - SMS
+        - POST
 
+    EstabType:
+      type: string
+      enum:
+        - HALL_OF_RESIDENCE
+        - CARE_HOME
+        - HOSPITAL
+        - HOSPICE
+        - MENTAL_HEALTH_HOSPITAL
+        - MEDICAL_CARE_OTHER
+        - BOARDING_SCHOOL
+        - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
+        - HIGH_SECURE_MENTAL_HEALTH
+        - HOTEL
+        - YOUTH_HOSTEL
+        - HOSTEL
+        - MILITARY_SLA
+        - MILITARY_US
+        - RELIGIOUS_COMMUNITY
+        - RESIDENTIAL_CHILDRENS_HOME
+        - EDUCATION_OTHER
+        - PRISON
+        - IMMIGRATION_REMOVAL_CENTRE
+        - APPROVED_PREMISES
+        - ROUGH_SLEEPER
+        - STAFF_ACCOMMODATION
+        - CAMPHILL
+        - HOLIDAY_PARK
+        - HOUSEHOLD
+        - SHELTERED_ACCOMMODATION
+        - RESIDENTIAL_CARAVAN
+        - RESIDENTIAL_BOAT
+        - GATED_APARTMENTS
+        - MOD_HOUSEHOLDS
+        - FOREIGN_OFFICES
+        - CASTLES
+        - GRT_SITE
+        - MILITARY_SFA
+        - EMBASSY
+        - ROYAL_HOUSEHOLD
+        - CARAVAN_SITE
+        - MARINA
+        - TRAVELLING_PERSONS
+        - TRANSIENT_PERSONS
+        - OTHER
