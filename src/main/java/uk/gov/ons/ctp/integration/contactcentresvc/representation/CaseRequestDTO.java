@@ -42,6 +42,7 @@ public abstract class CaseRequestDTO {
 
   @NotNull private Date dateTime;
 
+  @Size(max = 60)
   private String ceOrgName;
 
   private Integer ceUsualResidents;

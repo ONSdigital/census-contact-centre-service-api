@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ONS Contact Centre API
   description: Provides features and functions required by the Contact Centre.
-  version: "5.10.6-oas3"
+  version: "5.10.7-oas3"
 security:
   - basicAuth: []
 tags:
@@ -632,11 +632,7 @@ paths:
           required: false
           description: Lookup fulfilments by casetype
           schema:
-            type: string
-            enum:
-              - HH
-              - CE
-              - SPG
+            $ref: '#/components/schemas/CaseType'
         - in: query
           name: productGroup
           required: false
@@ -655,20 +651,13 @@ paths:
           required: false
           description: Lookup fulfilments by delivery channel
           schema:
-            type: string
-            enum:
-              - SMS
-              - POST
+            $ref: '#/components/schemas/DeliveryChannel'
         - in: query
           name: region
           required: false
           description: 'Lookup fulfilments by region e.g. England (E), Wales (W), Northern Ireland (N)'
           schema:
-            type: string
-            enum:
-              - E
-              - W
-              - N
+            $ref: '#/components/schemas/Region'
         - in: query
           name: individual
           required: false
@@ -829,21 +818,16 @@ components:
           maxLength: 30
           description: The post town of the address
         region:
-          type: string
-          enum:
-            - E
-            - W
-            - N
-          description: 'The region e.g. England (E), Wales (W), Northern Ireland (N)'
+          $ref: '#/components/schemas/Region'
         postcode:
           $ref:  '#/components/schemas/POSTCODE_CONST'
         ceOrgName:
           type: string
           maxLength: 60
-          description: CE Organisation name
+          description: CE Organisation name. If not known then can be null or empty.
         ceUsualResidents:
           type: integer
-          description: CE number of usual residents if caller knows, optional only if address type is CE
+          description: CE number of usual residents. Must be a positive value for CE cases
         dateTime:
           type: string
           format: datetime
@@ -890,50 +874,7 @@ components:
               format: uuid
               description: CaseId of case to modify
             estabType:
-              type: string
-              enum:
-                - HALL_OF_RESIDENCE
-                - CARE_HOME
-                - HOSPITAL
-                - HOSPICE
-                - MENTAL_HEALTH_HOSPITAL
-                - MEDICAL_CARE_OTHER
-                - BOARDING_SCHOOL
-                - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
-                - HIGH_SECURE_MENTAL_HEALTH
-                - HOTEL
-                - YOUTH_HOSTEL
-                - HOSTEL
-                - MILITARY_SLA
-                - MILITARY_US
-                - RELIGIOUS_COMMUNITY
-                - RESIDENTIAL_CHILDRENS_HOME
-                - EDUCATION_OTHER
-                - PRISON
-                - IMMIGRATION_REMOVAL_CENTRE
-                - APPROVED_PREMISES
-                - ROUGH_SLEEPER
-                - STAFF_ACCOMMODATION
-                - CAMPHILL
-                - HOLIDAY_PARK
-                - HOUSEHOLD
-                - SHELTERED_ACCOMMODATION
-                - RESIDENTIAL_CARAVAN
-                - RESIDENTIAL_BOAT
-                - GATED_APARTMENTS
-                - MOD_HOUSEHOLDS
-                - FOREIGN_OFFICES
-                - CASTLES
-                - GRT_SITE
-                - MILITARY_SFA
-                - EMBASSY
-                - ROYAL_HOUSEHOLD
-                - CARAVAN_SITE
-                - MARINA
-                - TRAVELLING_PERSONS
-                - TRANSIENT_PERSONS
-                - OTHER
-              description: 'the establishment type of the address'
+              $ref: '#/components/schemas/EstabType'
           description: 'the reported status of an address'
         - type: object
           required:
@@ -951,18 +892,21 @@ components:
         - type: object
           properties:
             caseType:
+              $ref: '#/components/schemas/CaseType'
+            uprn:
               type: string
-              enum:
-                - HH
-                - CE
-                - SPG
-              description: case type
+              pattern: '^\d{1,12}$'
+              description: The address UPRN if known, or null if not known.
+            estabType:
+              $ref: '#/components/schemas/EstabType'
           required:
             - region
             - addressLine1
             - townName
-            - caseType
+            - postcode
             - dateTime
+            - caseType
+            - estabType
 
     PostalFulfilmentRequestDTO:
       properties:
@@ -1068,12 +1012,7 @@ components:
           maxLength: 30
           description: The post town of the address  (for use if no caseid is available)
         region:
-          type: string
-          enum:
-            - E
-            - W
-            - N
-          description: 'The region e.g. England (E), Wales (W), Northern Ireland (N) (for use if no caseid is available)'
+          $ref: '#/components/schemas/Region'
         postcode:
           $ref: '#/components/schemas/POSTCODE_CONST'
         uprn:
@@ -1101,22 +1040,14 @@ components:
         caseTypes:
           type: array
           items:
-            type: string
-            enum:
-              - HH
-              - CE
-              - SPG
+            $ref: '#/components/schemas/CaseType'
           description: case type
         individual:
           type: boolean
         regions:
           type: array
           items:
-            type: string
-            enum:
-              - E
-              - W
-              - N
+            $ref: '#/components/schemas/Region'
         productGroup:
           type: string
           enum:
@@ -1130,10 +1061,7 @@ components:
         description:
           type: string
         deliveryChannel:
-          type: string
-          enum:
-            - POST
-            - SMS
+          $ref: '#/components/schemas/DeliveryChannel'
       required:
         - fulfilmentCode
         - caseTypes
@@ -1152,12 +1080,7 @@ components:
           type: string
           pattern: "^[0-9]{10}$"
         caseType:
-          type: string
-          enum:
-            - HH
-            - CE
-            - SPG
-          description: case type
+          $ref: '#/components/schemas/CaseType'
         addressType:
           type: string
           enum:
@@ -1171,54 +1094,9 @@ components:
         allowedDeliveryChannels:
           type: array
           items:
-            type: string
-            enum:
-              - SMS
-              - POST
+            $ref: '#/components/schemas/DeliveryChannel'
         estabType:
-          type: string
-          enum:
-            - HALL_OF_RESIDENCE
-            - CARE_HOME
-            - HOSPITAL
-            - HOSPICE
-            - MENTAL_HEALTH_HOSPITAL
-            - MEDICAL_CARE_OTHER
-            - BOARDING_SCHOOL
-            - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
-            - HIGH_SECURE_MENTAL_HEALTH
-            - HOTEL
-            - YOUTH_HOSTEL
-            - HOSTEL
-            - MILITARY_SLA
-            - MILITARY_US
-            - RELIGIOUS_COMMUNITY
-            - RESIDENTIAL_CHILDRENS_HOME
-            - EDUCATION_OTHER
-            - PRISON
-            - IMMIGRATION_REMOVAL_CENTRE
-            - APPROVED_PREMISES
-            - ROUGH_SLEEPER
-            - STAFF_ACCOMMODATION
-            - CAMPHILL
-            - HOLIDAY_PARK
-            - HOUSEHOLD
-            - SHELTERED_ACCOMMODATION
-            - RESIDENTIAL_CARAVAN
-            - RESIDENTIAL_BOAT
-            - GATED_APARTMENTS
-            - MOD_HOUSEHOLDS
-            - FOREIGN_OFFICES
-            - CASTLES
-            - GRT_SITE
-            - MILITARY_SFA
-            - EMBASSY
-            - ROYAL_HOUSEHOLD
-            - CARAVAN_SITE
-            - MARINA
-            - TRAVELLING_PERSONS
-            - TRANSIENT_PERSONS
-            - OTHER
+          $ref: '#/components/schemas/EstabType'
         estabDescription:
           type: string
           maxLength: 60
@@ -1245,12 +1123,7 @@ components:
           maxLength: 30
           description: The post town of the address
         region:
-          type: string
-          enum:
-            - E
-            - W
-            - N
-          description: 'The region e.g. England (E), Wales (W), Northern Ireland (N)'
+          $ref: '#/components/schemas/Region'
         postcode:
           type: string
           description: postcode of address
@@ -1331,49 +1204,7 @@ components:
         estabDescription:
           type: string
         estabType:
-          type: string
-          enum:
-            - HALL_OF_RESIDENCE
-            - CARE_HOME
-            - HOSPITAL
-            - HOSPICE
-            - MENTAL_HEALTH_HOSPITAL
-            - MEDICAL_CARE_OTHER
-            - BOARDING_SCHOOL
-            - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
-            - HIGH_SECURE_MENTAL_HEALTH
-            - HOTEL
-            - YOUTH_HOSTEL
-            - HOSTEL
-            - MILITARY_SLA
-            - MILITARY_US
-            - RELIGIOUS_COMMUNITY
-            - RESIDENTIAL_CHILDRENS_HOME
-            - EDUCATION_OTHER
-            - PRISON
-            - IMMIGRATION_REMOVAL_CENTRE
-            - APPROVED_PREMISES
-            - ROUGH_SLEEPER
-            - STAFF_ACCOMMODATION
-            - CAMPHILL
-            - HOLIDAY_PARK
-            - HOUSEHOLD
-            - SHELTERED_ACCOMMODATION
-            - RESIDENTIAL_CARAVAN
-            - RESIDENTIAL_BOAT
-            - GATED_APARTMENTS
-            - MOD_HOUSEHOLDS
-            - FOREIGN_OFFICES
-            - CASTLES
-            - GRT_SITE
-            - MILITARY_SFA
-            - EMBASSY
-            - ROYAL_HOUSEHOLD
-            - CARAVAN_SITE
-            - MARINA
-            - TRAVELLING_PERSONS
-            - TRANSIENT_PERSONS
-            - OTHER
+          $ref: '#/components/schemas/EstabType'
         addressType:
           type: string
           enum:
@@ -1421,3 +1252,71 @@ components:
     POSTCODE_CONST:
       type: string
       pattern: 'GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}'
+      
+    Region:
+      type: string
+      description: 'The region e.g. England (E), Wales (W), Northern Ireland (N)'
+      enum:
+        - E
+        - W
+        - N
+      
+    CaseType:
+      type: string
+      description: 'Mnemonic for the type of case'
+      enum:
+        - HH
+        - CE
+        - SPG
+
+    DeliveryChannel:
+      type: string
+      enum:
+        - SMS
+        - POST
+
+    EstabType:
+      type: string
+      description: 'The establishment type of the address'
+      enum:
+        - HALL_OF_RESIDENCE
+        - CARE_HOME
+        - HOSPITAL
+        - HOSPICE
+        - MENTAL_HEALTH_HOSPITAL
+        - MEDICAL_CARE_OTHER
+        - BOARDING_SCHOOL
+        - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
+        - HIGH_SECURE_MENTAL_HEALTH
+        - HOTEL
+        - YOUTH_HOSTEL
+        - HOSTEL
+        - MILITARY_SLA
+        - MILITARY_US
+        - RELIGIOUS_COMMUNITY
+        - RESIDENTIAL_CHILDRENS_HOME
+        - EDUCATION_OTHER
+        - PRISON
+        - IMMIGRATION_REMOVAL_CENTRE
+        - APPROVED_PREMISES
+        - ROUGH_SLEEPER
+        - STAFF_ACCOMMODATION
+        - CAMPHILL
+        - HOLIDAY_PARK
+        - HOUSEHOLD
+        - SHELTERED_ACCOMMODATION
+        - RESIDENTIAL_CARAVAN
+        - RESIDENTIAL_BOAT
+        - GATED_APARTMENTS
+        - MOD_HOUSEHOLDS
+        - FOREIGN_OFFICES
+        - CASTLES
+        - GRT_SITE
+        - MILITARY_SFA
+        - EMBASSY
+        - ROYAL_HOUSEHOLD
+        - CARAVAN_SITE
+        - MARINA
+        - TRAVELLING_PERSONS
+        - TRANSIENT_PERSONS
+        - OTHER
