@@ -6,6 +6,7 @@ import com.godaddy.logging.Scope;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -57,6 +58,9 @@ public class CaseDTO {
   private String region;
 
   private String postcode;
+
+  @Size(max = 60)
+  private String ceOrgName;
 
   private UniquePropertyReferenceNumber uprn;
 
