@@ -3,10 +3,15 @@ info:
   title: ONS Contact Centre API
   version: "5.10.7-oas3"
   description: |
-    Provides features and functions required by the ONS Census Contact Centre.
+    Specification for the ONS Census Contact Centre / Assisted Digital service.
+    This reflects the release candidate that will next be promoted into the integration environment.
+
     Version | Change
     ------- | ----------------------------------------------------------------
     5.10.7  | ceOrgName added to Case response
+      -     | added uprn to POST /cases request
+      -     | added estabType to POST /cases request
+      -     | required fields for POST /cases revised
     5.10.6  | missing callId added to refusal request
       -     | enums refactored into the schema
     5.10.5  | /cases/{caseId}/invalidate added

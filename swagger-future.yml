@@ -1,8 +1,17 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  description: Provides features and functions required by the Contact Centre.
   version: "5.11.7-oas3"
+  description: |
+    Specification for the ONS Census Contact Centre / Assisted Digital service.
+    This reflects upcoming changes
+
+    Version | Change
+    ------- | ----------------------------------------------------------------
+    5.11.7  | /cases/{caseId}/invalidate added
+      -     | status removed from PUT /cases
+      -     | callId added to refusal request
+      -     | required fields for POST /cases revised
 security:
   - basicAuth: []
 tags:
