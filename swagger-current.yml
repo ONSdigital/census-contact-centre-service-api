@@ -1,8 +1,16 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  description: Provides features and functions required by the Contact Centre.
   version: "5.10.7-oas3"
+  description: |
+    Provides features and functions required by the ONS Census Contact Centre.
+    Version | Change
+    ------- | ----------------------------------------------------------------
+    5.10.7  | ceOrgName added to Case response
+    5.10.6  | missing callId added to refusal request
+      -     | enums refactored into the schema
+    5.10.5  | /cases/{caseId}/invalidate added
+      -     | NA addressType added to GET /address/* endpoint response
 security:
   - basicAuth: []
 tags:
