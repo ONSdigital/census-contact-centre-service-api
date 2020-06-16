@@ -11,35 +11,35 @@ This is the ONS Census Contact Centre Service public API model project
 It contains the representation objects sent/returned to/from the Contact Centre Service REST endpoints and
 it's swagger API
 
-#GENERAL
-##GET/version
+# GENERAL
+## GET/version
 
-#CONTACT_CENTRE
-##GET/addresses
-##GET/addresses/postcode
-##POST/cases
-##POST/cases/{caseId}/invalidate
-##GET/cases/uprn/{uprn}
-##GET/cases/ccs/postcode/{postcode}
-##PUT/cases/{caseId}
-##GET/cases/{caseId}
-##GET/cases/ref/{reference}
-##GET/cases/{caseId}/launch
-##POST/cases/{caseId}/fulfilment/post
-##POST/cases/{caseId}/fulfilment/sms
-##GET/fulfilments
-##POST/cases/{caseId}/refusal
+# CONTACT_CENTRE
+## GET/addresses
+## GET/addresses/postcode
+## POST/cases
+## POST/cases/{caseId}/invalidate
+## GET/cases/uprn/{uprn}
+## GET/cases/ccs/postcode/{postcode}
+## PUT/cases/{caseId}
+## GET/cases/{caseId}
+## GET/cases/ref/{reference}
+## GET/cases/{caseId}/launch
+## POST/cases/{caseId}/fulfilment/post
+## POST/cases/{caseId}/fulfilment/sms
+## GET/fulfilments
+## POST/cases/{caseId}/refusal
 The provided caseType (HH|CE|SPG) will be used as the addressType and caseType if the estabType of OTHER is provided, else the addressType and caseType derived from the provided estabType is used.
 If the provided caseType does not match the derived type from the estabType, a BAD_REQUEST response is returned.
 
-#ASSISTED_DIGITAL
-##GET/addresses
-##GET/addresses/postcode
-##GET/cases/uprn/{uprn}
-##GET/cases/{caseId}/uac
+# ASSISTED_DIGITAL
+## GET/addresses
+## GET/addresses/postcode
+## GET/cases/uprn/{uprn}
+## GET/cases/{caseId}/uac
 
-#SCHEMA
-##EstabType
+# SCHEMA
+## EstabType
 Each EstabType is mapped internally to a corresponding AddressType (Which mirrors the codification of the primary CaseTypes HH|CE|SPG).
 This mapping is used by the service to derive a CaseType/AddressType from an EstabType.
 The current mapping is as follows:
