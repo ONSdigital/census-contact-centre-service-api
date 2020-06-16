@@ -29,8 +29,9 @@ it's swagger API
 ## POST/cases/{caseId}/fulfilment/sms
 ## GET/fulfilments
 ## POST/cases/{caseId}/refusal
-The provided caseType (HH|CE|SPG) will be used as the addressType and caseType if the estabType of OTHER is provided, else the addressType and caseType derived from the provided estabType is used.
+1. The provided caseType (HH|CE|SPG) will be used as the addressType and caseType if the estabType of OTHER is provided, else the addressType and caseType derived from the provided estabType is used.
 If the provided caseType does not match the derived type from the estabType, a BAD_REQUEST response is returned.
+2. If the caseType is CE, then a value greater than zero must be provided for the ceUsualResidents field
 
 # ASSISTED_DIGITAL
 ## GET/addresses
