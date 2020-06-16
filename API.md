@@ -2,17 +2,16 @@ The swagger-current.yml in this project details the API implemented by the curre
 
 The swagger-future.yml details the planned API for a future release, and it's primary purpose is to facilitate discussion and understanding of upcoming changes.
 
-While the swaggers can describe the request parameters for each endpoint, path parameters, and response objects, there are finer details which cannot be expressed in swagger, and it is the purpose of
-this document to capture and communicate some of the finer business rules which cannot be expressed in swagger.
+While swagger can describe the request parameters for each endpoint, path parameters, and response objects, there are finer details which cannot be expressed in swagger, and it is the purpose of
+this document to capture and communicate some of these finer business rules.
 
+The swagger is published to [swaggerhub](https://app.swaggerhub.com/apis/philwhiles/ons-contact_centre_api/5.10.7-oas3) to aid viewing - be sure to select the correct version.
 
-This is the ONS Census Contact Centre Service public API model project
-
-It contains the representation objects sent/returned to/from the Contact Centre Service REST endpoints and
-it's swagger API
 
 # GENERAL
 ## GET/version
+1. The version endpoint reports the version of the swagger which the service instance is implemented to satisfy. Bear in mind that the version reported by a service instance will most likely 
+be behind that of the swagger-current.yml in this repo, as the swagger-current version reflects that of a future release candidate, not that of the instance deployed to a particular environment.
 
 # CONTACT_CENTRE
 ## GET/addresses
