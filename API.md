@@ -15,27 +15,46 @@ be behind that of the swagger-current.yml in this repo, as the swagger-current v
 
 # CONTACT_CENTRE
 ## GET/addresses
+
 ## GET/addresses/postcode
+
 ## POST/cases
+
 ## POST/cases/{caseId}/invalidate
+
 ## GET/cases/uprn/{uprn}
+
 ## GET/cases/ccs/postcode/{postcode}
+
 ## PUT/cases/{caseId}
+
 ## GET/cases/{caseId}
+
 ## GET/cases/ref/{reference}
+
 ## GET/cases/{caseId}/launch
+For certain cases it will occasionally not be possible to create the launch url due to downstream components needing to catch up. 
+On the rare occasion that a 202 response is returned, after a short pause, subsequent requests with the same case id will always get a 200.
+
 ## POST/cases/{caseId}/fulfilment/post
+
 ## POST/cases/{caseId}/fulfilment/sms
+
 ## GET/fulfilments
+
 ## POST/cases/{caseId}/refusal
 1. The provided caseType (HH|CE|SPG) will be used as the addressType and caseType if the estabType of OTHER is provided, else the addressType and caseType derived from the provided estabType is used.
 If the provided caseType does not match the derived type from the estabType, a BAD_REQUEST response is returned.
 2. If the caseType is CE, then a value greater than zero must be provided for the ceUsualResidents field
 
 # ASSISTED_DIGITAL
+
 ## GET/addresses
+
 ## GET/addresses/postcode
+
 ## GET/cases/uprn/{uprn}
+
 ## GET/cases/{caseId}/uac
 
 # SCHEMA
