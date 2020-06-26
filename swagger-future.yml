@@ -1,13 +1,14 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  version: "5.11.8-oas3"
+  version: "5.11.9-oas3"
   description: |
     Specification for the ONS Census Contact Centre / Assisted Digital service.
     This reflects upcoming changes
 
     Version | Change
     ------- | ----------------------------------------------------------------
+    5.11.9  | AD location len 8 -> 4
     5.11.8  | PUT /cases/{caseId} address fields reduced
     5.11.7  | /cases/{caseId}/invalidate added
       -     | status removed from PUT /cases
@@ -508,7 +509,7 @@ paths:
           description: Assisted Digital Location Identifier
           schema:
             type: string
-            pattern: '^\d{1,8}$'
+            pattern: '^\d{1,4}$'
         - in: query
           name: individual
           required: true
