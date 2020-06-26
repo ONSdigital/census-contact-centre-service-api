@@ -9,6 +9,7 @@ info:
     Version | Change
     ------- | ----------------------------------------------------------------
     5.11.9  | AD location len 8 -> 4
+      -     | 202 response added to launch endpoint
     5.11.8  | PUT /cases/{caseId} address fields reduced
     5.11.7  | /cases/{caseId}/invalidate added
       -     | status removed from PUT /cases
@@ -475,6 +476,9 @@ paths:
                 properties:
                   url:
                     type: string
+        '202':
+          description: >-
+            The operation cannot be performed at this point in time. Try again later.
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details

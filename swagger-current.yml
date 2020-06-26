@@ -9,6 +9,7 @@ info:
     Version | Change
     ------- | ----------------------------------------------------------------
     5.10.8  | AD location len 8 -> 4
+      -     | 202 response added to launch endpoint
     5.10.7  | ceOrgName added to Case response
       -     | added uprn to POST /cases request
       -     | added estabType to POST /cases request
@@ -479,6 +480,9 @@ paths:
                 properties:
                   url:
                     type: string
+        '202':
+          description: >-
+            The operation cannot be performed at this point in time. Try again later.
         '400':
           description: >-
             Bad request. Indicates an issue with the request. Further details
