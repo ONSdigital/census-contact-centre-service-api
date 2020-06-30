@@ -1,13 +1,14 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  version: "5.11.9-oas3"
+  version: "5.11.10"
   description: |
     Specification for the ONS Census Contact Centre / Assisted Digital service.
     This reflects upcoming changes
 
     Version | Change
     ------- | ----------------------------------------------------------------
+    5.11.10 | uprn now 13 not 12 digits
     5.11.9  | AD location len 8 -> 4
       -     | 202 response added to launch endpoint
     5.11.8  | PUT /cases/{caseId} address fields reduced
@@ -231,7 +232,7 @@ paths:
           description: 'Lookup a case by the UPRN '
           schema:
             type: string
-            pattern: '^\d{1,12}$'
+            pattern: '^\d{1,13}$'
         - in: query
           name: caseEvents
           description: true if case events are additionally required
@@ -868,7 +869,7 @@ components:
           properties:
             uprn:
               type: string
-              pattern: '^\d{1,12}$'
+              pattern: '^\d{1,13}$'
               description: The address UPRN if known, or null if not known.
             region:
               $ref: '#/components/schemas/Region'
@@ -1025,7 +1026,7 @@ components:
           $ref: '#/components/schemas/POSTCODE_CONST'
         uprn:
           type: string
-          pattern: '^\d{1,12}$'
+          pattern: '^\d{1,13}$'
           description: The address UPRN if known
         dateTime:
           type: string

@@ -25,6 +25,8 @@ be behind that of the swagger-current.yml in this repo, as the swagger-current v
 ## GET/cases/uprn/{uprn}
 
 ## GET/cases/ccs/postcode/{postcode}
+1. If the postcode used is not within a CCS catchment/sample, the endpoint will respond with a BAD_REQUEST code and the message 
+"The requested postcode is not within the CCS sample"
 
 ## PUT/cases/{caseId}
 
@@ -33,8 +35,12 @@ be behind that of the swagger-current.yml in this repo, as the swagger-current v
 ## GET/cases/ref/{reference}
 
 ## GET/cases/{caseId}/launch
-For certain cases it will occasionally not be possible to create the launch url due to downstream components needing to catch up. 
+1. For certain cases it will occasionally not be possible to create the launch url due to downstream components needing to catch up. 
 On the rare occasion that a 202 response is returned, after a short pause, subsequent requests with the same case id will always get a 200.
+2. It will not be possible to launch a questionnaire for CE Managers in Northern Ireland. If such a request is made a BAD_REQUEST response will be returned
+containing the message "All Northern Ireland calls from CE Managers are to be escalated to the NI management team"
+3. It will not be allowed to launch a CE manager questionnaire if the Case is of type 'CE' and the address associated with the case is an individual unit ie a resident. 
+If such a request is made a BAD_REQUEST response will be returned with the message "A CE Manager form can only be launched against an establishment address not a UNIT."
 
 ## POST/cases/{caseId}/fulfilment/post
 
