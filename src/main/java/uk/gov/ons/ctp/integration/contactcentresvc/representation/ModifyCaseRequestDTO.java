@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import uk.gov.ons.ctp.common.domain.EstabType;
 
 /**
  * The request object when contact centre calls to modify the details for a case
@@ -22,6 +21,4 @@ import uk.gov.ons.ctp.common.domain.EstabType;
 public class ModifyCaseRequestDTO extends CaseRequestDTO {
 
   @NotNull private UUID caseId;
-
-  @NotNull private EstabType estabType;
 }
