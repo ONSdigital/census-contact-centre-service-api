@@ -1,13 +1,14 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  version: "5.11.10"
+  version: "5.11.11"
   description: |
     Specification for the ONS Census Contact Centre / Assisted Digital service.
     This reflects upcoming changes
 
     Version | Change
     ------- | ----------------------------------------------------------------
+    5.11.11 | removed tele num and notes from /cases/refusal
     5.11.10 | uprn now 13 not 12 digits
     5.11.9  | AD location len 8 -> 4
       -     | 202 response added to launch endpoint
@@ -996,14 +997,6 @@ components:
           type: string
           maxLength: 60
           description: the surname of the person refusing
-        telNo:
-          type: string
-          pattern: '^[0-9]*$'
-          description: the telephone number of the individual refusing
-        notes:
-          type: string
-          maxLength: 512
-          description: notes about the refusal
         addressLine1:
           type: string
           maxLength: 60
