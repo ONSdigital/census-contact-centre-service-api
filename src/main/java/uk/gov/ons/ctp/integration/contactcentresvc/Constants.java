@@ -1,9 +1,6 @@
 package uk.gov.ons.ctp.integration.contactcentresvc;
 
 public interface Constants {
-  public static final String UPRN_RE = "^\\d{1,12}$";
-  public static final long UPRN_MIN = 0L;
-  public static final long UPRN_MAX = 999999999999L;
 
   public static final String UKMOBILEPHONENUMBER_RE = "^447[0-9]{9}$";
   public static final String OPTIONAL_UKMOBILEPHONENUMBER_RE = "^$|" + UKMOBILEPHONENUMBER_RE;

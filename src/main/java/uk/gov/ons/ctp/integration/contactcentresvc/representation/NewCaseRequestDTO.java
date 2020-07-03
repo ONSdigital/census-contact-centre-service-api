@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import uk.gov.ons.ctp.common.domain.CaseType;
 import uk.gov.ons.ctp.common.domain.EstabType;
+import uk.gov.ons.ctp.common.domain.UniquePropertyReferenceNumber;
 
 /**
  * The request object when contact centre sends new case and address details
@@ -21,7 +22,7 @@ public class NewCaseRequestDTO extends CaseRequestDTO {
 
   @NotNull private CaseType caseType;
 
-  private String uprn;
+  private UniquePropertyReferenceNumber uprn;
 
   @NotNull private EstabType estabType;
 }
