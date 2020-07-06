@@ -10,7 +10,7 @@ import uk.gov.ons.ctp.common.domain.UniquePropertyReferenceNumber;
 
 public class CaseDTOTest {
   private static final UniquePropertyReferenceNumber A_UPRN =
-      new UniquePropertyReferenceNumber("334111111111");
+      new UniquePropertyReferenceNumber("3341111111111");
   private static final UniquePropertyReferenceNumber ANOTHER_UPRN =
       new UniquePropertyReferenceNumber("1347459999");
   private static final UUID A_UUID = UUID.randomUUID();
