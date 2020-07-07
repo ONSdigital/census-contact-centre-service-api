@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import uk.gov.ons.ctp.common.domain.UniquePropertyReferenceNumber;
 import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 
 /**
@@ -23,7 +24,7 @@ import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 @AllArgsConstructor
 public class NewCaseRequestDTO extends CaseRequestDTO {
 
-  private String uprn;
+  private UniquePropertyReferenceNumber uprn;
 
   @LoggingScope(scope = Scope.SKIP)
   @NotBlank
