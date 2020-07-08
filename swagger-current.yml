@@ -1,13 +1,14 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  version: "5.10.9-oas3"
+  version: "5.10.10-oas3"
   description: |
     Specification for the ONS Census Contact Centre / Assisted Digital service.
     This reflects the release candidate that will next be promoted into the integration environment.
 
     Version | Change
     ------- | ----------------------------------------------------------------
+    5.10.10 | PUT /cases/{caseId} address fields reduced
     5.10.9  | uprn now 13 not 12 digits    
     5.10.8  | AD location len 8 -> 4
       -     | 202 response added to launch endpoint
@@ -820,6 +821,8 @@ components:
     CaseRequestDTO:
       type: object
       properties:
+        caseType:
+              $ref: '#/components/schemas/CaseType'
         addressLine1:
           type: string
           maxLength: 60
@@ -832,14 +835,6 @@ components:
           type: string
           maxLength: 60
           description: updated address line3
-        townName:
-          type: string
-          maxLength: 30
-          description: The post town of the address
-        region:
-          $ref: '#/components/schemas/Region'
-        postcode:
-          $ref:  '#/components/schemas/POSTCODE_CONST'
         ceOrgName:
           type: string
           maxLength: 60
@@ -847,10 +842,55 @@ components:
         ceUsualResidents:
           type: integer
           description: CE number of usual residents. Must be a positive value for CE cases
+        estabType:
+          $ref: '#/components/schemas/EstabType'
+          description: 'the reported type of an address'
         dateTime:
           type: string
           format: datetime
           description: The request date time stamp
+
+    ModifyCaseRequestDTO:
+      allOf:
+        - $ref: '#/components/schemas/CaseRequestDTO'
+        - type: object
+          properties:
+            caseId:
+              type: string
+              format: uuid
+              description: CaseId of case to modify
+          required:
+            - caseId
+            - caseType
+            - estabType
+            - addressLine1
+            - dateTime
+
+    NewCaseRequestDTO:
+      allOf:
+        - $ref: '#/components/schemas/CaseRequestDTO'
+        - type: object
+          properties:
+            uprn:
+              type: string
+              pattern: '^\d{1,13}$'
+              description: The address UPRN if known, or null if not known.
+            region:
+              $ref: '#/components/schemas/Region'
+            postcode:
+              $ref:  '#/components/schemas/POSTCODE_CONST'
+            townName:
+              type: string
+              maxLength: 30
+              description: The post town of the address
+          required:
+            - caseType
+            - estabType
+            - region
+            - addressLine1
+            - townName
+            - postcode
+            - dateTime
 
     InvalidateCaseRequestDTO:
       properties:
@@ -882,50 +922,6 @@ components:
         - status
         - caseId
         - dateTime
-
-    ModifyCaseRequestDTO:
-      allOf:
-        - $ref: '#/components/schemas/CaseRequestDTO'
-        - type: object
-          properties:
-            caseId:
-              type: string
-              format: uuid
-              description: CaseId of case to modify
-            estabType:
-              $ref: '#/components/schemas/EstabType'
-          description: 'the reported status of an address'
-        - type: object
-          required:
-            - region
-            - caseId
-            - addressLine1
-            - townName
-            - estabType
-            - postcode
-            - dateTime
-
-    NewCaseRequestDTO:
-      allOf:
-        - $ref: '#/components/schemas/CaseRequestDTO'
-        - type: object
-          properties:
-            caseType:
-              $ref: '#/components/schemas/CaseType'
-            uprn:
-              type: string
-              pattern: '^\d{1,13}$'
-              description: The address UPRN if known, or null if not known.
-            estabType:
-              $ref: '#/components/schemas/EstabType'
-          required:
-            - region
-            - addressLine1
-            - townName
-            - postcode
-            - dateTime
-            - caseType
-            - estabType
 
     PostalFulfilmentRequestDTO:
       properties:
