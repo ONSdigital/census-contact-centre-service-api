@@ -42,14 +42,6 @@ public class RefusalRequestDTO {
   @LoggingScope(scope = Scope.SKIP)
   private String surname;
 
-  @Pattern(regexp = Constants.OPTIONAL_PHONENUMBER_RE)
-  @LoggingScope(scope = Scope.SKIP)
-  private String telNo;
-
-  @Size(max = 512)
-  @LoggingScope(scope = Scope.SKIP)
-  private String notes;
-
   @Size(max = 60)
   private String addressLine1;
 
@@ -73,6 +65,8 @@ public class RefusalRequestDTO {
   private String postcode;
 
   private UniquePropertyReferenceNumber uprn;
+
+  @NotNull private Boolean isHouseholder;
 
   @NotNull private Date dateTime;
 
