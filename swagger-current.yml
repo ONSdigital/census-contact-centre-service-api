@@ -8,8 +8,9 @@ info:
 
     Version | Change
     ------- | ----------------------------------------------------------------
-    5.10.10 | removed tele num and notes from /cases/refusal
-      -     | added isHouseholder to /cases/refusal    5.10.10 | PUT /cases/{caseId} address fields reduced
+    5.10.11 | removed tele num and notes from /cases/refusal
+      -     | added isHouseholder to /cases/refusal
+    5.10.10 | PUT /cases/{caseId} address fields reduced
     5.10.9  | uprn now 13 not 12 digits    
     5.10.8  | AD location len 8 -> 4
       -     | 202 response added to launch endpoint
