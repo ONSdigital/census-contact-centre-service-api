@@ -8,6 +8,8 @@ info:
 
     Version | Change
     ------- | ----------------------------------------------------------------
+    5.10.11 | removed tele num and notes from /cases/refusal
+      -     | added isHouseholder to /cases/refusal
     5.10.10 | PUT /cases/{caseId} address fields reduced
     5.10.9  | uprn now 13 not 12 digits    
     5.10.8  | AD location len 8 -> 4
@@ -1002,14 +1004,6 @@ components:
           type: string
           maxLength: 60
           description: the surname of the person refusing
-        telNo:
-          type: string
-          pattern: '^[0-9]*$'
-          description: the telephone number of the individual refusing
-        notes:
-          type: string
-          maxLength: 512
-          description: notes about the refusal
         addressLine1:
           type: string
           maxLength: 60
@@ -1034,6 +1028,9 @@ components:
           type: string
           pattern: '^\d{1,13}$'
           description: The address UPRN if known
+        isHouseholder:
+          type: boolean
+          description: True if the person refusing is the householder
         dateTime:
           type: string
           format: datetime
@@ -1047,6 +1044,7 @@ components:
         - caseId
         - reason
         - dateTime
+        - isHouseholder
 
     FulfilmentDTO:
       properties:
