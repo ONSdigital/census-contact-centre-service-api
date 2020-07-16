@@ -8,6 +8,7 @@ info:
 
     Version | Change
     ------- | ----------------------------------------------------------------
+    5.11.12 | callId optional for /cases/refusal
     5.11.11 | removed tele num and notes from /cases/refusal
       -     | added isHouseholder to /cases/refusal
     5.11.10 | uprn now 13 not 12 digits
@@ -1034,7 +1035,6 @@ components:
           description: call identifier
       required:
         - agentId
-        - callId
         - caseId
         - reason
         - dateTime
