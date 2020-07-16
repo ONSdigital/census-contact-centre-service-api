@@ -70,5 +70,5 @@ public class RefusalRequestDTO {
 
   @NotNull private Date dateTime;
 
-  @NotNull private String callId;
+  private String callId;
 }
