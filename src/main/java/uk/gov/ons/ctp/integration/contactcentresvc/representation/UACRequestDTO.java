@@ -1,6 +1,5 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
-import java.util.UUID;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,9 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UACRequestDTO {
 
-  @NotNull private UUID caseId;
+  @NotNull private String adLocationId;
 
-  @NotNull private String adLocation;
-
-  @NotNull private boolean individual;
+  @NotNull private Boolean individual;
 }
