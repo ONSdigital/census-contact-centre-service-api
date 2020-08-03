@@ -1,7 +1,6 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,9 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LaunchRequestDTO {
 
-  @Pattern(regexp = "\\d{1,5}")
-  @NotNull
-  private String agentId;
+  @NotNull private Integer agentId;
 
   @NotNull private Boolean individual;
 }

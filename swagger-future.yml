@@ -1267,6 +1267,7 @@ components:
     AGENT_ID_CONST:
       type: integer
       format: int32
+      description: employee identifier
       
     Region:
       type: string
