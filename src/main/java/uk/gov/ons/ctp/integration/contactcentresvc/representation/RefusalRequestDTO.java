@@ -26,9 +26,7 @@ public class RefusalRequestDTO {
 
   private String caseId;
 
-  @Pattern(regexp = "\\d{1,5}")
-  @NotNull
-  private String agentId;
+  @NotNull private Integer agentId;
 
   @Size(max = 12)
   @LoggingScope(scope = Scope.SKIP)
