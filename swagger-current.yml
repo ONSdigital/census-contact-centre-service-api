@@ -8,6 +8,8 @@ info:
 
     Version | Change
     ------- | ----------------------------------------------------------------
+    5.10.13 | removed support for 'unknown' from /cases/refusal. Also, the
+            | caseId in the request body can no longer be null.
     5.10.12 | unrestricted integer agentId
     5.10.11 | removed tele num and notes from /cases/refusal
       -     | added isHouseholder to /cases/refusal
@@ -717,12 +719,12 @@ paths:
         - CONTACT_CENTRE
       summary: Log when someone is unable/unwilling to complete a response
       description: >-
-        Logs a refusal against a Case, 'unknown' should be used in place of a caseid if lookup cannot be performed due to API not being available.
+        Logs a refusal against a Case.
         Address fields are optional, these are only required in the instance where the API is down and the contact centre operative needs to record the address fields due to Case lookup not being available.
       parameters:
         - in: path
           name: caseId
-          description: The Case UUID or 'unknown'
+          description: The Case UUID
           required: true
           schema:
             type: string
@@ -982,6 +984,7 @@ components:
       properties:
         caseId:
           type: string
+          format: uuid
           description: CaseId to log refusal against
         agentId:
           $ref: '#/components/schemas/AGENT_ID_CONST'

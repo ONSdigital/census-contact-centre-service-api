@@ -3,6 +3,7 @@ package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 import com.godaddy.logging.LoggingScope;
 import com.godaddy.logging.Scope;
 import java.util.Date;
+import java.util.UUID;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -24,7 +25,7 @@ import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 @AllArgsConstructor
 public class RefusalRequestDTO {
 
-  private String caseId;
+  @NotNull private UUID caseId;
 
   @NotNull private Integer agentId;
 
