@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  version: "5.11.12"
+  version: "5.11.13"
   description: |
     Specification for the ONS Census Contact Centre / Assisted Digital service.
     This reflects upcoming changes
@@ -962,7 +962,7 @@ components:
           description: CaseId to request fulfilment for.
         telNo:
           type: string
-          pattern: '^447[0-9]{9}$'  
+          pattern: '^447[0-9]{9}$'
         fulfilmentCode:
           type: string
           description: the fulfilment code for the fulfilment
