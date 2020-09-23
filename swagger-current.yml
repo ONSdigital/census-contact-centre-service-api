@@ -1306,8 +1306,6 @@ components:
         - CARE_HOME
         - HOSPITAL
         - HOSPICE
-        - MENTAL_HEALTH_HOSPITAL
-        - MEDICAL_CARE_OTHER
         - BOARDING_SCHOOL
         - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
         - HIGH_SECURE_MENTAL_HEALTH
@@ -1315,7 +1313,7 @@ components:
         - YOUTH_HOSTEL
         - HOSTEL
         - MILITARY_SLA
-        - MILITARY_US
+        - MILITARY_US_SLA
         - RELIGIOUS_COMMUNITY
         - RESIDENTIAL_CHILDRENS_HOME
         - EDUCATION_OTHER
@@ -1324,22 +1322,16 @@ components:
         - APPROVED_PREMISES
         - ROUGH_SLEEPER
         - STAFF_ACCOMMODATION
-        - CAMPHILL
-        - HOLIDAY_PARK
         - HOUSEHOLD
         - SHELTERED_ACCOMMODATION
         - RESIDENTIAL_CARAVAN
         - RESIDENTIAL_BOAT
-        - GATED_APARTMENTS
-        - MOD_HOUSEHOLDS
-        - FOREIGN_OFFICES
-        - CASTLES
-        - GRT_SITE
         - MILITARY_SFA
         - EMBASSY
         - ROYAL_HOUSEHOLD
-        - CARAVAN_SITE
+        - CARAVAN
         - MARINA
         - TRAVELLING_PERSONS
         - TRANSIENT_PERSONS
+        - MILITARY_US_SFA
         - OTHER
