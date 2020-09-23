@@ -1,13 +1,14 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  version: "5.11.13"
+  version: "5.11.14"
   description: |
     Specification for the ONS Census Contact Centre / Assisted Digital service.
     This reflects upcoming changes
 
     Version | Change
     ------- | ----------------------------------------------------------------
+    5.11.14 | updated the EstabType enum in the swagger yml files
     5.11.13 | removed support for 'unknown' from /cases/refusal. Also, the
             | caseId in the request body can no longer be null.
     5.11.12 | callId optional for /cases/refusal
