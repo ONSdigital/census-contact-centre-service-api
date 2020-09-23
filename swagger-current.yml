@@ -1,13 +1,14 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  version: "5.10.13-oas3"
+  version: "5.10.14-oas3"
   description: |
     Specification for the ONS Census Contact Centre / Assisted Digital service.
     This reflects the release candidate that will next be promoted into the integration environment.
 
     Version | Change
     ------- | ----------------------------------------------------------------
+    5.10.14 | updated the EstabType enum
     5.10.13 | removed support for 'unknown' from /cases/refusal. Also, the
             | caseId in the request body can no longer be null.
     5.10.12 | unrestricted integer agentId
@@ -1306,8 +1307,6 @@ components:
         - CARE_HOME
         - HOSPITAL
         - HOSPICE
-        - MENTAL_HEALTH_HOSPITAL
-        - MEDICAL_CARE_OTHER
         - BOARDING_SCHOOL
         - LOW_OR_MEDIUM_SECURE_MENTAL_HEALTH
         - HIGH_SECURE_MENTAL_HEALTH
@@ -1315,7 +1314,7 @@ components:
         - YOUTH_HOSTEL
         - HOSTEL
         - MILITARY_SLA
-        - MILITARY_US
+        - MILITARY_US_SLA
         - RELIGIOUS_COMMUNITY
         - RESIDENTIAL_CHILDRENS_HOME
         - EDUCATION_OTHER
@@ -1324,22 +1323,16 @@ components:
         - APPROVED_PREMISES
         - ROUGH_SLEEPER
         - STAFF_ACCOMMODATION
-        - CAMPHILL
-        - HOLIDAY_PARK
         - HOUSEHOLD
         - SHELTERED_ACCOMMODATION
         - RESIDENTIAL_CARAVAN
         - RESIDENTIAL_BOAT
-        - GATED_APARTMENTS
-        - MOD_HOUSEHOLDS
-        - FOREIGN_OFFICES
-        - CASTLES
-        - GRT_SITE
         - MILITARY_SFA
         - EMBASSY
         - ROYAL_HOUSEHOLD
-        - CARAVAN_SITE
+        - CARAVAN
         - MARINA
         - TRAVELLING_PERSONS
         - TRANSIENT_PERSONS
+        - MILITARY_US_SFA
         - OTHER
