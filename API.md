@@ -29,6 +29,11 @@ be behind that of the swagger-current.yml in this repo, as the swagger-current v
 "The requested postcode is not within the CCS sample"
 
 ## PUT/cases/{caseId}
+1. This endpoint allows for basic modification of four fields within an existing case (addressLine1..3 and ceOrgName).
+The provided estabType and caseType must always be compatible else a BAD_REQUEST will be returned.
+If only a basic modification is performed the modified case is returned (the caseId will remain the same).
+If however the combination of caseType/estabType is a fundamental change of an existing caseType to another, a new case is created, and the case returned will indicate the NEW caseId.
+Any further requests should then use the NEW caseId for fulfilments, refusals etc.
 
 ## GET/cases/{caseId}
 
