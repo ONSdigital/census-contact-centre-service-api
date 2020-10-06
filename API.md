@@ -26,7 +26,7 @@ be behind that of the swagger-current.yml in this repo, as the swagger-current v
 
 ## GET/cases/ccs/postcode/{postcode}
 1. If the postcode used is not within a CCS catchment/sample, the endpoint will respond with a BAD_REQUEST code and the message 
-"The requested postcode is not within the CCS sample"
+"Operation not permissible for a CCS Case"
 
 ## PUT/cases/{caseId}
 1. This endpoint allows for basic modification of four fields within an existing case (addressLine1..3 and ceOrgName).
