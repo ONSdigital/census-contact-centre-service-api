@@ -12,11 +12,11 @@ public class AddressQueryRequestDTO {
   @NotBlank private String input;
 
   @Min(0)
-  @Max(250)
+  @Max(5000)
   private Integer offset = 0;
 
   @Min(0)
-  @Max(100)
+  @Max(5000)
   private Integer limit = 100;
 
   /**

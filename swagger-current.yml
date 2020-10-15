@@ -1,13 +1,14 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  version: "5.10.14-oas3"
+  version: "5.10.15-oas3"
   description: |
     Specification for the ONS Census Contact Centre / Assisted Digital service.
     This reflects the release candidate that will next be promoted into the integration environment.
 
     Version | Change
     ------- | ----------------------------------------------------------------
+    5.10.15 | updated maximum values of offset and limit
     5.10.14 | updated the EstabType enum
     5.10.13 | removed support for 'unknown' from /cases/refusal. Also, the
             | caseId in the request body can no longer be null.
@@ -60,7 +61,7 @@ paths:
           schema:
             type: integer
             minimum: 0
-            maximum: 250
+            maximum: 5000
             default: 0
         - in: query
           name: limit
@@ -69,7 +70,7 @@ paths:
           schema:
             type: integer
             minimum: 0
-            maximum: 100
+            maximum: 5000
             default: 100
 
       responses:
