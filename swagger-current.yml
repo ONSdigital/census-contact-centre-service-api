@@ -8,7 +8,7 @@ info:
 
     Version | Change
     ------- | ----------------------------------------------------------------
-    5.10.15 | updated maximum values of offset and limit
+    5.10.15 | updated maximum values of offset and limit for /addresses/postcode endpoint
     5.10.14 | updated the EstabType enum
     5.10.13 | removed support for 'unknown' from /cases/refusal. Also, the
             | caseId in the request body can no longer be null.
