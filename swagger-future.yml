@@ -1,13 +1,14 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  version: "5.11.16"
+  version: "5.11.17"
   description: |
     Specification for the ONS Census Contact Centre / Assisted Digital service.
     This reflects upcoming changes
 
     Version | Change
     ------- | ----------------------------------------------------------------
+    5.11.17 | postalfulfilment title, forename and surname max characters changes (20,35,35)
     5.11.16 | title no longer mandatory for an individual fulfilment postal request
     5.11.15 | updated maximum values of offset and limit for /addresses/postcode endpoint
     5.11.14 | updated the EstabType enum
@@ -935,15 +936,15 @@ components:
           description: CaseId to request fulfilment for.
         title:
           type: string
-          maxLength: 12
+          maxLength: 20
           description: the title of the person requesting fulfilment
         forename:
           type: string
-          maxLength: 60
+          maxLength: 35
           description: the forename of the person requesting fulfilment
         surname:
           type: string
-          maxLength: 60
+          maxLength: 35
           description: the surname of the person requesting fulfilment
         fulfilmentCode:
           type: string
