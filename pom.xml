@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>contactcentreserviceapi</artifactId>
   <!-- Please make sure that contact-centre-cucumber has the latest dependency on this project -->
-  <version>0.0.135-SNAPSHOT</version>
+  <version>0.0.135-CR1795-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>CTP : ContactCentreServiceApi</name>
