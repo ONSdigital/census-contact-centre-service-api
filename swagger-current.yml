@@ -1,14 +1,14 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  version: "5.10.18-oas3"
+  version: "5.11.18-oas3"
   description: |
     Specification for the ONS Census Contact Centre / Assisted Digital service.
     This reflects the release candidate that will next be promoted into the integration environment.
 
     Version | Change
     ------- | ----------------------------------------------------------------
-    5.10.18 | Postcode query rejects BFPO postcodes
+    5.11.18 | Postcode query rejects BFPO postcodes
     5.11.17 | postalfulfilment title, forename and surname max characters changes (20,35,35)
     5.10.16 | title no longer mandatory for an individual fulfilment postal request
     5.10.15 | updated maximum values of offset and limit for /addresses/postcode endpoint
