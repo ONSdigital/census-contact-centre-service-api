@@ -3,13 +3,17 @@ package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString
 public class AddressQueryRequestDTO {
-  @NotBlank private String input;
+
+  @Size(max = 250)
+  @NotBlank
+  private String input;
 
   @Min(0)
   @Max(250)
